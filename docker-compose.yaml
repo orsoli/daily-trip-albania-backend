@@ -1,0 +1,50 @@
+services:
+  # Apache and PHP
+  web:
+    image: bitnami/laravel
+    container_name: laravel-container
+    ports:
+      - "8088:8000"
+    volumes:
+      - ./my-project:/app
+    environment:
+      DB_HOST: mysql-container
+      DB_PORT: 3306
+      DB_USERNAME: root
+      DB_DATABASE: daily-trip-albania
+      LARAVEL_DATABASE_PASSWORD: root_password
+    networks:
+      - my-network
+  # MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: your_database
+      MYSQL_USER: your_user
+      MYSQL_PASSWORD: your_password
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - my-network
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-container
+    ports:
+      - "8089:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root_password
+    depends_on:
+      - mysql
+    networks:
+      - my-network
+
+# Define network
+networks:
+  my-network:

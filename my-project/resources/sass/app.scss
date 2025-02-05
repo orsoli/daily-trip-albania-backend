@@ -1,0 +1,19 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Generics
+img{
+    max-width: 100%;
+}
+
+// Utils
+.header-logo{
+    width: 40px;
+    filter: brightness(0);
+}
