@@ -1,7 +1,20 @@
+// Colors
+$teal:            #1CA698;
+$blue:            #0066D2;
+$yellow:          #F2B705;
+$lightbrown:      #BFA393;
+$green:           #1C621B;
+$red:             #BD2024;
+
+
+// utils
+$primary:           $teal;
+$secondary: lighten($primary, 40%);
+
 // Body
-$body-bg: #c4e9fd;
+$body-bg:         #F0FBFA;
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$font-size-base:    0.9rem;
+$line-height-base:  1.6;

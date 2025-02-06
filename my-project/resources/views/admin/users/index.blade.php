@@ -1,0 +1,42 @@
+@extends('layouts.app')
+
+@section('title', __('static.users_index'). ' | ' . config('app.name'))
+
+@section('content')
+<div class="container">
+    {{-- Users Table --}}
+    <table class="table table-striped shadow">
+        <caption>List of users</caption>
+        <thead>
+            <tr>
+                @foreach ($columns as $column)
+                <th class="text-primary {{ $column === __('static.email_address') || $column === __('static.personal_nr') ? 'd-none d-lg-table-cell' : '' }}"
+                    scope="col">
+                    {{$column}}
+                </th>
+                @endforeach
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+            <tr>
+                <td> {{$user->id}} </td>
+                <td> {{$user->first_name}} </td>
+                <td> {{$user->last_name}} </td>
+                <td> {{$user->role->name}} </td>
+                <td class="d-none d-lg-table-cell"> {{$user->email}} </td>
+                <td class="d-none d-lg-table-cell"> {{$user->personal_nr}} </td>
+                <td>
+                    @include('partials.action-buttons', [
+                    'show_href' => 'www.show',
+                    'edit_href' => 'www.edit',
+                    'delete_href' => 'www.delete'
+                    ])
+
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endsection

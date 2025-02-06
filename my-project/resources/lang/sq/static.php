@@ -3,6 +3,8 @@ return [
     'toggle_navigation' => 'Ndrysho Navigimin',
     'admin_panel' => 'Paneli i Adminit',
     'Login' => 'Hyr',
+    'user' => 'Perdorues',
+    'users_index' => 'Indeksi i Perdoruesve',
     'add' => 'Shto',
     'addUser' => 'Shto User',
     'addRole' => 'Shto Role',
@@ -27,6 +29,9 @@ return [
     'not_receive_email' => 'Nese nuk e keni pranuar emailin',
     'click_here_to_request_another' => 'klikoni ketu per te kerkuar nje tjeter',
     'visit_web' => 'Vizito Webin',
+    'action' => 'Veprim',
+
+    // Copyright
     'copy_right' => '© ' . now()->year . ' Daily Trip Albania. Te gjitha te drejtat e rezervuara.',
 
     'role' => 'Roli',

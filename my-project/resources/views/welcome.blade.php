@@ -19,15 +19,15 @@
 
 <body>
     <main class="mb-3 p-3">
-        <div class="container body-gb">
+        <div class="container">
             <div class="logo col-12 d-flex justify-content-center mb-5">
                 <img src="{{asset('img/DailyTrip-logo.png')}}" alt="daily-trip-logo"
-                    class="col-3 bg-secondary rounded-5 shadow">
+                    class="col-3 bg-primary rounded-5 shadow">
             </div>
             <div class="row justify-content-center mb-3">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-secondary">
                             <h3>{{__('content.welcome_to_admin_panel')}}</h3>
                         </div>
                         {{-- Card Body --}}
@@ -40,7 +40,7 @@
                                 <ul class="links list-unstyled d-flex justify-content-end gap-3">
                                     <li>
                                         @if (Route::has('dashboard'))
-                                        <a class="nav-link text-info" href="{{ route('dashboard') }}"> Go to {{
+                                        <a class="nav-link text-primary" href="{{ route('dashboard') }}"> Go to {{
                                             __('static.dashboard')
                                             }}</a>
                                         @endif

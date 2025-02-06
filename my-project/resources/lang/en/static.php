@@ -3,6 +3,8 @@ return [
     'toggle_navigation' => 'Toggle Navigation',
     'admin_panel' => 'Admin Panel',
     'Login' => 'Login',
+    'user' => 'User',
+    'users_index' => 'Users Index',
     'add' => 'Add',
     'addUser' => 'Add User',
     'addRole' => 'Add Role',
@@ -27,6 +29,9 @@ return [
     'not_receive_email' => 'If you did not receive the email',
     'click_here_to_request_another' => 'click here to request another',
     'visit_web' => 'Visit Web',
+    'action' => 'Action',
+
+    // Copyright
     'copy_right' => '© ' . now()->year . ' Daily Trip Albania. All rights reserved.',
 
     'role' => 'Role',

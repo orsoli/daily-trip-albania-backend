@@ -6,6 +6,7 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Generics
 img{
@@ -13,6 +14,23 @@ img{
 }
 
 // Utils
+.bg-yellow{
+    background-color: $yellow;
+}
+
+.bg-lightbrown{
+    background-color: $lightbrown;
+}
+
+.bg-blue{
+    background-color: $blue;
+}
+
+.bg-green{
+    background-color: $green;
+}
+
+// Headers
 .header-logo{
     width: 40px;
     filter: brightness(0);

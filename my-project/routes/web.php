@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,9 @@ Auth::routes(['verify' => true]);
 Route::get('/email/verify', function () {
     return view('auth.verify');
     })->middleware('auth')->name('verification.notice');
-
+// Dashboard route
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+// Admin Users route
+Route::prefix('/admin/users')->name('users.')->group(function () {
+    Route::get('/index', [RegisterController::class, 'index'])->name('index');
+});
