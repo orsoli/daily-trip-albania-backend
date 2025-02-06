@@ -25,7 +25,7 @@
     <div id="app">
         {{-- Header Nav bars --}}
         <header>
-            <nav class="navbar navbar-expand-md navbar-light bg-primary shadow">
+            <nav class="navbar navbar-expand-md bg-primary shadow">
                 <div class="container">
                     <div class="header-logo">
                         <a class="navbar-brand" href="{{ url('/') }}">

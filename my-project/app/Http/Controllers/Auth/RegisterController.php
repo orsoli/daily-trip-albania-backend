@@ -91,4 +91,12 @@ class RegisterController extends Controller
         return view('admin.users.index', compact('columns', 'users'));
     }
 
+    /**
+     * Display the specified resource
+     */
+    public function show(User $user)
+    {
+        return view('admin.users.show', compact('user'));
+    }
+
 }

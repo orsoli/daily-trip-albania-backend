@@ -28,7 +28,7 @@
                 <td class="d-none d-lg-table-cell"> {{$user->personal_nr}} </td>
                 <td>
                     @include('partials.action-buttons', [
-                    'show_href' => 'www.show',
+                    'show_href' => route('users.show', $user->id),
                     'edit_href' => 'www.edit',
                     'delete_href' => 'www.delete'
                     ])

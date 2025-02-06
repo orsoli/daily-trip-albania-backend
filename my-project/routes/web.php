@@ -29,4 +29,5 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 // Admin Users route
 Route::prefix('/admin/users')->name('users.')->group(function () {
     Route::get('/index', [RegisterController::class, 'index'])->name('index');
+    Route::get('/show/{user}', [RegisterController::class, 'show'])->name('show');
 });
