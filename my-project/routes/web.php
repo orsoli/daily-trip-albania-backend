@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,9 @@ Route::get('/email/verify', function () {
 // Dashboard route
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 // Admin Users route
-Route::prefix('/admin/users')->name('users.')->group(function () {
-    Route::get('/index', [RegisterController::class, 'index'])->name('index');
-    Route::get('/show/{user}', [RegisterController::class, 'show'])->name('show');
+Route::prefix('/admin/users/')->name('user.')->group(function () {
+    Route::get('index', [UserController::class, 'index'])->name('index');
+    Route::get('show/{user}', [UserController::class, 'show'])->name('show');
+    Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit');
+    Route::put('update/{user}', [UserController::class, 'update'])->name('update')->middleware(['auth', 'can:update,user']);
 });

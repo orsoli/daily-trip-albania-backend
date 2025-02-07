@@ -4,6 +4,8 @@
 
 @section('content')
 <div class="container">
+    {{-- Include Notifications --}}
+    @include('partials/notifications')
     {{-- Users Table --}}
     <table class="table table-striped shadow">
         <caption>List of users</caption>
@@ -28,8 +30,8 @@
                 <td class="d-none d-lg-table-cell"> {{$user->personal_nr}} </td>
                 <td>
                     @include('partials.action-buttons', [
-                    'show_href' => route('users.show', $user->id),
-                    'edit_href' => 'www.edit',
+                    'show_href' => route('user.show', $user->id),
+                    'edit_href' => route('user.edit', $user->id),
                     'delete_href' => 'www.delete'
                     ])
 

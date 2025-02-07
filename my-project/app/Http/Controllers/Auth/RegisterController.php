@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = 'admin/users/index';
 
     /**
      * Create a new controller instance.
@@ -77,26 +77,6 @@ class RegisterController extends Controller
             'personal_nr' => $data['personal_nr'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
-        // Get All users
-        $users = User::all();
-
-        return view('admin.users.index', compact('columns', 'users'));
-    }
-
-    /**
-     * Display the specified resource
-     */
-    public function show(User $user)
-    {
-        return view('admin.users.show', compact('user'));
     }
 
 }

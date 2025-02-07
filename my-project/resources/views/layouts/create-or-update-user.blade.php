@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('static.addUser') . ' | ' . config('app.name'))
+@section('title', __('static.add'). ' or ' . __('static.update_user') . ' | ' . config('app.name'))
 
 @section('content')
 {{-- Title --}}
@@ -8,33 +8,31 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('static.addUser') }}</div>
+                <div class="card-header bg-secondary">@yield('form-header')</div>
 
                 <div class="card-body">
-                    <form method="POST" action="@yield('route')">
+                    <form method="POST" action="@yield('form-action')">
                         @csrf
+                        @yield('form-method')
                         {{-- Role Input --}}
                         <div class="row mb-3">
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{__('static.role')}}</label>
-
                             <div class="col-md-6">
                                 <select id="role" class="form-select @error('role') is-invalid @enderror" name="role"
                                     required>
                                     <option value="" selected disabled>{{__('static.select_role')}} . . .</option>
                                     @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" {{ old('role')==$role->id ? "selected" : "" }}>{{
-                                        $role->name }}</option>
+                                    <option value="{{ $role->id }}" {{ old('role', $user->role_id ?? '') === $role->id ?
+                                        "selected" : "" }}>{{$role->name }}</option>
                                     @endforeach
                                 </select>
                                 {{-- Role Error --}}
                                 @error('role')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                @include('partials.input-validation-error-msg')
                                 @enderror
                             </div>
                         </div>
-                        {{-- Name Input --}}
+                        {{-- FirtName Input --}}
                         <div class="row mb-3">
                             <label for="first_name" class="col-md-4 col-form-label text-md-end">{{
                                 __('static.first_name')}}
@@ -43,12 +41,11 @@
                             <div class="col-md-6">
                                 <input id="first_name" type="text"
                                     class="form-control @error('first_name') is-invalid @enderror" name="first_name"
-                                    value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                                    value="{{ old('first_name', $user->first_name ?? '') }}" placeholder="e.g., John"
+                                    required autocomplete="first_name" autofocus>
                                 {{-- FirstName Error --}}
                                 @error('first_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                @include('partials.input-validation-error-msg')
                                 @enderror
                             </div>
                         </div>
@@ -60,12 +57,11 @@
                             <div class="col-md-6">
                                 <input id="last_name" type="text"
                                     class="form-control @error('last_name') is-invalid @enderror" name="last_name"
-                                    value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
-                                {{-- Name Error --}}
+                                    value="{{ old('last_name', $user->last_name ?? '') }}" placeholder="e.g., Doe"
+                                    required autocomplete="last_name" autofocus>
+                                {{-- Last Name Error --}}
                                 @error('last_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                @include('partials.input-validation-error-msg')
                                 @enderror
                             </div>
                         </div>
@@ -76,12 +72,11 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    name="email" value="{{ old('email', $user->email ?? '') }}"
+                                    placeholder="e.g., johndoe@gmail.com" required autocomplete="email">
                                 {{-- Email Error --}}
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                @include('partials.input-validation-error-msg')
                                 @enderror
                             </div>
                         </div>
@@ -93,13 +88,11 @@
                             <div class="col-md-6">
                                 <input id="date_of_birth" type="date"
                                     class="form-control @error('date_of_birth') is-invalid @enderror"
-                                    name="date_of_birth" value="{{ old('date_of_birth') }}" required
-                                    autocomplete="bday">
+                                    name="date_of_birth" value="{{ old('date_of_birth', $user->date_of_birth ?? '') }}"
+                                    required autocomplete="date_of_birth">
                                 {{-- DOB Error --}}
                                 @error('date_of_birth')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                @include('partials.input-validation-error-msg')
                                 @enderror
                             </div>
                         </div>
@@ -111,12 +104,11 @@
                             <div class="col-md-6">
                                 <input id="personal_nr" type="text"
                                     class="form-control @error('personal_nr') is-invalid @enderror" name="personal_nr"
-                                    value="{{ old('personal_nr') }}" required autocomplete="personal_nr">
+                                    value="{{ old('personal_nr', $user->personal_nr ?? '') }}"
+                                    placeholder="e.g., I12345678B" required autocomplete="personal_nr">
                                 {{-- Personal_nr Error --}}
                                 @error('personal_nr')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                @include('partials.input-validation-error-msg')
                                 @enderror
                             </div>
                         </div>
@@ -128,12 +120,10 @@
                             <div class="col-md-6">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
+                                    placeholder="e.g., Str0ngP@ssw0rd!" required autocomplete="new-password">
                                 {{-- Password Error --}}
                                 @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                @include('partials.input-validation-error-msg')
                                 @enderror
                             </div>
                         </div>
@@ -145,15 +135,17 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control"
-                                    name="password_confirmation" required autocomplete="new-password">
+                                    name="password_confirmation" placeholder="e.g., Str0ngP@ssw0rd!" required
+                                    autocomplete="new-password">
                             </div>
                         </div>
                         {{-- Submit Button --}}
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('static.addUser') }}
+                                    @yield('create-or-update-btn')
                                 </button>
+                                <button type="reset" class="btn btn-warning">Reset</button>
                             </div>
                         </div>
                     </form>
