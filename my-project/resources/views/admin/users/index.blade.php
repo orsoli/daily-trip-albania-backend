@@ -21,6 +21,7 @@
         </thead>
         <tbody>
             @foreach ($users as $user)
+            @if ($user->id !== auth()->user()->id)
             <tr>
                 <td> {{$user->id}} </td>
                 <td> {{$user->first_name}} </td>
@@ -34,9 +35,9 @@
                     'edit_href' => route('user.edit', $user->id),
                     'delete_href' => 'www.delete'
                     ])
-
                 </td>
             </tr>
+            @endif
             @endforeach
         </tbody>
     </table>

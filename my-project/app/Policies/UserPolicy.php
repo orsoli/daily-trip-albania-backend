@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        //
+        return $user->role->slug === 'super-admin';
     }
 
 }

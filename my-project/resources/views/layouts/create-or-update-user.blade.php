@@ -22,7 +22,8 @@
                                     required>
                                     <option value="" selected disabled>{{__('static.select_role')}} . . .</option>
                                     @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" {{ old('role', $user->role_id ?? '') === $role->id ?
+                                    <option value="{{ $role->id }}" {{ old('role_name', $user->role_id ?? '') ===
+                                        $role->id ?
                                         "selected" : "" }}>{{$role->name }}</option>
                                     @endforeach
                                 </select>
@@ -127,8 +128,9 @@
                                 @enderror
                             </div>
                         </div>
+
                         {{-- Confirm Password Input --}}
-                        <div class="row mb-3">
+                        {{-- <div class="row mb-3">
                             <label for="password-confirm"
                                 class="col-md-4 col-form-label text-md-end">{{__('static.confirm_password')
                                 }}</label>
@@ -138,7 +140,8 @@
                                     name="password_confirmation" placeholder="e.g., Str0ngP@ssw0rd!" required
                                     autocomplete="new-password">
                             </div>
-                        </div>
+                        </div> --}}
+
                         {{-- Submit Button --}}
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

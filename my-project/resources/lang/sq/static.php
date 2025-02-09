@@ -27,21 +27,29 @@ return [
     'confirm_password_before_continuing'=>'Ju lutem konfirmoni fjalekalimin tuaj para se te vazhdoni.',
     'verify_email' => 'Verifikoni Adresen Tuaj te Emailit',
     'verify_email_message' => 'Nje link i ri per verifikim eshte derguar ne adresen tuaj te emailit.',
+    'verified_email' => 'Email i Verifikuar',
     'check_email' => 'Para se te vazhdoni, ju lutem kontrolloni emailin tuaj per nje link verifikimi.',
     'not_receive_email' => 'Nese nuk e keni pranuar emailin',
     'click_here_to_request_another' => 'klikoni ketu per te kerkuar nje tjeter',
     'visit_web' => 'Vizito Webin',
     'action' => 'Veprim',
+    'edit' => 'Modifiko',
+    'delete' => 'Fshi',
+
 
     // Copyright
     'copy_right' => '© ' . now()->year . ' Daily Trip Albania. Te gjitha te drejtat e rezervuara.',
 
+    'my-profile' => 'Profili Im',
     'role' => 'Roli',
+    'role_description' => 'Pershkrimi i Rolit',
     'select_role' => 'Zgjidh Rolin',
     'super_admin' => 'Super Admin',
     'admin' => 'Admin',
     'editor' => 'Redaktor',
 
     //Notifications
-    'success_registered'=> 'Perdoruesi u regjistrua me sukses!'
+    'success_registered'=> 'Perdoruesi u regjistrua me sukses!',
+    'success_update'=> 'eshte perditesuar me sukses!',
+    'profile_update' => 'Profili juaj është përditësuar me sukses. Duhet të ri-logoheni përsëri.',
 ];

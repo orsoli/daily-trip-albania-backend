@@ -23,10 +23,18 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/email/verify', function () {
+
+    // Cjeck if user has verified email
+    if (auth()->user()->hasVerifiedEmail()) {
+
+        return redirect()->route('dashboard');
+    }
     return view('auth.verify');
     })->middleware('auth')->name('verification.notice');
+
 // Dashboard route
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
 // Admin Users route
 Route::prefix('/admin/users/')->name('user.')->group(function () {
     Route::get('index', [UserController::class, 'index'])->name('index');

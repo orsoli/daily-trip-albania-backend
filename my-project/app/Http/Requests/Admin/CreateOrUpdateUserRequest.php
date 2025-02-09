@@ -25,9 +25,9 @@ class CreateOrUpdateUserRequest extends FormRequest
             'role' => ['required', 'integer'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->user->id,],
             'date_of_birth' => ['required', 'date'],
-            'personal_nr' => ['required', 'string', 'min: 10', 'max:10', 'unique:users'],
+            'personal_nr' => ['required', 'string', 'min: 10', 'max:10', 'unique:users,personal_nr,' . $this->user->id,],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }

@@ -59,11 +59,33 @@ class UserController extends Controller
     public function update(CreateOrUpdateUserRequest $request, User $user)
     {
 
+        Gate::authorize('update-user', $user);
+
         $data = $request->all();
+
+        // Password check
+        if($data['password'] == ''){
+            $data['password'] = $user->password;
+        }else{
+            $data['password'] = Hash::make($data['password']);
+        };
 
         $user->update($data);
 
-        return redirect()->route("admin.users.index")
-            ->with('success', "User $user->first_name has been updated successfully!");
+        // If the logged-in user is updating their own profile, log them out and redirect to login
+        if($user->id == auth()->user()->id){
+
+            auth()->logout();
+
+            session()->flush();
+
+            session()->flash('success', $user->first_name . ' ' . __('static.profile_update'));
+
+            return redirect()->route('login');
+        }
+
+        session()->flash('success', $user->first_name . ' ' . __('static.success_update'));
+
+        return redirect()->route("user.index");
     }
 }

@@ -5,6 +5,7 @@ return [
     'Login' => 'Login',
     'user' => 'User',
     'users_index' => 'Users Index',
+    'users_panel' => 'Users Panel',
     'add' => 'Add',
     'update' => 'Update',
     'addUser' => 'Add User',
@@ -26,22 +27,29 @@ return [
     'send_password_reset_link' => 'Send Password Reset Link',
     'confirm_password_before_continuing'=>'Please confirm your password before continuing.',
     'verify_email' => 'Verify Your Email Address',
+    'verified_email' => 'Verified Email',
     'verify_email_message' => 'A fresh verification link has been sent to your email address.',
     'check_email' => 'Before proceeding, please check your email for a verification link.',
     'not_receive_email' => 'If you did not receive the email',
     'click_here_to_request_another' => 'click here to request another',
     'visit_web' => 'Visit Web',
     'action' => 'Action',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
 
     // Copyright
     'copy_right' => '© ' . now()->year . ' Daily Trip Albania. All rights reserved.',
 
+    'my_profile' => 'My Profile',
     'role' => 'Role',
+    'role_description' => 'Role Description',
     'select_role' => 'Select Role',
     'super_admin' => 'Super Admin',
     'admin' => 'Admin',
     'editor' => 'Editor',
 
     //Notifications
-    'success_registered'=> 'User registered successfully!'
+    'success_registered' => 'User registered successfully!',
+    'success_update' => 'has been updated successfully!',
+    'profile_update' => 'Your profile has been successfully updated. You need to log in again.',
 ];
