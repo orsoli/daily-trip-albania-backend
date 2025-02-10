@@ -33,7 +33,7 @@
                     @include('partials.action-buttons', [
                     'show_href' => route('user.show', $user->id),
                     'edit_href' => route('user.edit', $user->id),
-                    'delete_href' => 'www.delete'
+                    'destroy_action' => route('user.destroy',$user->id),
                     ])
                 </td>
             </tr>

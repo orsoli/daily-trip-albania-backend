@@ -10,8 +10,13 @@
         </a>
     </li>
     <li>
-        <a href="{{ $delete_href ?? '#' }}" class="text-danger">
-            <i class="bi bi-trash3"></i>
-        </a>
+        <form action="{{ $destroy_action ?? '#' }}" method="POST">
+            @csrf
+            @method('DELETE')
+
+            <button class="btn text-danger p-0 m-0" type="submit" value="delete">
+                <i class="bi bi-trash3"></i>
+            </button>
+        </form>
     </li>
 </ul>

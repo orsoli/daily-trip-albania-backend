@@ -23,13 +23,9 @@ Auth::routes(['verify' => true]);
 
 Route::get('/email/verify', function () {
 
-    // Check if user has verified email
-    if (auth()->user()->hasVerifiedEmail()) {
-
-        return redirect()->route('dashboard');
-    }
     return view('auth.verify');
-    })->middleware('auth')->name('verification.notice');
+
+    })->name('verification.notice');
 
 // Dashboard route
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
@@ -40,4 +36,5 @@ Route::prefix('/admin/users/')->name('user.')->group(function () {
     Route::get('show/{user}', [UserController::class, 'show'])->name('show');
     Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit');
     Route::put('update/{user}', [UserController::class, 'update'])->name('update');
+    Route::delete('delete/{user}', [UserController::class, 'destroy'])->name('destroy');
 });

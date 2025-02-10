@@ -20,7 +20,16 @@
                     <p class="card-text">{{__('static.role_description')}}: <br> <i> {{$user->role->description}}
                         </i></p>
                     <a href="{{route('user.edit', $user)}}" class="card-link text-warning">{{__('static.edit')}}</a>
-                    <a href="#" class="card-link text-danger">{{__('static.delete')}}</a>
+
+                    <form action="{{route('user.destroy', $user->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button class="btn text-danger p-0 m-0" type="submit" value="delete">
+                            {{__('static.delete')}}
+                        </button>
+                    </form>
+
                     <a href="{{ route('password.request') }}"
                         class="card-link text-primary">{{__('static.reset_password')}}</a>
                 </div>
