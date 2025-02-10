@@ -119,14 +119,19 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <ul class="list-unstyled">
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                 document.getElementById('logout-form').submit();">
-                                                {{ __('static.Logout') }}
+                                            <a class="dropdown-item" href="{{route('user.show', Auth::user())}}">
+                                                <i class="bi bi-person-circle"></i> {{ __('static.my_profile') }}
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="{{route('user.show', Auth::user())}}">
-                                                {{ __('static.my_profile') }}
+                                            <a class="dropdown-item" href="{{route('user.trash')}}">
+                                                <i class="bi bi-trash3-fill"></i> {{ __('static.trash') }}
+                                            </a>
+                                        </li>
+                                        <li class="my-2">
+                                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                 document.getElementById('logout-form').submit();">
+                                                <i class="bi bi-box-arrow-left"></i> {{ __('static.Logout') }}
                                             </a>
                                         </li>
                                     </ul>

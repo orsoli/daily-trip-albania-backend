@@ -15,6 +15,7 @@ return [
     'Logout' => 'Logout',
     'logedIn' => 'You are loged in!',
     'dashboard' => 'Dashboard',
+    'trash' => 'Trash',
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
     'dob' => 'Date of Birth',

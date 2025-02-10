@@ -14,6 +14,7 @@ return [
     'Logout' => 'Dil',
     'logedIn' => 'Loguar!',
     'dashboard' => 'Paneli',
+    'trash' => 'Koshi',
     'firstName' => 'Emri',
     'lastName' => 'Mbiemri',
     'dob' => 'Data e Lindjes',
