@@ -36,6 +36,11 @@ return [
     'action' => 'Veprim',
     'edit' => 'Modifiko',
     'delete' => 'Fshi',
+    'deleting' => 'Po fshini, ',
+    'permanently_deleting' => 'Po fshini pergjithmone,',
+    'sure_to_delete' => 'Jeni i sigurt qe deshironi të FSHINI,',
+    'sure_to_permanently_delete' => 'Jeni i sigurt që deshironi të FSHINI PERGJITHMONE,',
+
 
 
     // Copyright

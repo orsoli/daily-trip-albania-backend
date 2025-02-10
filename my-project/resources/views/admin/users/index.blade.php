@@ -33,7 +33,10 @@
                     @include('partials.action-buttons', [
                     'show_href' => route('user.show', $user->id),
                     'edit_href' => route('user.edit', $user->id),
-                    'destroy_action' => route('user.destroy',$user->id),
+                    'user_name' => $user->first_name . ' ' . $user->last_name,
+                    'form_action' => route('user.destroy',$user->id),
+                    'modal_header' => __('static.deleting'),
+                    'modal_body' => __('static.sure_to_delete')
                     ])
                 </td>
             </tr>
@@ -45,4 +48,8 @@
         {{ $users->links('pagination::bootstrap-4') }}
     </div>
 </div>
+@endsection
+
+@section('add-script')
+@vite(['resources/js/actions-btns.js',])
 @endsection

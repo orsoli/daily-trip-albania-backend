@@ -10,13 +10,39 @@
         </a>
     </li>
     <li>
-        <form action="{{ $destroy_action ?? '#' }}" method="POST">
-            @csrf
-            @method('DELETE')
+        {{-- Delete Modal --}}
+        <!-- Button trigger modal -->
+        <button class="btn text-danger p-0 m-0" type="button" data-user-name="{{$user_name}}"
+            data-form-action="{{$form_action}}" data-modal-header="{{$modal_header}}" data-modal-body="{{$modal_body}}"
+            data-bs-toggle="modal" data-bs-target="#deleteModal">
 
-            <button class="btn text-danger p-0 m-0" type="submit" value="delete">
-                <i class="bi bi-trash3"></i>
-            </button>
-        </form>
+            <i class="bi bi-trash3"></i>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-light bg-danger">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="deleteModalBody"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <form action="" method="POST" id="deleteForm">
+                            @csrf
+                            @method('DELETE')
+
+                            <button class="btn btn-danger" type="submit" value="delete">
+                                Yes, Delete
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </li>
 </ul>

@@ -37,6 +37,10 @@ return [
     'action' => 'Action',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'deleting' => 'You are deleting, ',
+    'permanently_deleting' => 'You are Permanently DELETING,',
+    'sure_to_delete' => 'Are you sure to DELETE,',
+    'sure_to_permanently_delete' => 'Are you sure to Permanently DELETE,',
 
     // Copyright
     'copy_right' => '© ' . now()->year . ' Daily Trip Albania. All rights reserved.',

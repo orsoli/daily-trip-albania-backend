@@ -151,6 +151,7 @@
             {{__('static.copy_right')}}
         </footer>
     </div>
+    @yield('add-script')
 </body>
 
 </html>
