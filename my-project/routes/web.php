@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +23,7 @@ Auth::routes(['verify' => true]);
 
 Route::get('/email/verify', function () {
 
-    // Cjeck if user has verified email
+    // Check if user has verified email
     if (auth()->user()->hasVerifiedEmail()) {
 
         return redirect()->route('dashboard');
@@ -40,5 +39,5 @@ Route::prefix('/admin/users/')->name('user.')->group(function () {
     Route::get('index', [UserController::class, 'index'])->name('index');
     Route::get('show/{user}', [UserController::class, 'show'])->name('show');
     Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit');
-    Route::put('update/{user}', [UserController::class, 'update'])->name('update')->middleware(['auth', 'can:update,user']);
+    Route::put('update/{user}', [UserController::class, 'update'])->name('update');
 });

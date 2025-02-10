@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CreateOrUpdateUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
 
 use App\Models\Role;
 use App\Models\User;
@@ -21,6 +21,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('superadmin');
+        $this->middleware('verified');
     }
 
     /**
@@ -56,33 +57,17 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateOrUpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
 
-        Gate::authorize('update-user', $user);
+        // Check if the email has been changed
+        if ($request->email !== $user->email) {
+            $user->email_verified_at = null; // Remove verification status
+        }
 
         $data = $request->all();
 
-        // Password check
-        if($data['password'] == ''){
-            $data['password'] = $user->password;
-        }else{
-            $data['password'] = Hash::make($data['password']);
-        };
-
         $user->update($data);
-
-        // If the logged-in user is updating their own profile, log them out and redirect to login
-        if($user->id == auth()->user()->id){
-
-            auth()->logout();
-
-            session()->flush();
-
-            session()->flash('success', $user->first_name . ' ' . __('static.profile_update'));
-
-            return redirect()->route('login');
-        }
 
         session()->flash('success', $user->first_name . ' ' . __('static.success_update'));
 

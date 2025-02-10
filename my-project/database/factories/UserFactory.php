@@ -23,11 +23,23 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        //     'role_id' => $role->id,
+        //     'first_name' => config('app.super_admin_first_name'),
+        //     'last_name' => config('app.super_admin_last_name'),
+        //     'email' => config('app.super_admin_email'),
+        //     'date_of_birth' => config('app.super_admin_date_of_birth'),
+        //     'personal_nr' => config('app.super_admin_personal_nr'),
+        //     'password' => Hash::make(config('app.super_admin_password')),
+
         return [
-            'name' => fake()->name(),
+            'role_id' => fake()->numberBetween(1,3),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
+            'date_of_birth' => fake()->date(),
+            'personal_nr' => fake()->numberBetween(1000000000, 9999999999),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('1234'),
             'remember_token' => Str::random(10),
         ];
     }
@@ -35,10 +47,10 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      */
-    public function unverified(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
-        ]);
-    }
+    // public function unverified(): static
+    // {
+    //     return $this->state(fn (array $attributes) => [
+    //         'email_verified_at' => null,
+    //     ]);
+    // }
 }

@@ -23,6 +23,7 @@ return [
     'remember_me' => 'Mbaj Mend',
     'forgot_your_password' => 'Harruat Fjalekalimin?',
     'reset_password' => 'Rivendos Fjalekalimin',
+    'reset_password_successfully' => 'Fjalekalimi juaj eshte ndryshuar me sukses',
     'send_password_reset_link' => 'Dergo Linkun per Rivendosjen e Fjalekalimit',
     'confirm_password_before_continuing'=>'Ju lutem konfirmoni fjalekalimin tuaj para se te vazhdoni.',
     'verify_email' => 'Verifikoni Adresen Tuaj te Emailit',
@@ -51,5 +52,5 @@ return [
     //Notifications
     'success_registered'=> 'Perdoruesi u regjistrua me sukses!',
     'success_update'=> 'eshte perditesuar me sukses!',
-    'profile_update' => 'Profili juaj është përditësuar me sukses. Duhet të ri-logoheni përsëri.',
+    'profile_update' => 'Profili juaj është përditësuar me sukses. Duhet të ri-logoheni përsëri per te verifikuar emailin tend te ri.',
 ];

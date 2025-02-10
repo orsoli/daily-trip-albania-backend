@@ -14,6 +14,7 @@
                     <form method="POST" action="@yield('form-action')">
                         @csrf
                         @yield('form-method')
+
                         {{-- Role Input --}}
                         <div class="row mb-3">
                             <label for="role" class="col-md-4 col-form-label text-md-end">{{__('static.role')}}</label>
@@ -33,6 +34,7 @@
                                 @enderror
                             </div>
                         </div>
+
                         {{-- FirtName Input --}}
                         <div class="row mb-3">
                             <label for="first_name" class="col-md-4 col-form-label text-md-end">{{
@@ -50,6 +52,7 @@
                                 @enderror
                             </div>
                         </div>
+
                         {{-- LastName Input --}}
                         <div class="row mb-3">
                             <label for="last_name" class="col-md-4 col-form-label text-md-end">{{
@@ -66,6 +69,7 @@
                                 @enderror
                             </div>
                         </div>
+
                         {{-- Email Address Input --}}
                         <div class="row mb-3">
                             <label for="email"
@@ -81,6 +85,7 @@
                                 @enderror
                             </div>
                         </div>
+
                         {{-- Date of birth Input --}}
                         <div class="row mb-3">
                             <label for="date_of_birth"
@@ -97,6 +102,7 @@
                                 @enderror
                             </div>
                         </div>
+
                         {{-- Personal nr Input --}}
                         <div class="row mb-3">
                             <label for="personal_nr"
@@ -113,7 +119,9 @@
                                 @enderror
                             </div>
                         </div>
+
                         {{-- Password Input --}}
+                        @if (request()->routeIs('register'))
                         <div class="row mb-3">
                             <label for="password"
                                 class="col-md-4 col-form-label text-md-end">{{__('static.password')}}</label>
@@ -130,7 +138,7 @@
                         </div>
 
                         {{-- Confirm Password Input --}}
-                        {{-- <div class="row mb-3">
+                        <div class="row mb-3">
                             <label for="password-confirm"
                                 class="col-md-4 col-form-label text-md-end">{{__('static.confirm_password')
                                 }}</label>
@@ -140,7 +148,8 @@
                                     name="password_confirmation" placeholder="e.g., Str0ngP@ssw0rd!" required
                                     autocomplete="new-password">
                             </div>
-                        </div> --}}
+                        </div>
+                        @endif
 
                         {{-- Submit Button --}}
                         <div class="row mb-0">

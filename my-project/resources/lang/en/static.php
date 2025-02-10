@@ -24,6 +24,7 @@ return [
     'remember_me' => 'Remember Me',
     'forgot_your_password' => 'Forgot Your Password?',
     'reset_password' => 'Reset Password',
+    'reset_password_successfully' => 'Your Password is changed Successfully',
     'send_password_reset_link' => 'Send Password Reset Link',
     'confirm_password_before_continuing'=>'Please confirm your password before continuing.',
     'verify_email' => 'Verify Your Email Address',
@@ -51,5 +52,5 @@ return [
     //Notifications
     'success_registered' => 'User registered successfully!',
     'success_update' => 'has been updated successfully!',
-    'profile_update' => 'Your profile has been successfully updated. You need to log in again.',
+    'profile_update' => 'Your profile has been successfully updated. You need to log in again to verify your new email.',
 ];

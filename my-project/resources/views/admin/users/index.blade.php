@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     {{-- Include Notifications --}}
-    @include('partials/notifications')
+    @include('partials.notifications')
     {{-- Users Table --}}
     <table class="table table-striped shadow">
         <caption>List of users</caption>

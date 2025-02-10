@@ -27,5 +27,7 @@ class UserSeeder extends Seeder
             'personal_nr' => config('app.super_admin_personal_nr'),
             'password' => Hash::make(config('app.super_admin_password')),
             ]);
+
+        User::factory()->count(19)->create();
     }
 }
