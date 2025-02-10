@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
         // Get All users
-        $users = User::all();
+        $users = User::paginate(10);
 
         return view('admin.users.index', compact('columns', 'users'));
     }
