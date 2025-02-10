@@ -7,8 +7,6 @@ use App\Http\Requests\Admin\UpdateUserRequest;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -34,6 +32,19 @@ class UserController extends Controller
         $users = User::paginate(10);
 
         return view('admin.users.index', compact('columns', 'users'));
+    }
+
+    /**
+     * Display a listing of the deleted resource.
+     */
+    public function trash()
+    {
+        $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
+
+        // Get All users in trash
+        $users = User::onlyTrashed()->paginate(10);
+
+        return view('admin.users.trash', compact('columns', 'users'));
     }
 
     /**
@@ -69,7 +80,7 @@ class UserController extends Controller
 
         $user->update($data);
 
-        session()->flash('success', $user->first_name . ' ' . __('static.success_update'));
+        session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_update'));
 
         return redirect()->route("user.index");
     }
@@ -81,6 +92,36 @@ class UserController extends Controller
     {
         $user->delete();
 
+        session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_delete'));
+
         return redirect()->route('user.index');
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+
+        $user->restore();
+
+        session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_restore'));
+
+        return redirect()->route('user.trash');
+    }
+
+    /**
+     * Permanently Delete the specified resource from DB.
+     */
+    public function forceDelete($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+
+        $user->forceDelete();
+
+        session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_permanently_delete'));
+
+        return redirect()->route('user.trash');
     }
 }

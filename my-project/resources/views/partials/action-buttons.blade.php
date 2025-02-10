@@ -1,14 +1,28 @@
 <ul class="list-unstyled d-flex gap-3">
+    @if (isset($show_href))
     <li>
         <a href="{{ $show_href ?? '#' }}">
             <i class="bi bi-eye"></i>
         </a>
     </li>
+    @endif
+    @if (isset($edit_href))
     <li>
         <a href="{{ $edit_href ?? '#' }}" class="text-warning">
             <i class="bi bi-pencil"></i>
         </a>
     </li>
+    @endif
+    @if (isset($restore_href))
+    <li>
+        <form action="{{$restore_href}}" method="POST">
+            @csrf
+            <button class="btn text-warning p-0 m-0" type="submit" value="restore">
+                <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+        </form>
+    </li>
+    @endif
     <li>
         {{-- Delete Modal --}}
         <!-- Button trigger modal -->

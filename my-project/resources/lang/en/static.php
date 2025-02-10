@@ -5,6 +5,7 @@ return [
     'Login' => 'Login',
     'user' => 'User',
     'users_index' => 'Users Index',
+    'users_trash' => 'Users Trash',
     'users_panel' => 'Users Panel',
     'add' => 'Add',
     'update' => 'Update',
@@ -57,4 +58,7 @@ return [
     'success_registered' => 'User registered successfully!',
     'success_update' => 'has been updated successfully!',
     'profile_update' => 'Your profile has been successfully updated. You need to log in again to verify your new email.',
+    'success_delete' => 'has been deleted successfully',
+    'success_permanently_delete' => 'has been permanently deleted successfully',
+    'success_restore' => 'has been restore successfully',
 ];

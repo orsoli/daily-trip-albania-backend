@@ -5,6 +5,7 @@ return [
     'Login' => 'Hyr',
     'user' => 'Perdorues',
     'users_index' => 'Indeksi i Perdoruesve',
+    'users_trash' => 'Përdoruesit e Fshirë',
     'add' => 'Shto',
     'update' => 'Perditeso',
     'addUser' => 'Shto User',
@@ -58,4 +59,7 @@ return [
     'success_registered'=> 'Perdoruesi u regjistrua me sukses!',
     'success_update'=> 'eshte perditesuar me sukses!',
     'profile_update' => 'Profili juaj është përditësuar me sukses. Duhet të ri-logoheni përsëri per te verifikuar emailin tend te ri.',
+    'success_delete' => 'eshte fshire me sukses.',
+    'success_permanently_delete' => 'eshte fshire ne menyre te perhershme me sukses.',
+    'success_restore' => 'eshte rivendosur me sukses.',
 ];

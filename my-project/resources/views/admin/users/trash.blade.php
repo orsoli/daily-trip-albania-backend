@@ -1,6 +1,6 @@
 @extends('layouts.index-or-trash')
 
-@section('title', __('static.users_index'). ' | ' . config('app.name'))
+@section('title', __('static.users_trash'). ' | ' . config('app.name'))
 
 @section('actions-column')
 @foreach ($users as $user)
@@ -14,12 +14,11 @@
     <td class="d-none d-lg-table-cell"> {{$user->personal_nr}} </td>
     <td>
         @include('partials.action-buttons', [
-        'show_href' => route('user.show', $user->id),
-        'edit_href' => route('user.edit', $user->id),
+        'restore_href' => route('user.restore', $user->id),
         'user_name' => $user->first_name . ' ' . $user->last_name,
-        'form_action' => route('user.destroy',$user->id),
-        'modal_header' => __('static.deleting'),
-        'modal_body' => __('static.sure_to_delete')
+        'form_action' => route('user.forceDelete',$user->id),
+        'modal_header' => __('static.permanently_deleting'),
+        'modal_body' => __('static.sure_to_permanently_delete')
         ])
     </td>
 </tr>

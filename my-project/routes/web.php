@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
-
+// Verify email route
 Route::get('/email/verify', function () {
 
     return view('auth.verify');
@@ -33,8 +33,11 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 // Admin Users route
 Route::prefix('/admin/users/')->name('user.')->group(function () {
     Route::get('index', [UserController::class, 'index'])->name('index');
-    Route::get('show/{user}', [UserController::class, 'show'])->name('show');
-    Route::get('edit/{user}', [UserController::class, 'edit'])->name('edit');
-    Route::put('update/{user}', [UserController::class, 'update'])->name('update');
-    Route::delete('delete/{user}', [UserController::class, 'destroy'])->name('destroy');
+    Route::get('trash', [UserController::class, 'trash'])->name('trash');
+    Route::get('{user}/show', [UserController::class, 'show'])->name('show');
+    Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
+    Route::put('{user}/update', [UserController::class, 'update'])->name('update');
+    Route::delete('{user}/delete', [UserController::class, 'destroy'])->name('destroy');
+    Route::post('{user}/restore', [UserController::class, 'restore'])->name('restore');
+    Route::delete('{user}/force-delete', [UserController::class, 'forceDelete'])->name('forceDelete');
 });
