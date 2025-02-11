@@ -40,7 +40,8 @@
                                 <a href="{{route('dashboard')}}" class="nav-link"> {{__('static.dashboard')}} </a>
                             </li>
                             <li>
-                                <a href="{{route('user.index')}}" class="nav-link"> {{__('static.users_panel')}} </a>
+                                <a data-tab="active_users" href="{{route('user.index')}}" class="nav-link">
+                                    {{__('static.users_panel')}} </a>
                             </li>
                         </ul>
                         @endif
@@ -123,11 +124,14 @@
                                                 <i class="bi bi-person-circle"></i> {{ __('static.my_profile') }}
                                             </a>
                                         </li>
+                                        @if (Auth::user()->role->slug === 'super-admin')
                                         <li>
-                                            <a class="dropdown-item" href="{{route('user.trash')}}">
+                                            <a class="dropdown-item" data-tab="deleted_users"
+                                                href="{{route('user.index',['trashed' => true,])}}">
                                                 <i class="bi bi-trash3-fill"></i> {{ __('static.trash') }}
                                             </a>
                                         </li>
+                                        @endif
                                         <li class="my-2">
                                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                  document.getElementById('logout-form').submit();">

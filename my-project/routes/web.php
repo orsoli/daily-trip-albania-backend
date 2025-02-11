@@ -33,7 +33,6 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 // Admin Users route
 Route::prefix('/admin/users/')->name('user.')->group(function () {
     Route::get('index', [UserController::class, 'index'])->name('index');
-    Route::get('trash', [UserController::class, 'trash'])->name('trash');
     Route::get('{user}/show', [UserController::class, 'show'])->name('show');
     Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
     Route::put('{user}/update', [UserController::class, 'update'])->name('update');

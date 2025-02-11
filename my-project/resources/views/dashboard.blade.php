@@ -8,7 +8,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{Auth::user()->role->name}} {{__('static.dashboard') }}</div>
+                <div class="card-header bg-primary">{{Auth::user()->role->name}} {{__('static.dashboard') }}
+                </div>
                 {{-- Card Body --}}
                 <div class="card-body">
                     @if (Auth::user()->role->name === 'Admin')

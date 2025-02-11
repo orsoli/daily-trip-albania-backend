@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\UpdateUserRequest;
 
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -25,26 +26,29 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
-        // Get All users
-        $users = User::paginate(10);
 
-        return view('admin.users.index', compact('columns', 'users'));
-    }
+        if ($request->has('trashed')) {
 
-    /**
-     * Display a listing of the deleted resource.
-     */
-    public function trash()
-    {
-        $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
+            $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
 
-        // Get All users in trash
-        $users = User::onlyTrashed()->paginate(10);
+            $users = User::onlyTrashed()->paginate(10)->appends(['trashed' => true]);
 
-        return view('admin.users.trash', compact('columns', 'users'));
+        } elseif ($request->has('with_trashed')) {
+
+            $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
+
+            $users = User::withTrashed()->paginate(10)->appends(['with_trashed' => true]);
+
+        } else {
+
+            $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
+
+            $users = User::paginate(10);
+        }
+
+        return view('admin.users.index', compact('columns','users'));
     }
 
     /**
@@ -92,7 +96,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_delete'));
+        session()->flash('success', $user->first_name . ' ' . $user->last_name . ' ' . __('static.success_delete'));
 
         return redirect()->route('user.index');
     }
@@ -106,9 +110,9 @@ class UserController extends Controller
 
         $user->restore();
 
-        session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_restore'));
+        session()->flash('success', $user->first_name . ' ' . $user->last_name . ' ' . __('static.success_restore'));
 
-        return redirect()->route('user.trash');
+        return redirect()->route('user.index',['trashed' => true]);
     }
 
     /**
@@ -120,8 +124,8 @@ class UserController extends Controller
 
         $user->forceDelete();
 
-        session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_permanently_delete'));
+        session()->flash('success', $user->first_name . ' ' . $user->last_name . ' ' . __('static.success_permanently_delete'));
 
-        return redirect()->route('user.trash');
+        return redirect()->route('user.index', ['trashed' => true]);
     }
 }
