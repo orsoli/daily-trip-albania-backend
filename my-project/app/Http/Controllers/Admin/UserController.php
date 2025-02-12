@@ -28,22 +28,18 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
 
         if ($request->has('trashed')) {
-
-            $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
 
             $users = User::onlyTrashed()->paginate(10)->appends(['trashed' => true]);
 
         } elseif ($request->has('with_trashed')) {
 
-            $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
-
             $users = User::withTrashed()->paginate(10)->appends(['with_trashed' => true]);
 
         } else {
 
-            $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
 
             $users = User::paginate(10);
         }

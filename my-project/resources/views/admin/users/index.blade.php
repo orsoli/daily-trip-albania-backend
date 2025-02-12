@@ -11,17 +11,17 @@
         <caption>List of users</caption>
         <thead>
             <tr>
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs bg-secondary">
                     <li class="nav-item">
-                        <a class="nav-link users-nav-link" data-tab='all_users'
+                        <a class="nav-link users-nav-link text-black active" data-tab='all_users'
                             href="{{route('user.index', ['with_trashed' => true])}}">{{__('static.all_users')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link users-nav-link" data-tab='active_users'
+                        <a class="nav-link users-nav-link text-black" data-tab='active_users'
                             href="{{route('user.index')}}">{{__('static.active_users')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link users-nav-link" data-tab='deleted_user'
+                        <a class="nav-link users-nav-link text-black" data-tab='deleted_user'
                             href="{{route('user.index',['trashed' => true])}}">{{__('static.deleted_users')}}</a>
                     </li>
                 </ul>

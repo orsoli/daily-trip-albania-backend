@@ -1,14 +1,3 @@
-{{-- @if (session('status'))
-<div class="alert alert-success" role="alert">
-    {{ session('status') }}
-</div>
-@endif
-@if (session('success'))
-<div class="alert alert-success" role="alert">
-    {{ session('success') }}
-</div>
-@endif --}}
-
 @if (session('status'))
 <div class="toast text-bg-secondary position-fixed top-0 end-0 z-1" role="alert" aria-live="assertive"
     aria-atomic="true">
