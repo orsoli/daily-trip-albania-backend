@@ -11,5 +11,8 @@ return[
     'guest_welcome_description' => 'Daily Trip Albania është një platformë turistike që u mundëson vizitorëve të eksplorojnë destinacionet më të bukura, opsionet e akomodimit dhe disa nga shërbimet kryesore turistike në Shqipëri. Ky është paneli i kontrollit i dedikuar ekskluzivisht për stafin tonë.
                                         Nëse keni një rol aktiv në këtë platformë, ju lutemi të identifikoheni duke klikuar mbi "Log In" për të menaxhuar përmbajtjen dhe shërbimet tona.
                                         Nëse jeni vizitor, ju ftojmë të eksploroni ofertat tona turistike dhe të rezervoni përvojën tuaj të radhës nëpërmjet faqes sonë zyrtare: www.dailytripalbania.com.
-                                        Faleminderit që jeni pjesë e komunitetit tonë dhe mirësevini në botën e aventurave me Daily Trip Albania! 🌍✈️'
+                                        Faleminderit që jeni pjesë e komunitetit tonë dhe mirësevini në botën e aventurave me Daily Trip Albania! 🌍✈️',
+
+    'login_description' => 'Kycuni me te dhenat qe keni vendosur gjate regjistrimit',
+
 ];

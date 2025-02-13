@@ -7,12 +7,19 @@
     {{-- Include Notifications --}}
     @include('partials.notifications')
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-primary">{{ __('static.Login') }}</div>
-
+        <div class="col-12 col-lg-8">
+            <div class="card my-card position-relative">
+                <div class="user-logo"></div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" class="login-form">
+                        <div class="login-description mb-4">
+                            <h2 class="">
+                                {{ __('static.Login') }}
+                            </h2>
+                            <p>
+                                {{__('content.login_description')}}
+                            </p>
+                        </div>
                         @csrf
 
                         <div class="row mb-3">

@@ -10,29 +10,81 @@
 
 // Generics
 img{
-    max-width: 100%;
+    max-width:                100%;
 }
 
 // Utils
 .bg-yellow{
-    background-color: $yellow;
+    background-color:         $yellow;
 }
 
 .bg-lightbrown{
-    background-color: $lightbrown;
+    background-color:         $lightbrown;
 }
 
 .bg-blue{
-    background-color: $blue;
+    background-color:         $blue;
 }
 
 .bg-green{
-    background-color: $green;
+    background-color:         $green;
+}
+
+.bg-img{
+    height: 100vh;
+    background-image:         $my-bg-img;
+    background-size:          cover;
+    background-position:      center;
+}
+
+.my-card-shadow{
+    box-shadow:               $my-card-shadow;
 }
 
 // Headers
 .header-logo{
-    width: 40px;
-    filter: brightness(0);
-    margin-right: 50px;
+    width:                    40px;
+    margin-right:             50px;
 }
+
+// Main
+.my-card{
+    height:                   500px;
+    color:                    white;
+    background-color:         rgba($color: #000000, $alpha: 0.4);
+    backdrop-filter:          blur(5px);
+    -webkit-backdrop-filter:  blur(5px); // Safari
+    border:                   1px solid $primary;
+    border-radius:            20px;
+    box-shadow:               $my-card-shadow;
+
+    .my-card-logo{
+        width:                200px;
+        height:               200px;
+        background-color:     $primary;
+        border-radius:        50%;
+        box-shadow:           $my-card-shadow;
+        padding:              $padding-20;
+        position:             absolute;
+            right:            50%;
+            bottom:           0;
+            transform:        translate(50%, 30%);
+    }
+
+    // User profile logo
+    .user-logo{
+        width:                100px;
+        height:               100px;
+        background-color:     $primary;
+        background-image:     $my-user-logo;
+        background-size:      cover;
+        background-position:  center;
+        border-radius:        50%;
+        box-shadow:           $user-logo-shadow;
+        position:             absolute;
+            top:              0;
+            right:            50%;
+            transform:        translate(50%, -60%);
+    }
+}
+

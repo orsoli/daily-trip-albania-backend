@@ -13,4 +13,7 @@ return[
                                           If you are a visitor, feel free to explore our travel offers and book your next adventure through our official website: www.dailytripalbania.com.
                                           Thank you for being part of our community, and welcome to the world of adventures with Daily Trip Albania! 🌍✈️',
 
+    'login_description' => 'Log In with your data that you entered during your registration',
+
+
 ];

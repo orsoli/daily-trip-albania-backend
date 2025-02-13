@@ -18,66 +18,65 @@
 </head>
 
 <body>
-    <main class="mb-3 p-3">
-        <div class="container">
-            <div class="logo col-12 d-flex justify-content-center mb-5">
-                <img src="{{asset('img/DailyTrip-logo.png')}}" alt="daily-trip-logo"
-                    class="col-3 bg-primary rounded-5 shadow">
-            </div>
-            <div class="row justify-content-center mb-3">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header bg-secondary">
-                            <h3>{{__('content.welcome_to_admin_panel')}}</h3>
-                        </div>
-                        {{-- Card Body --}}
-                        <div class="card-body">
-                            @auth
-                            <h5>
-                                <i>{{__('content.admin_panel_welcome_description')}}</i>
-                            </h5>
-                            <nav>
-                                <ul class="links list-unstyled d-flex justify-content-end gap-3">
-                                    <li>
-                                        @if (Route::has('dashboard'))
-                                        <a class="nav-link text-primary" href="{{ route('dashboard') }}"> Go to {{
-                                            __('static.dashboard')
-                                            }}</a>
-                                        @endif
-                                    </li>
-                                </ul>
-                            </nav>
-                            @endauth
-                            @guest
-                            <h5>
-                                <i>{{__('content.guest_welcome_description')}}</i>
-                            </h5>
-                            <nav>
-                                <ul class="links list-unstyled d-flex justify-content-end gap-3">
-                                    <li>
-                                        <a class="nav-link text-info" href="{{route('login')}}">{{
-                                            __('static.Login')
-                                            }}</a>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-info" href="dilytripalbania.com">{{
-                                            __('static.visit_web')
-                                            }}</a>
-                                    </li>
-                                    @endguest
-                                </ul>
-                            </nav>
+    <div class="bg-img d-flex flex-column">
+        <main class="py-2 flex-grow-1 d-flex align-items-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <div class="card my-card">
+                            {{-- Card Body --}}
+                            <div class="card-body position-relative overflow-scroll">
+                                <h3 class="mb-5">{{__('content.welcome_to_admin_panel')}}</h3>
+                                @auth
+                                <h5>
+                                    <i>{{__('content.admin_panel_welcome_description')}}</i>
+                                </h5>
+                                <nav>
+                                    <ul class="links list-unstyled d-flex justify-content-end gap-3">
+                                        <li>
+                                            @if (Route::has('dashboard'))
+                                            <a class="btn btn-primary text-primary" href="{{ route('dashboard') }}"> Go
+                                                to {{
+                                                __('static.dashboard')
+                                                }}</a>
+                                            @endif
+                                        </li>
+                                    </ul>
+                                </nav>
+                                @endauth
+                                @guest
+                                <h5>
+                                    <i>{{__('content.guest_welcome_description')}}</i>
+                                </h5>
+                                <nav>
+                                    <ul class="links list-unstyled d-flex justify-content-end gap-3">
+                                        <li>
+                                            <a class="btn btn-primary text-info" href="{{route('login')}}">{{
+                                                __('static.Login')
+                                                }}</a>
+                                        </li>
+                                        <li>
+                                            <a class="btn btn-primary text-info" href="dilytripalbania.com">{{
+                                                __('static.visit_web')
+                                                }}</a>
+                                        </li>
+                                        @endguest
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="my-card-logo d-none d-md-block">
+                                <img src="{{asset('img/DailyTrip-logo.png')}}" alt="daily-trip-logo">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-    {{-- Footer --}}
-    <footer class="text-center py-2 mt-3">
-        {{__('static.copy_right')}}
-    </footer>
-
+        </main>
+        {{-- Footer --}}
+        <footer class="text-center text-light py-2 mt-3">
+            {{__('static.copy_right')}}
+        </footer>
+    </div>
 </body>
 
 </html>

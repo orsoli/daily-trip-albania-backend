@@ -1,20 +1,41 @@
 // Colors
-$teal:            #1CA698;
+$poseidon:        #2E5169;
 $blue:            #0066D2;
 $yellow:          #F2B705;
 $lightbrown:      #BFA393;
 $green:           #1C621B;
 $red:             #BD2024;
 
+// Padding
+$padding-5:         5px;
+$padding-10:        10px;
+$padding-15:        15px;
+$padding-20:        20px;
+$padding-25:        25px;
+$padding-30:        30px;
+
+// Margin
+$margin-5:          5px;
+$margin-10:         10px;
+$margin-15:         15px;
+$margin-20:         20px;
+$margin-25:         25px;
+$margin-30:         30px;
+$margin-50:         50px;
+
 
 // utils
-$primary:           $teal;
-$secondary: lighten($primary, 40%);
+$primary:                   $poseidon;
+$secondary:                 lighten($primary, 40%);
+$my-bg-img:                 url('../../public/img/3d-office.jpg');
+$my-user-logo:              url("../../public/img/user.png");
+$my-card-shadow:            5px 10px 20px $primary;
+$user-logo-shadow:          0 2px 5px 0 $primary;
 
 // Body
-$body-bg:         #F0FBFA;
+$body-bg:                   #F0FBFA;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base:    0.9rem;
-$line-height-base:  1.6;
+$font-family-sans-serif:   'Nunito', sans-serif;
+$font-size-base:            0.9rem;
+$line-height-base:          1.6;
