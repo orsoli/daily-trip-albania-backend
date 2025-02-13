@@ -14,9 +14,9 @@ img{
 }
 
 body{
-    font-family: $font-family-sans-serif;
-    font-size: $font-size-base;
-    line-height: $line-height-base;
+    font-family:              $font-family-sans-serif;
+    font-size:                $font-size-base;
+    line-height:              $line-height-base;
 }
 
 // Utils
@@ -36,6 +36,10 @@ body{
     background-color:         $green;
 }
 
+.my-card-shadow{
+    box-shadow:               $my-card-shadow;
+}
+
 .bg-img{
     height: 100vh;
     background-image:         $my-bg-img;
@@ -43,31 +47,6 @@ body{
     background-position:      center;
 }
 
-.my-card-shadow{
-    box-shadow:               $my-card-shadow;
-}
-
-.my-table{
-    width:                    100%;
-    color:                    white;
-    background-color:         $my-opacity;
-    border-radius:            0 0 20px 20px;
-
-    tbody > tr{
-        background-color:     $my-opacity;
-        border:               $my-border;
-        border-radius:        20px;
-        margin-top:           10px;
-    }
-}
-
-// Headers
-.header-logo{
-    width:                    40px;
-    margin-right:             50px;
-}
-
-// Main
 .my-card{
     color:                    white;
     background-color:         $my-opacity;
@@ -101,16 +80,63 @@ body{
         background-color:     $primary;
         border:               2px solid $secondary;
         border-radius:        50%;
-        box-shadow:           $user-logo-shadow;
         position:             absolute;
             top:              0;
             right:            50%;
             transform:        translate(50%, -60%);
 
         .user-logo-img{
-            border-radius: 50%;
-            filter: invert(1);
+            border-radius:    50%;
+            filter:           invert(1);
         }
     }
 }
+
+.input-container {
+    position:                 relative;
+    margin:                   15px auto;
+
+    input {
+        background:           transparent;
+        border-radius:        20px;
+        font-size:            16px;
+        transition:           border-color 0.3s;
+
+        &:focus,
+        &:valid {
+            color:            white;
+            background:       transparent;
+            border-radius:    0 20px 20px 20px;
+            border-color:     $secondary;
+        }
+
+        &:focus + label,
+        &:valid + label {
+            background:       transparent;
+            color:            $secondary;
+            font-size:        14px;
+            top:              -10px;
+            left:             0;
+        }
+    }
+
+    label {
+        color:                white;
+        font-size:            16px;
+        pointer-events:       none;
+        position:             absolute;
+            top:              50%;
+            left:             10px;
+            transform:        translateY(-50%);
+        transition:           0.3s;
+        padding-left:         20px;
+    }
+}
+
+// Headers
+.header-logo{
+    width:                    40px;
+    margin-right:             50px;
+}
+
 

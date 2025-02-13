@@ -2,10 +2,13 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center p-5">
+    <div class="row justify-content-center pt-5">
         <div class="col-sm-12 col-lg-6">
-            <div class="card shadow">
+            <div class="card my-card">
                 <div class="card-body">
+                    <div class="user-logo">
+                        <img src="{{asset('img/user.png')}}" alt="profile-img" class="user-logo-img">
+                    </div>
                     <h5 class="card-title">{{$user->first_name}} {{$user->last_name}} </h5>
                     <h6 class="card-subtitle mb-3 text-body-secondary"> {{$user->role->name}}</h6>
                     <p class="card-subtitle mb-1">{{__('static.personal_nr')}}: <strong>
@@ -31,7 +34,7 @@
                     </form>
 
                     <a href="{{ route('password.request') }}"
-                        class="card-link text-primary">{{__('static.reset_password')}}</a>
+                        class="card-link text-secondary">{{__('static.reset_password')}}</a>
                 </div>
             </div>
         </div>

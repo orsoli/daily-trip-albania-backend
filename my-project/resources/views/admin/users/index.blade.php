@@ -8,7 +8,7 @@
     @include('partials.notifications')
     {{-- Users Table --}}
     <table class="table table-striped shadow">
-        <caption>List of users</caption>
+        <caption class="text-light">List of users</caption>
         <thead>
             <tr>
                 <ul class="nav nav-tabs bg-secondary">
@@ -26,6 +26,7 @@
                     </li>
                 </ul>
             </tr>
+
             <tr>
                 @foreach ($columns as $column)
                 <th class="text-primary {{ $column === __('static.email_address') || $column === __('static.personal_nr') ? 'd-none d-lg-table-cell' : '' }}"
@@ -83,8 +84,6 @@
 </div>
 @endsection
 
-@if (!request()->query('with_trashed'))
 @section('add-script')
 @vite(['resources/js/actions-btns.js', 'resources/js/nav-tabs.js'])
 @endsection
-@endif
