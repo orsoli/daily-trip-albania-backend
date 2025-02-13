@@ -9,9 +9,11 @@
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
             <div class="card my-card position-relative">
-                <div class="user-logo"></div>
+                <div class="user-logo">
+                    <img src="{{asset('img/user.png')}}" alt="user-logo" class="user-logo-img">
+                </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}" class="login-form">
+                    <form method="POST" action="{{ route('login') }}" class="pt-4">
                         <div class="login-description mb-4">
                             <h2 class="">
                                 {{ __('static.Login') }}
@@ -75,7 +77,7 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn btn-link text-light" href="{{ route('password.request') }}">
                                     {{ __('static.forgot_your_password') }}
                                 </a>
                                 @endif

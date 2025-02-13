@@ -35,7 +35,7 @@
                                     <ul class="links list-unstyled d-flex justify-content-end gap-3">
                                         <li>
                                             @if (Route::has('dashboard'))
-                                            <a class="btn btn-primary text-primary" href="{{ route('dashboard') }}"> Go
+                                            <a class="btn btn-primary text-info" href="{{ route('dashboard') }}"> Go
                                                 to {{
                                                 __('static.dashboard')
                                                 }}</a>
@@ -64,9 +64,7 @@
                                     </ul>
                                 </nav>
                             </div>
-                            <div class="my-card-logo d-none d-md-block">
-                                <img src="{{asset('img/DailyTrip-logo.png')}}" alt="daily-trip-logo">
-                            </div>
+                            <div class="my-card-logo d-none d-md-block"></div>
                         </div>
                     </div>
                 </div>

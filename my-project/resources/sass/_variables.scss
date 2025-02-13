@@ -27,15 +27,16 @@ $margin-50:         50px;
 // utils
 $primary:                   $poseidon;
 $secondary:                 lighten($primary, 40%);
+$app-logo:                  url("../../public/img/DailyTrip-logo.png");
 $my-bg-img:                 url('../../public/img/3d-office.jpg');
 $my-user-logo:              url("../../public/img/user.png");
 $my-card-shadow:            5px 10px 20px $primary;
 $user-logo-shadow:          0 2px 5px 0 $primary;
-
-// Body
-$body-bg:                   #F0FBFA;
+$my-border:                 1px solid $secondary;
+$my-opacity:                rgba($color: #000000, $alpha: 0.4);
+$my-blur:                   blur(5px);
 
 // Typography
-$font-family-sans-serif:   'Nunito', sans-serif;
+$font-family-sans-serif:   'Playfair Display', serif;
 $font-size-base:            0.9rem;
 $line-height-base:          1.6;

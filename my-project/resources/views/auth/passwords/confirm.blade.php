@@ -6,8 +6,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-primary">{{ __('static.confirm_password') }}</div>
+            <div class="card my-card">
+                <div class="card-header">{{ __('static.confirm_password') }}</div>
 
                 <div class="card-body">
                     {{ __('static.confirm_password_before_continuing') }}
@@ -46,6 +46,7 @@
                             </div>
                         </div>
                     </form>
+                    <div class="my-card-logo"></div>
                 </div>
             </div>
         </div>

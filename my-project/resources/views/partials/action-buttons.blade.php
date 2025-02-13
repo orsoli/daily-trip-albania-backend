@@ -1,7 +1,7 @@
 <ul class="list-unstyled d-flex gap-3">
     @if (isset($show_href))
     <li>
-        <a href="{{ $show_href ?? '#' }}">
+        <a href="{{ $show_href ?? '#' }}" class="text-success">
             <i class="bi bi-eye"></i>
         </a>
     </li>

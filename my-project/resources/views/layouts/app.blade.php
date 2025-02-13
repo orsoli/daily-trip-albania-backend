@@ -26,7 +26,7 @@
         <div class="bg-img d-flex flex-column overflow-scroll">
             {{-- Header Nav bars --}}
             <header>
-                <nav class="navbar navbar-expand-md bg-primary shadow">
+                <nav class="navbar navbar-expand-md bg-primary text-light shadow">
                     <div class="container">
                         <div class="left-navbars d-flex">
                             <div class="header-logo">
@@ -38,7 +38,8 @@
                             @if (Auth::user()->hasVerifiedEmail())
                             <ul class="list-unstyled d-flex align-items-center gap-3 m-0">
                                 <li>
-                                    <a href="{{route('dashboard')}}" class="nav-link"> {{__('static.dashboard')}} </a>
+                                    <a href="{{route('dashboard')}}" class="nav-link"> {{__('static.dashboard')}}
+                                    </a>
                                 </li>
                                 <li>
                                     <a data-tab="active_users" href="{{route('user.index')}}" class="nav-link">
@@ -77,8 +78,9 @@
                                 'Super Admin')
                                 {{-- Super Admin links --}}
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#"
+                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" v-pre>
                                         {{__('static.add')}}
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -95,8 +97,6 @@
                                                 </a>
 
                                             </li>
-                                        </ul>
-                                        <ul class="list-unstyled">
                                             <li>
                                                 <a class="nav-link" href="{{ route('register') }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -114,8 +114,9 @@
                                 @endif
                                 {{-- Auth User Name link --}}
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#"
+                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" v-pre>
                                         {{ Auth::user()->first_name }} {{ Auth::user()->last_name}}
                                     </a>
 
