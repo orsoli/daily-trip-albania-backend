@@ -1,4 +1,4 @@
-<ul class="list-unstyled d-flex gap-3">
+<ul class="list-unstyled d-flex gap-3 m-0">
     @if (isset($show_href))
     <li>
         <a href="{{ $show_href ?? '#' }}" class="text-success">

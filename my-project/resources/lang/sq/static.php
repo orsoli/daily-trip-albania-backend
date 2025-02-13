@@ -66,4 +66,6 @@ return [
     'success_delete' => 'eshte fshire me sukses.',
     'success_permanently_delete' => 'eshte fshire ne menyre te perhershme me sukses.',
     'success_restore' => 'eshte rivendosur me sukses.',
+    'empty' => 'Nuk gjendet asnje e dhene',
+
 ];

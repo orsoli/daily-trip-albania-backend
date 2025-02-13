@@ -40,8 +40,8 @@ class UserController extends Controller
 
         } else {
 
-
             $users = User::paginate(10);
+
         }
 
         return view('admin.users.index', compact('columns','users'));
