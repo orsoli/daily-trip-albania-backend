@@ -41,10 +41,14 @@
                                     <a href="{{route('dashboard')}}" class="nav-link"> {{__('static.dashboard')}}
                                     </a>
                                 </li>
+                                @if(Auth::user()->role->name
+                                ===
+                                'Super Admin')
                                 <li>
                                     <a data-tab="active_users" href="{{route('user.index')}}" class="nav-link">
                                         {{__('static.users_panel')}} </a>
                                 </li>
+                                @endif
                             </ul>
                             @endif
                             @endauth

@@ -4,11 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let deleteModalBody = document.getElementById("deleteModalBody");
     let deleteForm = document.getElementById("deleteForm");
 
-    //  data-user-name="{{$user_name}}"
-    //  data-form-action="{{$form_action}}"
-    //  data-modal-header="{{$modal_header}}"
-    //  data-modal-body="{{$modal_body}}"
-
     deleteModal.addEventListener("show.bs.modal", function (event) {
         let button = event.relatedTarget; // Open Modal Button
         let userName = button.getAttribute("data-user-name");

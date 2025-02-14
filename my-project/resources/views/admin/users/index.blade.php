@@ -51,7 +51,6 @@
                     <td> {{$user->role->name}} </td>
                     <td class="d-none d-lg-table-cell"> {{$user->email}} </td>
                     <td class="d-none d-lg-table-cell"> {{$user->personal_nr}} </td>
-
                     <td>
                         @if (request()->query('trashed'))
                         @include('partials.action-buttons', [
@@ -95,5 +94,9 @@
 @endsection
 
 @section('add-script')
+@if (isset($users) && $users->count() && !request()->query('with_trashed'))
 @vite(['resources/js/actions-btns.js', 'resources/js/nav-tabs.js'])
+@else
+@vite(['resources/js/nav-tabs.js']);
+@endif
 @endsection
