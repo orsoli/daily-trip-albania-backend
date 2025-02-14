@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('superadmin');
+        // $this->middleware('superadmin');
         $this->middleware('verified');
     }
 
@@ -52,6 +52,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+
         return view('admin.users.show', compact('user'));
     }
 
@@ -82,7 +83,14 @@ class UserController extends Controller
 
         session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_update'));
 
+        if($request->personal_nr === $user->personal_nr){
+
+            return view('admin.users.show', compact('user'));
+
+        };
+
         return redirect()->route("user.index");
+
     }
 
     /**

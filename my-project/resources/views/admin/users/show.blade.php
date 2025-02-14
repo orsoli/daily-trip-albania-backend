@@ -2,6 +2,9 @@
 
 @section('content')
 <div class="container">
+    {{-- Include Notifications --}}
+    @include('partials.notifications')
+
     <div class="row justify-content-center pt-5">
         <div class="col-sm-12 col-lg-6">
             <div class="card my-card">
