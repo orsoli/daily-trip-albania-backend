@@ -31,12 +31,30 @@ Route::get('/email/verify', function () {
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 // Admin Users route
-Route::prefix('/admin/users/')->name('user.')->group(function () {
-    Route::get('index', [UserController::class, 'index'])->name('index')->middleware('superadmin');
-    Route::get('{user}/show', [UserController::class, 'show'])->name('show')->middleware('check.profile');
-    Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit')->middleware('check.profile');
-    Route::put('{user}/update', [UserController::class, 'update'])->name('update')->middleware('check.profile');
-    Route::delete('{user}/delete', [UserController::class, 'destroy'])->name('destroy')->middleware('superadmin');
-    Route::post('{user}/restore', [UserController::class, 'restore'])->name('restore')->middleware('superadmin');
-    Route::delete('{user}/force-delete', [UserController::class, 'forceDelete'])->name('forceDelete')->middleware('superadmin');
+// Route::prefix('/admin/users/')->name('user.')->group(function () {
+//     Route::get('index', [UserController::class, 'index'])->name('index')->middleware('superadmin');
+//     Route::get('{user}/show', [UserController::class, 'show'])->name('show')->middleware('check.profile');
+//     Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit')->middleware('check.profile');
+//     Route::put('{user}/update', [UserController::class, 'update'])->name('update')->middleware('check.profile');
+//     Route::delete('{user}/delete', [UserController::class, 'destroy'])->name('destroy')->middleware('superadmin');
+//     Route::post('{user}/restore', [UserController::class, 'restore'])->name('restore')->middleware('superadmin');
+//     Route::delete('{user}/force-delete', [UserController::class, 'forceDelete'])->name('forceDelete')->middleware('superadmin');
+// });
+
+Route::prefix('/admin/users')->name('user.')->group(function () {
+
+    // SuperAdmin Middleware
+    Route::middleware('superadmin')->group(function () {
+        Route::get('index', [UserController::class, 'index'])->name('index');
+        Route::delete('{user}/delete', [UserController::class, 'destroy'])->name('destroy');
+        Route::post('{user}/restore', [UserController::class, 'restore'])->name('restore');
+        Route::delete('{user}/force-delete', [UserController::class, 'forceDelete'])->name('forceDelete');
+    });
+
+    // Check Profile Middleware
+    Route::middleware('check.profile')->group(function () {
+        Route::get('{user}/show', [UserController::class, 'show'])->name('show');
+        Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::put('{user}/update', [UserController::class, 'update'])->name('update');
+    });
 });

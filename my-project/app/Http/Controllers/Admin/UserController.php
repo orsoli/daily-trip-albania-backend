@@ -9,6 +9,8 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\alert;
+
 class UserController extends Controller
 {
 
@@ -98,6 +100,12 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if(auth()->user()->personal_nr === $user->personal_nr){
+
+            return abort(403, 'Unauthorized action.');
+
+        };
+
         $user->delete();
 
         session()->flash('success', $user->first_name . ' ' . $user->last_name . ' ' . __('static.success_delete'));

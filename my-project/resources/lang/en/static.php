@@ -66,4 +66,7 @@ return [
     'success_permanently_delete' => 'has been permanently deleted successfully',
     'success_restore' => 'has been restore successfully',
     'empty' => 'No data found',
+
+    // Destinations
+    'destinations' => 'Destinations'
 ];

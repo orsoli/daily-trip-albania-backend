@@ -13,8 +13,9 @@
                     <img src="{{asset('img/user.png')}}" alt="user-logo" class="user-logo-img">
                 </div>
                 <div class="card-body">
+                    {{-- Log in form --}}
                     <form method="POST" action="{{ route('login') }}" class="pt-4">
-                        <div class="login-description mb-4">
+                        <div class="login-description mb-4 text-center">
                             <h2 class="">
                                 {{ __('static.Login') }}
                             </h2>
@@ -25,30 +26,28 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('static.email_address')
-                                }}</label>
-
-                            <div class="col-md-6">
+                            {{-- Email --}}
+                            <div class="col-md-8 input-container">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                                <label for="email">{{
+                                    __('static.email_address')
+                                    }}</label>
+                                {{-- Email errors --}}
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class=" invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('static.password')
-                                }}</label>
-
-                            <div class="col-md-6">
+                            {{-- Password --}}
+                            <div class="col-md-8 input-container">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     required autocomplete="current-password">
-
+                                <label for="password">{{ __('static.password')
+                                    }}</label>
+                                {{-- Password errors --}}
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

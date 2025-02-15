@@ -68,4 +68,7 @@ return [
     'success_restore' => 'eshte rivendosur me sukses.',
     'empty' => 'Nuk gjendet asnje e dhene',
 
+    // Destinations
+    'destinations' => 'Destinaciione'
+
 ];

@@ -5,23 +5,59 @@
 @section('content')
 <div class="container">
     {{-- Dashboard --}}
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-primary">{{Auth::user()->role->name}} {{__('static.dashboard') }}
-                </div>
-                {{-- Card Body --}}
-                <div class="card-body">
-                    @if (Auth::user()->role->name === 'Admin')
-                    <h3>Hello {{Auth::user()->first_name}}!</h3>
-                    <p></p>
-                    @endif
-
-                    {{ __('static.logedIn') }}
-
-                    <p>{{Auth::user()->role->description}}</p>
-
-                </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col">
+            <div class="my-card card text-center">
+                <a href="{{route('user.show', auth()->user())}}">
+                    <h2 class="text-secondary">
+                        <i class="bi bi-person-circle me-3"></i> {{__('static.my_profile')}}
+                    </h2>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="my-card card text-center">
+                <a href="#">
+                    <h2 class="text-secondary">
+                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
+                    </h2>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="my-card card text-center">
+                <a href="#">
+                    <h2 class="text-secondary">
+                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
+                    </h2>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="my-card card text-center">
+                <a href="#">
+                    <h2 class="text-secondary">
+                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
+                    </h2>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="my-card card text-center">
+                <a href="#">
+                    <h2 class="text-secondary">
+                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
+                    </h2>
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="my-card card text-center">
+                <a href="#">
+                    <h2 class="text-secondary">
+                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
+                    </h2>
+                </a>
             </div>
         </div>
     </div>

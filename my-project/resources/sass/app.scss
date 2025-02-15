@@ -111,12 +111,17 @@ body{
         }
 
         &:focus + label,
-        &:valid + label {
+        &:valid + label{
             background:       transparent;
             color:            $secondary;
             font-size:        14px;
             top:              -10px;
             left:             0;
+        }
+
+        &:focus ~ .input-instruction,
+        &:valid ~ .input-instruction {
+            display: block;
         }
     }
 
@@ -130,6 +135,14 @@ body{
             transform:        translateY(-50%);
         transition:           0.3s;
         padding-left:         20px;
+    }
+
+    .input-instruction {
+    display: none;
+    color: $secondary;
+    font-size: 10px;
+    font-style: italic;
+    margin: 10px 0;
     }
 }
 
