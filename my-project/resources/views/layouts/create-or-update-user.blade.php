@@ -36,9 +36,11 @@
                                 <label for="first_name">{{
                                     __('static.first_name')}} *
                                 </label>
+                                @if (Route::is('register'))
                                 {{-- Input instructions --}}
                                 @include('partials.input-instruction', ['instructionMessages' =>
                                 __('input-instruction.first_name') ])
+                                @endif
                                 {{-- FirstName Error --}}
                                 @error('first_name')
                                 @include('partials.input-validation-error-msg')
@@ -53,9 +55,11 @@
                                     autocomplete="last_name" autofocus>
                                 <label for="last_name">{{
                                     __('static.last_name')}} *</label>
+                                @if (Route::is('register'))
                                 {{-- Input instructions --}}
                                 @include('partials.input-instruction', ['instructionMessages' =>
                                 __('input-instruction.last_name') ])
+                                @endif
                                 {{-- Last Name Error --}}
                                 @error('last_name')
                                 @include('partials.input-validation-error-msg')
@@ -64,8 +68,10 @@
 
                             {{-- Role Input --}}
                             <div class="col-6">
-                                <select id="role"
-                                    class="form-control bg-transparent rounded-5 mt-3 text-light @error('role') is-invalid @enderror"
+                                <select id="role" {{$user->id === auth()->user()->id ?
+                                    'hidden' : ''}}
+                                    class="form-control bg-transparent rounded-5 mt-3 text-light @error('role')
+                                    is-invalid @enderror"
                                     name="role" required>
                                     <option value="" selected disabled>
                                         {{__('static.select_role')}} . . . *</option>
@@ -100,9 +106,11 @@
                                     name="email" value="{{ old('email', $user->email ?? '') }}" required
                                     autocomplete="email">
                                 <label for="email">{{__('static.email_address')}} *</label>
+                                @if (Route::is('register'))
                                 {{-- Input instructions --}}
                                 @include('partials.input-instruction', ['instructionMessages' =>
                                 __('input-instruction.email') ])
+                                @endif
                                 {{-- Email Error --}}
                                 @error('email')
                                 @include('partials.input-validation-error-msg')
@@ -116,9 +124,11 @@
                                     value="{{ old('personal_nr', $user->personal_nr ?? '') }}" required
                                     autocomplete="personal_nr">
                                 <label for="personal_nr">{{__('static.personal_nr')}} *</label>
+                                @if (Route::is('register'))
                                 {{-- Input instructions --}}
                                 @include('partials.input-instruction', ['instructionMessages' =>
                                 __('input-instruction.personal_nr') ])
+                                @endif
                                 {{-- Personal_nr Error --}}
                                 @error('personal_nr')
                                 @include('partials.input-validation-error-msg')
@@ -126,7 +136,7 @@
                             </div>
 
                             {{-- Password Input --}}
-                            @if (request()->routeIs('register'))
+                            @if (Route::is('register'))
                             <div class="col-12 col-md-6 input-container">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
@@ -151,7 +161,7 @@
                             @endif
 
                             {{-- Submit Button --}}
-                            <div class="col">
+                            <div class="col-12 text-center py-3">
                                 <button type="submit" class="btn btn-primary">
                                     @yield('create-or-update-btn')
                                 </button>
