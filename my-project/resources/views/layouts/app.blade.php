@@ -48,6 +48,10 @@
                                     <a data-tab="active_users" href="{{route('user.index')}}" class="nav-link">
                                         {{__('static.users_panel')}} </a>
                                 </li>
+                                <li>
+                                    <a data-tab="active_users" href="{{route('roles.index')}}" class="nav-link">
+                                        {{__('static.roles_panel')}} </a>
+                                </li>
                                 @endif
                             </ul>
                             @endif

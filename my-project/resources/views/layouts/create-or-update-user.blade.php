@@ -68,6 +68,9 @@
 
                             {{-- Role Input --}}
                             <div class="col-6">
+                                @if ($user->id === auth()->user()->id)
+                                <p class="fs-3 py-2"> Role: {{auth()->user()->role->name}} </p>
+                                @endif
                                 <select id="role" {{$user->id === auth()->user()->id ?
                                     'hidden' : ''}}
                                     class="form-control bg-transparent rounded-5 mt-3 text-light @error('role')

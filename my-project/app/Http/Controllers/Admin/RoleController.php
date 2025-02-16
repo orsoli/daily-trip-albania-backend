@@ -1,19 +1,33 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Role;
 
 class RoleController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('superadmin');
+        $this->middleware('verified');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $roles = Role::all();
+
+        return view('admin.roles.index', compact('roles'));
     }
 
     /**
@@ -21,7 +35,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -51,7 +65,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(StoreRoleRequest $request, Role $role)
     {
         //
     }

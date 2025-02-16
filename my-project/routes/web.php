@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,7 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 //     Route::delete('{user}/force-delete', [UserController::class, 'forceDelete'])->name('forceDelete')->middleware('superadmin');
 // });
 
+// Users Routes
 Route::prefix('/admin/users')->name('user.')->group(function () {
 
     // SuperAdmin Middleware
@@ -57,4 +59,9 @@ Route::prefix('/admin/users')->name('user.')->group(function () {
         Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
         Route::put('{user}/update', [UserController::class, 'update'])->name('update');
     });
+});
+
+// Roles Routes
+Route::prefix('admin')->group(function () {
+    Route::resource('roles', RoleController::class);
 });

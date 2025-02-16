@@ -32,13 +32,13 @@
                                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 <label for="email">{{
                                     __('static.email_address')
-                                    }}</label>
-                                {{-- Email errors --}}
-                                @error('email')
-                                <span class=" invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                    }}
+                                    {{-- Email errors --}}
+                                    @error('email')
+                                    <span class=" invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                             </div>
                             {{-- Password --}}
                             <div class="col-md-8 input-container">

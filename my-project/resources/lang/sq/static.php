@@ -55,6 +55,7 @@ return [
     'role' => 'Roli',
     'role_description' => 'Pershkrimi i Rolit',
     'select_role' => 'Zgjidh Rolin',
+    'roles_panel' => 'Paneli i Roleve',
     'super_admin' => 'Super Admin',
     'admin' => 'Admin',
     'editor' => 'Redaktor',

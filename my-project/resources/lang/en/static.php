@@ -54,6 +54,7 @@ return [
     'role' => 'Role',
     'role_description' => 'Role Description',
     'select_role' => 'Select Role',
+    'roles_panel' => 'Roles Panel',
     'super_admin' => 'Super Admin',
     'admin' => 'Admin',
     'editor' => 'Editor',
