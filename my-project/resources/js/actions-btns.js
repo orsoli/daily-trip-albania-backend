@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     deleteModal.addEventListener("show.bs.modal", function (event) {
         let button = event.relatedTarget; // Open Modal Button
-        let userName = button.getAttribute("data-user-name");
+        let dataName = button.getAttribute("data-name");
         let formAction = button.getAttribute("data-form-action");
         let modalHeader = button.getAttribute("data-modal-header");
         let modalBody = button.getAttribute("data-modal-body");
 
         // Set attributes
-        deleteModalHeader.textContent = modalHeader + " " + userName;
-        deleteModalBody.textContent = modalBody + " " + userName;
+        deleteModalHeader.textContent = modalHeader + " " + dataName;
+        deleteModalBody.textContent = modalBody + " " + dataName;
         deleteForm.setAttribute("action", formAction);
     });
 });

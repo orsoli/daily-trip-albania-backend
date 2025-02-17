@@ -11,7 +11,7 @@
     <div class="row row-cols-1 g-3">
         @foreach ($roles as $role)
         <div class="col">
-            <a href="{{route('roles.index', $role)}}">
+            <a href="{{route('roles.show', $role)}}">
                 <div class="card my-card">
                     <div class="card-body d-flex">
                         <div class="w-25">

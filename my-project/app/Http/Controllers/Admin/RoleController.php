@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\Admin\StoreRoleRequest;
 use App\Models\Role;
 
 class RoleController extends Controller
@@ -35,15 +35,21 @@ class RoleController extends Controller
      */
     public function create()
     {
-
+        return view('admin.roles.createOrUpdate');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRoleRequest $request)
+    public function store(StoreRoleRequest $request, Role $role)
     {
-        //
+        $data = $request->all();
+
+        $role->create($data);
+
+        session()->flash('success', $request->name . ' ' . __('static.success_created'));
+
+        return redirect(route('roles.index'));
     }
 
     /**
@@ -51,7 +57,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('admin.roles.show', compact('role'));
     }
 
     /**
@@ -59,7 +65,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('admin.roles.createOrUpdate', compact('role'));
     }
 
     /**
@@ -67,7 +73,14 @@ class RoleController extends Controller
      */
     public function update(StoreRoleRequest $request, Role $role)
     {
-        //
+        $data = $request->all();
+
+        $role->update($data);
+
+        session()->flash('success', $request->name . ' ' . __('static.success_update'));
+
+        return redirect()->route('roles.show', $role);
+
     }
 
     /**
@@ -75,6 +88,10 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        session()->flash('success', $role->name . ' ' . __('static.success.delete'));
+
+        return redirect(route('roles.index'));
     }
 }

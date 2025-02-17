@@ -54,8 +54,9 @@
                     <td>
                         @if (request()->query('trashed'))
                         @include('partials.action-buttons', [
+                        'isShowPage' => false,
                         'restore_href' => route('user.restore', $user->id),
-                        'user_name' => $user->first_name . ' ' . $user->last_name,
+                        'data_name' => $user->first_name . ' ' . $user->last_name,
                         'form_action' => route('user.forceDelete', $user->id),
                         'modal_header' => __('static.permanently_deleting'),
                         'modal_body' => __('static.sure_to_permanently_delete')
@@ -68,9 +69,10 @@
                         @endif
                         @else
                         @include('partials.action-buttons', [
+                        'isShowPage' => false,
                         'show_href' => route('user.show', $user->id),
                         'edit_href' => route('user.edit', $user->id),
-                        'user_name' => $user->first_name . ' ' . $user->last_name,
+                        'data_name' => $user->first_name . ' ' . $user->last_name,
                         'form_action' => route('user.destroy', $user->id),
                         'modal_header' => __('static.deleting'),
                         'modal_body' => __('static.sure_to_delete')

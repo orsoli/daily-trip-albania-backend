@@ -11,6 +11,7 @@ return [
     'users_trash' => 'Përdoruesit e Fshirë',
     'add' => 'Shto',
     'update' => 'Perditeso',
+    'add_or_update' => 'Shto ose Perditeso',
     'addUser' => 'Shto User',
     'update_user' => 'Perditeso Perdoruesin',
     'addRole' => 'Shto Role',
@@ -18,6 +19,8 @@ return [
     'logedIn' => 'Loguar!',
     'dashboard' => 'Paneli',
     'trash' => 'Koshi',
+    'name' => 'Emri',
+    'slug' => 'Identifikuesi unik',
     'firstName' => 'Emri',
     'lastName' => 'Mbiemri',
     'dob' => 'Data e Lindjes',
@@ -42,9 +45,12 @@ return [
     'edit' => 'Modifiko',
     'delete' => 'Fshi',
     'deleting' => 'Po fshini, ',
+    'deleting_role' => 'KUJDES! Jeni duke fshirë një rol përdoruesi. Ky veprim mund të ndikojë tek shumë përdorues.',
     'permanently_deleting' => 'Po fshini pergjithmone,',
     'sure_to_delete' => 'Jeni i sigurt qe deshironi të FSHINI,',
     'sure_to_permanently_delete' => 'Jeni i sigurt që deshironi të FSHINI PERGJITHMONE,',
+    'sure_to_delete_role' => 'Fshirja e këtij roli do të ndikojë tek të gjithë përdoruesit që e kanë këtë rol. Të gjithë përdoruesit e lidhur me këtë rol do të fshihen gjithashtu. A jeni i sigurt që dëshironi të vazhdoni me fshirjen?',
+
 
 
 
@@ -62,6 +68,7 @@ return [
 
     //Notifications
     'success_registered'=> 'Perdoruesi u regjistrua me sukses!',
+    'success_created' => 'eshte krijuar me sukses!',
     'success_update'=> 'eshte perditesuar me sukses!',
     'profile_update' => 'Profili juaj është përditësuar me sukses. Duhet të ri-logoheni përsëri per te verifikuar emailin tend te ri.',
     'success_delete' => 'eshte fshire me sukses.',
