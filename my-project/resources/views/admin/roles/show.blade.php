@@ -90,6 +90,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body bg-dark">
+                @if ($role->users->isEmpty())
+                <h4 class="text-center text-secondary">
+                    {{__('static.empty')}}
+                </h4>
+                @else
                 <ul class="list-unstyled">
                     @foreach ($role->users as $user)
                     <li class="mb-2">
@@ -107,6 +112,7 @@
                     </li>
                     @endforeach
                 </ul>
+                @endif
             </div>
             <div class="modal-footer bg-dark">
                 <button type="button" class="btn text-light btn-primary" data-bs-dismiss="modal">Close</button>
