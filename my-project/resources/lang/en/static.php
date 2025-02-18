@@ -62,6 +62,7 @@ return [
     'role'                                  => 'Role',
     'role_description'                      => 'Role Description',
     'select_role'                           => 'Select Role',
+    'view-this-role-users'                  => 'View this Role Users',
     'roles_panel'                           => 'Roles Panel',
     'super_admin'                           => 'Super Admin',
     'admin'                                 => 'Admin',

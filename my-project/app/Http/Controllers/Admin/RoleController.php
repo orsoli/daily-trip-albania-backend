@@ -65,6 +65,12 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        if($role->slug === 'super-admin'){
+
+            return abort(403, 'Unauthorized action.');
+
+        };
+
         return view('admin.roles.createOrUpdate', compact('role'));
     }
 
@@ -73,6 +79,12 @@ class RoleController extends Controller
      */
     public function update(StoreRoleRequest $request, Role $role)
     {
+        if($role->slug === 'super-admin'){
+
+            return abort(403, 'Unauthorized action.');
+
+        };
+
         $data = $request->all();
 
         $role->update($data);
@@ -88,10 +100,16 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        if($role->slug === 'super-admin'){
+
+            return abort(403, 'Unauthorized action.');
+
+        };
+
         $role->delete();
 
         session()->flash('success', $role->name . ' ' . __('static.success.delete'));
 
-        return redirect(route('roles.index'));
+        return redirect()->route('roles.index');
     }
 }

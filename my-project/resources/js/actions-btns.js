@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     deleteModal.addEventListener("show.bs.modal", function (event) {
         let button = event.relatedTarget; // Open Modal Button
+        if (!button) return; // Prevent errors if button is null
         let dataName = button.getAttribute("data-name");
         let formAction = button.getAttribute("data-form-action");
         let modalHeader = button.getAttribute("data-modal-header");

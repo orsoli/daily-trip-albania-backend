@@ -1,0 +1,20 @@
+// Variables
+@import '../variables';
+
+.active-tab{
+    background-color: transparent;
+    border: 1px solid $secondary;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+}
+
+.deactive-tab{
+    background-color: rgb($primary, 0.7);
+    border-bottom: 1px solid $secondary;
+    border-radius: 10px 10px 0 0;
+
+    &:hover{
+        background-color: transparent;
+        color: $secondary;
+    }
+}

@@ -9,8 +9,6 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-use function Laravel\Prompts\alert;
-
 class UserController extends Controller
 {
 
@@ -30,19 +28,35 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $columns = ['Id', __('static.first_name'), __('static.last_name'), __('static.role'), __('static.email_address'), __('static.personal_nr'), __('static.action')];
+        $columns = [
+            'Id',
+            __('static.first_name'),
+            __('static.last_name'),
+            __('static.role'),
+            __('static.email_address'),
+            __('static.personal_nr'),
+            __('static.action')
+        ];
+
 
         if ($request->has('trashed')) {
 
-            $users = User::onlyTrashed()->paginate(10)->appends(['trashed' => true]);
+            $users = User::onlyTrashed()
+                ->whereHas('role', fn($q) => $q->whereNull('deleted_at'))
+                ->paginate(10)
+                ->appends(['trashed' => true]);
 
         } elseif ($request->has('with_trashed')) {
 
-            $users = User::withTrashed()->paginate(10)->appends(['with_trashed' => true]);
+            $users = User::withTrashed()
+                ->whereHas('role', fn($q) => $q->whereNull('deleted_at'))
+                ->paginate(10)
+                ->appends(['with_trashed' => true]);
 
         } else {
 
-            $users = User::paginate(10);
+            $users = User::whereHas('role', fn($q) => $q->whereNull('deleted_at'))
+                ->paginate(10);
 
         }
 

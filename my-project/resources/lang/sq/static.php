@@ -61,6 +61,7 @@ return [
     'role' => 'Roli',
     'role_description' => 'Pershkrimi i Rolit',
     'select_role' => 'Zgjidh Rolin',
+    'view-this-role-users' => 'Shiko Perdoruesit e ketij Roli',
     'roles_panel' => 'Paneli i Roleve',
     'super_admin' => 'Super Admin',
     'admin' => 'Admin',

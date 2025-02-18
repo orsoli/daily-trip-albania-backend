@@ -68,10 +68,10 @@
 
                             {{-- Role Input --}}
                             <div class="col-6">
-                                @if ($user->id === auth()->user()->id)
+                                @if (isset($user) && $user->id === auth()->user()->id)
                                 <p class="fs-3 py-2"> Role: {{auth()->user()->role->name}} </p>
                                 @endif
-                                <select id="role" {{$user->id === auth()->user()->id ?
+                                <select id="role" {{isset($user) && $user->id === auth()->user()->id ?
                                     'hidden' : ''}}
                                     class="form-control bg-transparent rounded-5 mt-3 text-light @error('role')
                                     is-invalid @enderror"
@@ -79,7 +79,7 @@
                                     <option value="" selected disabled>
                                         {{__('static.select_role')}} . . . *</option>
                                     @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" {{ old('role_name', $user->role_id ?? '') ===
+                                    <option value="{{ $role->id }}" {{ old('role', $user->role_id ?? '') ==
                                         $role->id ?
                                         "selected" : "" }}>{{$role->name }}</option>
                                     @endforeach

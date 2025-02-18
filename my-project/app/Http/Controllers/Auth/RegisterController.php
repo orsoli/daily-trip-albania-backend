@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'date_of_birth' => ['required', 'date'],
+            'date_of_birth' => ['required', 'date', 'date_format:Y-m-d', 'before:today'],
             'personal_nr' => ['required', 'string', 'min: 10', 'max:10', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
