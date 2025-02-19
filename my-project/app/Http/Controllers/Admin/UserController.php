@@ -95,6 +95,12 @@ class UserController extends Controller
 
         $data = $request->all();
 
+        if(auth()->user()->role->slug === 'super-admin'){
+            $data['updated_by'] = auth()->user()->email;
+        }else{
+            $data['updated_by'] = $request->email;
+        }
+
         $user->update($data);
 
         session()->flash('success', $user->first_name . $user->last_name . ' ' . __('static.success_update'));
@@ -119,6 +125,11 @@ class UserController extends Controller
             return abort(403, 'Unauthorized action.');
 
         };
+
+        $user['deleted_by'] = auth()->user()->email;
+        $user->update();
+
+        // dd($user);
 
         $user->delete();
 

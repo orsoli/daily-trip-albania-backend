@@ -114,8 +114,9 @@
                 </ul>
                 @endif
             </div>
-            <div class="modal-footer bg-dark">
-                <button type="button" class="btn text-light btn-primary" data-bs-dismiss="modal">Close</button>
+            <div class="modal-footer bg-primary">
+                <button type="button" class="btn text-light btn-secondary bg-transparent rounded-5"
+                    data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
