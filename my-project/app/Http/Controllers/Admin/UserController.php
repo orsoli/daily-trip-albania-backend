@@ -145,6 +145,8 @@ class UserController extends Controller
     {
         $user = User::withTrashed()->findOrFail($id);
 
+        $user['deleted_by'] = 'restored by' . ' ' . auth()->user()->email;
+
         $user->restore();
 
         session()->flash('success', $user->first_name . ' ' . $user->last_name . ' ' . __('static.success_restore'));
