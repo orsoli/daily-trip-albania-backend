@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Role extends Model
+class Category extends Model
 {
     use HasFactory, Notifiable, SoftDeletes;
 
@@ -23,12 +21,4 @@ class Role extends Model
         'slug',
         'description'
     ];
-
-    /**
-     * The users that belong to the role.
-     */
-    public function users(): HasMany
-    {
-        return $this->hasMany(User::class);
-    }
 }

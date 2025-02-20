@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Role extends Model
+class Currency extends Model
 {
     use HasFactory, Notifiable, SoftDeletes;
 
@@ -20,15 +18,10 @@ class Role extends Model
      */
     protected $fillable = [
         'name',
-        'slug',
-        'description'
+        'code',
+        'symbol',
+        'exchange_rate',
+        'is_default'
     ];
 
-    /**
-     * The users that belong to the role.
-     */
-    public function users(): HasMany
-    {
-        return $this->hasMany(User::class);
-    }
 }
