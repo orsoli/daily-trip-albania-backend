@@ -165,7 +165,7 @@
                 </nav>
             </header>
             {{-- Main --}}
-            <main class="flex-grow-1 d-flex align-items-center py-3">
+            <main class="flex-grow-1 d-flex py-5">
                 @yield('content')
             </main>
             {{-- Footer --}}

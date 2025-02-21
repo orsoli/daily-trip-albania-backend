@@ -30,52 +30,60 @@
                         <div class="row mb-3 px-4 px-md-5">
                             {{-- Name --}}
                             <div class="col-12 col-md-6 input-container">
-                                <input id="name" type="text"
-                                    class="form-control text-light @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name', $role->name ?? '') }}" required autocomplete="name" autofocus>
-                                <label for="name">{{
-                                    __('static.name')}} *
-                                </label>
-                                {{-- Input instructions --}}
-                                @include('partials.input-instruction', ['instructionMessages' =>
-                                __('input-instruction.name') ])
-                                {{-- FirstName Error --}}
-                                @error('name')
-                                @include('partials.input-validation-error-msg')
-                                @enderror
+                                <div class="position-relative">
+                                    <input id="name" type="text"
+                                        class="form-control text-light @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name', $role->name ?? '') }}" required autocomplete="name"
+                                        autofocus>
+                                    <label for="name">{{
+                                        __('static.name')}} *
+                                    </label>
+                                    {{-- Input instructions --}}
+                                    @include('partials.input-instruction', ['instructionMessages' =>
+                                    __('input-instruction.name') ])
+                                    {{-- FirstName Error --}}
+                                    @error('name')
+                                    @include('partials.input-validation-error-msg')
+                                    @enderror
+                                </div>
                             </div>
 
                             {{-- Slug --}}
                             <div class="col-12 col-md-6 input-container">
-                                <input id="slug" type="text" class="form-control @error('slug') is-invalid @enderror"
-                                    name="slug" value="{{ old('slug', $role->slug ?? '') }}" required
-                                    autocomplete="slug" autofocus>
-                                <label for="slug">{{
-                                    __('static.slug')}} *</label>
-                                {{-- Input instructions --}}
-                                @include('partials.input-instruction', ['instructionMessages' =>
-                                __('input-instruction.slug') ])
-                                {{-- Slug Error --}}
-                                @error('slug')
-                                @include('partials.input-validation-error-msg')
-                                @enderror
+                                <div class="position-relative">
+                                    <input id="slug" type="text"
+                                        class="form-control @error('slug') is-invalid @enderror" name="slug"
+                                        value="{{ old('slug', $role->slug ?? '') }}" required autocomplete="slug"
+                                        autofocus>
+                                    <label for="slug">{{
+                                        __('static.slug')}} *</label>
+                                    {{-- Input instructions --}}
+                                    @include('partials.input-instruction', ['instructionMessages' =>
+                                    __('input-instruction.slug') ])
+                                    {{-- Slug Error --}}
+                                    @error('slug')
+                                    @include('partials.input-validation-error-msg')
+                                    @enderror
+                                </div>
                             </div>
 
                             {{-- Description --}}
                             <div class="col-12 input-container">
-                                <input id="description" type="text" rows='4' maxlength="500"
-                                    class="form-control @error('description') is-invalid @enderror" name="description"
-                                    value="{{ old('description', $role->description ?? '') }}" required
-                                    autocomplete="description" autofocus>
-                                <label for="description">{{
-                                    __('static.role_description')}} *</label>
-                                {{-- Input instructions --}}
-                                @include('partials.input-instruction', ['instructionMessages' =>
-                                __('input-instruction.description') ])
-                                {{-- description Error --}}
-                                @error('description')
-                                @include('partials.input-validation-error-msg')
-                                @enderror
+                                <div class="position-relative">
+                                    <input id="description" type="text" rows='4' maxlength="500"
+                                        class="form-control @error('description') is-invalid @enderror"
+                                        name="description" value="{{ old('description', $role->description ?? '') }}"
+                                        required autocomplete="description" autofocus>
+                                    <label for="description">{{
+                                        __('static.role_description')}} *</label>
+                                    {{-- Input instructions --}}
+                                    @include('partials.input-instruction', ['instructionMessages' =>
+                                    __('input-instruction.description') ])
+                                    {{-- description Error --}}
+                                    @error('description')
+                                    @include('partials.input-validation-error-msg')
+                                    @enderror
+                                </div>
                             </div>
 
                             {{-- Submit Button --}}

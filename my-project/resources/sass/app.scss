@@ -93,7 +93,6 @@ body{
 }
 
 .input-container {
-    position:                 relative;
     margin:                   15px auto;
 
     input {
@@ -116,33 +115,52 @@ body{
             color:            $secondary;
             font-size:        14px;
             top:              -10px;
-            left:             0;
+            left:             -10px;
         }
 
         &:focus ~ .input-instruction,
         &:valid ~ .input-instruction {
-            display: block;
+            display:          block;
         }
     }
+
+    input[type="date"].custom-date {
+        &::-webkit-calendar-picker-indicator {
+            filter:           invert(1);
+        }
+
+        &::-webkit-datetime-edit {
+            color:            transparent;
+        }
+    }
+
+    input[type="date"].custom-date:focus,
+    input[type="date"].custom-date:valid {
+        &::-webkit-datetime-edit {
+            color:            white;
+        }
+    }
+
 
     label {
         color:                white;
         font-size:            16px;
+        line-height:          normal;
         pointer-events:       none;
         position:             absolute;
             top:              50%;
-            left:             10px;
+            left:             0;
             transform:        translateY(-50%);
         transition:           0.3s;
         padding-left:         20px;
     }
 
     .input-instruction {
-    display: none;
-    color: $secondary;
-    font-size: 10px;
-    font-style: italic;
-    margin: 10px 0;
+    display:                  none;
+    color:                    $secondary;
+    font-size:                10px;
+    font-style:               italic;
+    margin:                   10px 0;
     }
 }
 

@@ -43,7 +43,7 @@ class RoleSeeder extends Seeder
                                     Cannot manage users or system settings.'
             ],
             [
-                'name'        => 'Duide',
+                'name'        => 'Guide',
                 'slug'        => 'guide',
                 'description' => 'A Guide is a knowledgeable individual responsible for leading and assisting groups of tourists during their travels.
                                     Guides provide valuable information about local history, culture, and attractions, ensuring a safe and enjoyable experience for guests.
