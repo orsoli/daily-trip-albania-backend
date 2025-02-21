@@ -18,12 +18,15 @@ class DatabaseSeeder extends Seeder
             CurrencySeeder::class,
             ServiceSeeder::class,
             RegionSeeder::class,
+
             TourSeeder::class,
             CategoryTourSeeder::class,
             DestinationSeeder::class,
             DestinationTourSeeder::class,
             TourServiceSeeder::class,
             ItinerarySeeder::class,
+            AccommodationSeeder::class,
+
         ]);
     }
 }

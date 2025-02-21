@@ -17,14 +17,14 @@ class DestinationFactory extends Factory
     public function definition(): array
     {
         return [
-            'region_id' => $this->faker->numberBetween(1,5),
-            'name' => $this->faker->city,
-            'country' => 'Albania',
-            'city' => $this->faker->city,
-            'description' => $this->faker->paragraph,
+            'region_id'       => $this->faker->numberBetween(1,5),
+            'name'            => $this->faker->city,
+            'country'         => 'Albania',
+            'city'            => $this->faker->city,
+            'description'     => $this->faker->paragraph,
             'nearest_airport' => 'TIA (Tirana International Airport)',
-            'latitude' => $this->faker->latitude,
-            'longitude' => $this->faker->longitude,
+            'latitude'        => $this->faker->latitude,
+            'longitude'       => $this->faker->longitude,
         ];
     }
 }
