@@ -13,7 +13,7 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        Service::insert([
+        $services = [
             [
                 'name'        => 'Accommodation',
                 'slug'        => 'accommodation',
@@ -44,6 +44,11 @@ class ServiceSeeder extends Seeder
                 'slug'        => 'travel-insurance',
                 'description' => 'Insurance included for the trip'
             ],
-        ]);
+        ];
+
+        foreach ($services as $service) {
+
+            Service::create($service);
+        }
     }
 }

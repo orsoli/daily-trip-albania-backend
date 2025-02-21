@@ -19,13 +19,13 @@ class UserSeeder extends Seeder
 
         // Create a first user in start app that can access all the features.
         User::create([
-            'role_id' => $role->id,
-            'first_name' => config('app.super_admin_first_name'),
-            'last_name' => config('app.super_admin_last_name'),
-            'email' => config('app.super_admin_email'),
+            'role_id'       => $role->id,
+            'first_name'    => config('app.super_admin_first_name'),
+            'last_name'     => config('app.super_admin_last_name'),
+            'email'         => config('app.super_admin_email'),
             'date_of_birth' => config('app.super_admin_date_of_birth'),
-            'personal_nr' => config('app.super_admin_personal_nr'),
-            'password' => Hash::make(config('app.super_admin_password')),
+            'personal_nr'   => config('app.super_admin_personal_nr'),
+            'password'      => Hash::make(config('app.super_admin_password')),
             ]);
 
         User::factory()->count(19)->create();

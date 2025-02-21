@@ -12,7 +12,7 @@ class CurrencySeeder extends Seeder
      */
     public function run(): void
     {
-        Currency::insert([
+       $currencies = [
             [
                 'name'          => 'Albanian Lek',
                 'code'          => 'ALL',
@@ -41,6 +41,11 @@ class CurrencySeeder extends Seeder
                 'exchange_rate' => 0.0077,
                 'is_default'    => false
             ]
-        ]);
+        ];
+
+        foreach ($currencies as $currency) {
+
+             Currency::create($currency);
+        }
     }
 }

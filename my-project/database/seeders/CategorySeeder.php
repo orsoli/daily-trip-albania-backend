@@ -12,7 +12,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::insert([
+        $categories = [
             [
                 'name'        => 'Adventure',
                 'slug'        => 'adventure-tours',
@@ -48,6 +48,12 @@ class CategorySeeder extends Seeder
                 'slug'        => 'historical-tours',
                 'description' => 'Step back in time with guided tours of ancient ruins, historical landmarks, and fascinating museums.',
             ],
-        ]);
+        ];
+
+        foreach ($categories as $category) {
+
+            Category::create($category);
+
+        }
     }
 }

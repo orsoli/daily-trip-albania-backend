@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('exchange_rate', 8, 4);
             $table->boolean('is_default')->default(false);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

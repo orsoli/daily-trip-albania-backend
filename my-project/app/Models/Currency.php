@@ -24,4 +24,21 @@ class Currency extends Model
         'is_default'
     ];
 
+    // /**
+    //  * The attributes that should be cast to native types.
+    //  *
+    //  * @var array<string, string>
+    //  */
+    // protected static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::saving(function ($currency) {
+    //         if ($currency->is_default) {
+    //             // Çaktivizo monedhën e mëparshme të paracaktuar
+    //             static::where('is_default', true)->update(['is_default' => false]);
+    //         }
+    //     });
+    // }
+
 }
