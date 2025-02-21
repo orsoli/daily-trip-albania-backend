@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
-class Tour extends Model
+class Itinerary extends Model
 {
     use HasFactory, Notifiable, SoftDeletes;
 
@@ -17,23 +17,12 @@ class Tour extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'guide_id',
-        'default_currency_id',
-        'category_id',
-        'region_id',
-        'title',
+        'tour_id',
         'slug',
-        'thumbnail',
-        'description',
-        'is_active',
-        'price',
-        'duration',
-        'difficulty',
-        'popularity',
-        'is_featured',
-        'wheelchair_accessible',
-        'created_by',
-        'updated_by',
-        'deleted_by',
+        'day',
+        'start_at',
+        'lunch_time',
+        'end_at',
+        'activities',
     ];
 }

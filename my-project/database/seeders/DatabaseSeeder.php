@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             DestinationSeeder::class,
             DestinationTourSeeder::class,
             TourServiceSeeder::class,
+            ItinerarySeeder::class,
         ]);
     }
 }
