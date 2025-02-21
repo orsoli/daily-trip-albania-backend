@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
             ItinerarySeeder::class,
             AccommodationSeeder::class,
 
+            GallerySeeder::class,
+
+
         ]);
     }
 }
