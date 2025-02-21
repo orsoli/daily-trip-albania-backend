@@ -32,12 +32,12 @@ class UserFactory extends Factory
         //     'password' => Hash::make(config('app.super_admin_password')),
 
         return [
-            'role_id' => fake()->numberBetween(1,3),
-            'first_name' => fake()->firstName(),
-            'last_name' => fake()->lastName(),
-            'email' => fake()->unique()->safeEmail(),
-            'date_of_birth' => fake()->date(),
-            'personal_nr' => fake()->numberBetween(1000000000, 9999999999),
+            'role_id' => $this->faker->numberBetween(1,4),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'date_of_birth' => $this->faker->date(),
+            'personal_nr' => $this->faker->numberBetween(1000000000, 9999999999),
             'email_verified_at' => now(),
             'password' => Hash::make('1234'),
             'remember_token' => Str::random(10),

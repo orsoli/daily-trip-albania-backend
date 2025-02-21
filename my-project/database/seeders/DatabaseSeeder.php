@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             CurrencySeeder::class,
             ServiceSeeder::class,
+            RegionSeeder::class,
+            TourSeeder::class,
         ]);
     }
 }

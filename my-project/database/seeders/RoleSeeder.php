@@ -41,7 +41,15 @@ class RoleSeeder extends Seeder
                                     Moderate and approve user-submitted content.
                                     View analytics and content performance reports.
                                     Cannot manage users or system settings.'
-            ]
+            ],
+            [
+                'name'        => 'Duide',
+                'slug'        => 'guide',
+                'description' => 'A Guide is a knowledgeable individual responsible for leading and assisting groups of tourists during their travels.
+                                    Guides provide valuable information about local history, culture, and attractions, ensuring a safe and enjoyable experience for guests.
+                                    They are skilled in communication and often have expertise in specific areas, such as adventure, culture, or nature.
+                                    Guides also help manage itineraries, address visitor inquiries, and ensure customer satisfaction throughout the tour.'
+            ],
         ];
 
         foreach ($roles as $role) {
