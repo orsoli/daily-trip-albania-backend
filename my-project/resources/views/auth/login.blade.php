@@ -28,31 +28,37 @@
                         <div class="row mb-3">
                             {{-- Email --}}
                             <div class="col-md-8 input-container">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                <label for="email">{{
-                                    __('static.email_address')
-                                    }}
+                                <div class="position-relative">
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <label for="email">{{
+                                        __('static.email_address')
+                                        }}
+                                    </label>
                                     {{-- Email errors --}}
                                     @error('email')
                                     <span class=" invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+                                </div>
                             </div>
                             {{-- Password --}}
                             <div class="col-md-8 input-container">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="current-password">
-                                <label for="password">{{ __('static.password')
-                                    }}</label>
-                                {{-- Password errors --}}
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <div class="position-relative">
+                                    <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="current-password">
+                                    <label for="password">{{ __('static.password')
+                                        }}</label>
+                                    {{-- Password errors --}}
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 

@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use App\Models\Currency;
 use App\Models\Region;
 use App\Models\User;
@@ -24,7 +23,6 @@ class TourFactory extends Factory
         return [
             'guide_id'              => User::where('role_id', 4)->inRandomOrder()->first()->id,
             'default_currency_id'   => Currency::where('is_default', true)->inRandomOrder()->first()->id,
-            'category_id'           => Category::inRandomOrder()->first()->id,
             'region_id'             => Region::inRandomOrder()->first()->id,
             'title'                 => $this->faker->sentence(4),
             'slug'                  => Str::slug($this->faker->sentence(4)),

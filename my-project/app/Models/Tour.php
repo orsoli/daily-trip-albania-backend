@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
@@ -19,7 +23,6 @@ class Tour extends Model
     protected $fillable = [
         'guide_id',
         'default_currency_id',
-        'category_id',
         'region_id',
         'title',
         'slug',
@@ -36,4 +39,107 @@ class Tour extends Model
         'updated_by',
         'deleted_by',
     ];
+
+    // Relations
+
+    /**
+     * Get the user that owns the tour
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function guide(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the currency that owns the tour.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class);
+    }
+
+    /**
+     * Get the categories associated with the tour.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * Get the region that owns the tour.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function region(): BelongsTo
+    {
+        return $this->belongsTo(Region::class);
+    }
+
+    /**
+     * Get the accommodations associated with the tour.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function accommodations(): HasMany
+    {
+        return $this->hasMany(Accommodation::class);
+    }
+
+    /**
+     * Get the gallery accociated whith the tour.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gallery(): HasMany
+    {
+        return $this->hasMany(Gallery::class);
+    }
+
+
+    /**
+     * Get the itinerary associated with the tour.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function itinerary(): HasOne
+    {
+        return $this->hasOne(Itinerary::class);
+    }
+
+    /**
+     * Define the many-to-many relationship with the Destination model.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function destinations(): BelongsToMany
+    {
+        return $this->belongsToMany(Destination::class);
+    }
+
+    /**
+     * Define the many-to-many relationship with the Service model.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function services(): BelongsToMany
+    {
+        return $this->belongsToMany(Service::class);
+    }
+
+    /**
+     * Define the many-to-many relationship with the Booking model.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function bookings(): BelongsToMany
+    {
+        return $this->belongsToMany(Booking::class);
+    }
 }

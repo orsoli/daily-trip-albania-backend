@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TourController;
+use App\Models\Destination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -64,4 +67,6 @@ Route::prefix('/admin/users')->name('user.')->group(function () {
 // Roles Routes
 Route::prefix('admin')->group(function () {
     Route::resource('roles', RoleController::class);
+    Route::resource('tours', TourController::class);
+    Route::resource('destinations', DestinationController::class);
 });

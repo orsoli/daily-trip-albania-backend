@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
@@ -23,6 +24,18 @@ class Currency extends Model
         'exchange_rate',
         'is_default'
     ];
+
+    // Relations
+
+    /**
+     * Get the tours accociated with the carrecy.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tours(): HasMany
+    {
+        return $this->hasMany(Tour::class);
+    }
 
     // /**
     //  * The attributes that should be cast to native types.

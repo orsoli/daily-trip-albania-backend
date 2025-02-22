@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,7 +24,9 @@ class Role extends Model
     ];
 
     /**
-     * The users that belong to the role.
+     * Get the users accociated with the role.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function users(): HasMany
     {

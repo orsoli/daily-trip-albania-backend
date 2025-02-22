@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -53,9 +54,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * The roles that belong to the user.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
+    }
+
+
+    /**
+     * Get the tours for the user.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tours(): HasMany
+    {
+        return $this->hasMany(Tour::class);
     }
 }

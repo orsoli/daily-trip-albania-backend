@@ -16,7 +16,6 @@ return new class extends Migration
 
             $table->foreignId('guide_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('default_currency_id')->constrained('currencies')->cascadeOnUpdate()->onDelete('restrict');
-            $table->foreignId('category_id')->constrained('categories')->cascadeOnUpdate()->onDelete('restrict');
             $table->foreignId('region_id')->constrained('regions')->cascadeOnUpdate()->onDelete('restrict');
 
             $table->string('title');

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
@@ -25,4 +26,16 @@ class Itinerary extends Model
         'end_at',
         'activities',
     ];
+
+    // Relations
+
+    /**
+     * Get the tour that owns the itinerary.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tour(): BelongsTo
+    {
+        return $this->belongsTo(Tour::class);
+    }
 }
