@@ -3,8 +3,8 @@
 @section('title', __('static.add_or_update'). ' ' . __('static.role') . ' | ' . config('app.name'))
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center pt-5">
+<div class="container align-self-center">
+    <div class="row justify-content-center">
         <div class="col-12 col-md-10">
             <div class="card my-card">
                 <div class="card-header">

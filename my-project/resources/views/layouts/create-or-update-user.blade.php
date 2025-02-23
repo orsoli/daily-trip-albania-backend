@@ -4,8 +4,8 @@
 
 @section('content')
 {{-- Title --}}
-<div class="container">
-    <div class="row justify-content-center pt-5">
+<div class="container align-self-center">
+    <div class="row justify-content-center">
         <div class="col-12 col-md-10">
             <div class="card my-card">
                 <div class="user-logo">

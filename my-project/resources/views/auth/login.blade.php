@@ -3,7 +3,7 @@
 @section('title', __('static.Login') . ' | ' . config('app.name'))
 
 @section('content')
-<div class="container">
+<div class="container align-self-center">
     {{-- Include Notifications --}}
     @include('partials.notifications')
     <div class="row justify-content-center">

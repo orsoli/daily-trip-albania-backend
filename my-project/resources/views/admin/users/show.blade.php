@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container align-self-center">
     {{-- Include Notifications --}}
     @include('partials.notifications')
 
