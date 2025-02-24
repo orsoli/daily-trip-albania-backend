@@ -5,7 +5,7 @@ return [
     'Login'                                 => 'Login',
     'user'                                  => 'User',
     'all_users'                             => 'All Users',
-    'active_users'                          => 'Active Users',
+    'available_users'                       => 'Available Users',
     'deleted_users'                         => 'Deleted Users',
     'users_index'                           => 'Users Index',
     'users_trash'                           => 'Users Trash',
@@ -22,6 +22,7 @@ return [
     'dashboard'                             => 'Dashboard',
     'trash'                                 => 'Trash',
     'name'                                  => 'Name',
+    'title'                                 => 'Title',
     'slug'                                  => 'Slug',
     'first_name'                            => 'First Name',
     'last_name'                             => 'Last Name',
@@ -43,6 +44,7 @@ return [
     'not_receive_email'                     => 'If you did not receive the email',
     'click_here_to_request_another'         => 'click here to request another',
     'visit_web'                             => 'Visit Web',
+    'show'                                  => 'Show',
     'action'                                => 'Action',
     'edit'                                  => 'Edit',
     'delete'                                => 'Delete',
@@ -54,6 +56,44 @@ return [
     'sure_to_delete_role'                   => 'Deleting this role will affect all users assigned to it. All users associated with this role will also be deleted.
                                                 Are you sure you want to proceed with the deletion?',
 
+    'destinations'                          => 'Destinations',
+    'destination'                           => 'Destination',
+    'tours'                                 => 'Tours',
+    'tour'                                  => 'Tour',
+    'accommodation'                         => 'Accommodation',
+    'accommodations'                        => 'Accommodations',
+    'itineraries'                           => 'Itineraires',
+    'itinerary'                             => 'Itinerairy',
+    'catgory'                               => 'Category',
+    'categories'                             => 'Categories',
+    'guide'                                 => 'Guide',
+    'currency'                              => 'Currency',
+    'region'                                => 'Region',
+    'image'                                 => 'Image',
+    'is_active'                             => 'Active',
+    'is_available'                          => 'Is Available',
+    'price'                                 => 'Price',
+    'duration'                              => 'Duration',
+    'difficulty'                            => 'Difficulty',
+    'popularity'                            => 'Popularity',
+    'is_featured'                           => 'Is Featured',
+    'rating'                                => 'Rating',
+    'views'                                 => 'Views',
+    'wheel_chair_accessible'                => 'Wheel Chair Accessible',
+    'create_by'                             => 'Create By',
+    'update_by'                             => 'Update By',
+    'code'                                  => 'Code',
+    'symbol'                                => 'Symbol',
+    'exchange_rate'                         => 'Exchange Rate',
+    'is_default'                            => 'Is Default',
+    'country'                               => 'Country',
+    'city'                                  => 'City',
+    'nearest_airport'                       => 'Nearest Airport',
+    'day'                                   => 'Day',
+    'start_at'                              => 'Start At',
+    'end_at'                                => 'End At',
+    'lunch_time'                            => 'Lunch Time',
+    'activities'                            => 'Activities',
 
     // Copyright
     'copy_right'                            => '© ' . now()->year . ' Daily Trip Albania. All rights reserved.',
@@ -78,6 +118,6 @@ return [
     'success_restore'                       => 'has been restore successfully',
     'empty'                                 => 'No data found',
 
-    // Destinations
-    'destinations'                          => 'Destinations'
+
+
 ];

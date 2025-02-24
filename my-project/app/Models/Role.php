@@ -32,4 +32,15 @@ class Role extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    /**
+     * Get the route key name for Laravel.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 }

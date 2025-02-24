@@ -40,6 +40,17 @@ class Tour extends Model
         'deleted_by',
     ];
 
+
+     /**
+     * Get the route key name for Laravel.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     // Relations
 
     /**
@@ -59,7 +70,7 @@ class Tour extends Model
      */
     public function currency(): BelongsTo
     {
-        return $this->belongsTo(Currency::class);
+        return $this->belongsTo(Currency::class, 'default_currency_id');
     }
 
     /**

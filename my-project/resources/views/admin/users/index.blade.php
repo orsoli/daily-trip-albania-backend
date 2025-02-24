@@ -13,15 +13,15 @@
             <div class="navbars mb-4">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link users-nav-link text-secondary" data-tab='all_users'
+                        <a class="nav-link data-nav-link text-secondary"
                             href="{{route('user.index', ['with_trashed' => true])}}">{{__('static.all_users')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link users-nav-link text-secondary" data-tab='active_users'
-                            href="{{route('user.index')}}">{{__('static.active_users')}}</a>
+                        <a class="nav-link data-nav-link text-secondary"
+                            href="{{route('user.index')}}">{{__('static.available_users')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link users-nav-link text-secondary" data-tab='deleted_user'
+                        <a class="nav-link data-nav-link text-secondary"
                             href="{{route('user.index',['trashed' => true])}}">{{__('static.deleted_users')}}</a>
                     </li>
                 </ul>

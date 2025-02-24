@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('guide_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('guide_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
             $table->foreignId('default_currency_id')->constrained('currencies')->cascadeOnUpdate()->onDelete('restrict');
             $table->foreignId('region_id')->constrained('regions')->cascadeOnUpdate()->onDelete('restrict');
 

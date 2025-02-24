@@ -41,6 +41,10 @@
                                     <a href="{{route('dashboard')}}" class="nav-link"> {{__('static.dashboard')}}
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{route('tours.index')}}" class="nav-link"> {{__('static.tours')}}
+                                    </a>
+                                </li>
                                 @if(Auth::user()->role->name
                                 ===
                                 'Super Admin')

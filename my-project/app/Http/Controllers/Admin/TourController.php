@@ -21,11 +21,41 @@ class TourController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tours = Tour::all();
+        $columns = [
+            __('static.image'),
+            __('static.title'),
+            __('static.categories'),
+            __('static.price'),
+            __('static.currency'),
+            __('static.region'),
+            __('static.guide'),
+            __('static.is_active'),
+            __('static.action')
 
-        return view('admin.tours.index', compact('tours'));
+        ];
+
+
+        if ($request->has('trashed')) {
+
+            $tours = Tour::onlyTrashed()
+                ->paginate(10)
+                ->appends(['trashed' => true]);
+
+        } elseif ($request->has('with_trashed')) {
+
+            $tours = Tour::withTrashed()
+                ->paginate(10)
+                ->appends(['with_trashed' => true]);
+
+        } else {
+
+            $tours = Tour::paginate(10);
+
+        }
+
+        return view('admin.tours.index', compact('columns', 'tours'));
     }
 
     /**
@@ -49,7 +79,7 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        //
+        return view('admin.tours.show', compact('tour'));
     }
 
     /**

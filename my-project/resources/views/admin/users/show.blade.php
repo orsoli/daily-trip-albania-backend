@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $user->first_name . ' ' . $user->last_name . ' | ' . config('app.name'))
+
 @section('content')
 <div class="container align-self-center">
     {{-- Include Notifications --}}

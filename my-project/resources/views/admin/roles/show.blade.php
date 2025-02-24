@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $role->name . ' | ' . config('app.name'))
+
 @section('content')
 <div class="container align-self-center">
     {{-- Include Notifications --}}
@@ -24,7 +26,7 @@
                     <div class="actions d-flex justify-content-center align-items-end gap-3 my-3">
                         @include('partials.action-buttons', [
                         'isShowPage' => true,
-                        'edit_href' => route('roles.edit', $role->id),
+                        'edit_href' => route('roles.edit', $role->slug),
                         'data_name' => $role->name,
                         'form_action' => route('roles.destroy', $role->id),
                         'modal_header' => __('static.deleting_role'),

@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const navLinks = document.querySelectorAll(".users-nav-link");
+    const navLinks = document.querySelectorAll(".data-nav-link");
     const currentUrl = window.location.href;
 
     navLinks.forEach((link) => {
-        // Hiq klasat nga të gjithë linkët për të siguruar një pastrim të pastër
+        // Remove classes from all links to ensure a clean reset
         link.classList.remove("active-tab", "disabled");
 
-        // Kontrollo nëse href i linkut përputhet me URL-në aktuale
+        // Check if the link's href matches the current URL
         if (link.href === currentUrl) {
             link.classList.add("active-tab", "disabled");
         } else {
