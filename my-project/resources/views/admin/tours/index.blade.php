@@ -72,7 +72,7 @@
                                 @include('partials.action-buttons', [
                                 'isShowPage' => false,
                                 'restore_href' => route('tours.restore', $tour->slug),
-                                'data_name' => $tour->tilte,
+                                'data_name' => $tour->title,
                                 'form_action' => route('tours.forceDelete', $tour->slug),
                                 'modal_header' => __('static.permanently_deleting'),
                                 'modal_body' => __('static.sure_to_permanently_delete')

@@ -85,11 +85,31 @@ body{
             right:            50%;
             transform:        translate(50%, -60%);
 
-        .user-logo-img{
+            .user-logo-img{
+                border-radius: 50%;
+                filter:        invert(1);
+            }
+
+    }
+
+    // Tour thumbnail conatiner
+    .tour-logo{
+        width:                150px;
+        height:               150px;
+        background-color:     $primary;
+        box-shadow:           0 0 10px 1px $secondary;
+        border-radius:        50%;
+        position:             absolute;
+            top:              0;
+            right:            50%;
+            transform:        translate(50%, -70%);
+
+        .tour-thumbnail{
             border-radius:    50%;
-            filter:           invert(1);
         }
     }
+
+    //Tour Thumbnail
 }
 
 .input-container {

@@ -8,4 +8,9 @@ return [
     'deleted_tours'                         => 'Turet e Fshira',
     'tours_index'                           => 'Indexi i Tureve',
     'tours_trash'                           => 'Koshi i Tureve',
+
+    'guided_by'                             => 'Ky Tur udhëhiqet nga: ',
+    'tour_created_by'                       => 'Ky Tur eshte krijuar nga: ',
+
+
 ];

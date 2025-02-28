@@ -126,5 +126,5 @@
 @endsection
 
 @section('add-script')
-@vite(['resources/js/actions-btns.js', 'resources/js/nav-tabs.js'])
+@vite(['resources/js/actions-btns.js'])
 @endsection

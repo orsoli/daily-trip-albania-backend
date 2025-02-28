@@ -76,7 +76,7 @@ return [
     'duration'                              => 'Duration',
     'difficulty'                            => 'Difficulty',
     'popularity'                            => 'Popularity',
-    'is_featured'                           => 'Is Featured',
+    'is_featured'                           => 'Featured',
     'rating'                                => 'Rating',
     'views'                                 => 'Views',
     'wheel_chair_accessible'                => 'Wheel Chair Accessible',
@@ -117,6 +117,8 @@ return [
     'success_permanently_delete'            => 'has been permanently deleted successfully',
     'success_restore'                       => 'has been restore successfully',
     'empty'                                 => 'No data found',
+    'is_not'                                => 'Is Not'
+
 
 
 
