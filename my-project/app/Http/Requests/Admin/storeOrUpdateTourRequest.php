@@ -11,7 +11,7 @@ class storeOrUpdateTourRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,28 @@ class storeOrUpdateTourRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'guide_id'             => 'nullable|exists:users,id',
+            'region_id'            => 'required|exists:regions,id',
+            'title'                => 'required|string|max:255',
+            'thumbnail'            => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description'          => 'nullable|string',
+            'is_active'            => 'boolean',
+            'price'                => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'duration'             => 'nullable|string|max:255',
+            'difficulty'           => 'nullable|string|max:255',
+
+            // Pivot tables
+            'categories'           => 'required|array',
+            'categories.*'         => 'exists:categories,id',
+
+            'destinations'         => 'required|array',
+            'destinations.*'       => 'exists:destinations,id',
+
+            'services'             => 'required|array',
+            'services.*'           => 'exists:services,id',
+
+            // Gallery images
+            'gallery_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

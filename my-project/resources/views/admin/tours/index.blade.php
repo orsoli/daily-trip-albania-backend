@@ -10,7 +10,7 @@
     <div class="my-card px-2 px-md-4">
         {{-- Tours Table header navbars --}}
         <div class="card-header">
-            <div class="navbars mb-4">
+            <div class="navbars d-flex justify-content-between mb-4">
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link data-nav-link text-secondary" data-tab='all_data'
@@ -23,6 +23,12 @@
                     <li class="nav-item">
                         <a class="nav-link data-nav-link text-secondary" data-tab='deleted_data'
                             href="{{route('tours.index',['trashed' => true])}}">{{__('tours.deleted_tours')}}</a>
+                    </li>
+                </ul>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="btn btn-primary border rounded-5 text-secondary" data-tab='deleted_data'
+                            href="{{route('tours.create')}}">{{__('tours.create_new_tour')}}</a>
                     </li>
                 </ul>
             </div>

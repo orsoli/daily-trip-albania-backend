@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\storeOrUpdateTourRequest;
+use App\Models\Category;
+use App\Models\Destination;
+use App\Models\Region;
+use App\Models\Service;
 use App\Models\Tour;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TourController extends Controller
@@ -63,15 +69,30 @@ class TourController extends Controller
      */
     public function create()
     {
-        //
+        $regions = Region::all();
+        $categories = Category::all();
+        $destinations = Destination::all();
+        $services = Service::all();
+        $guides = User::whereHas('role', function ($query) {
+                                $query->where('slug', 'guide');
+                            })->get();
+
+
+        return view('admin.tours.create', compact('regions', 'categories', 'destinations', 'services', 'guides'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(storeOrUpdateTourRequest $request)
     {
-        //
+        $tour = Tour::create($request->validated());
+
+
+
+        $tour->categories()->sync($request->categories);
+        $tour->destinations()->sync($request->destinations);
+        $tour->services()->sync($request->services);
     }
 
     /**

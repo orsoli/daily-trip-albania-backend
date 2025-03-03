@@ -2,6 +2,9 @@
 
 return [
 
+    'add_tour'                              => 'Shto Tour',
+    'create_new_tour'                       => 'Krijo nje Tur te ri',
+    'update_tours'                          => 'Perditeso Turet',
     'tours_panel'                           => 'Paneli i Tureve',
     'all_tours'                             => 'Te gjitha Turet',
     'available_tours'                       => 'Turet e Disponueshme',
