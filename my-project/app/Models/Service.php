@@ -33,6 +33,6 @@ class Service extends Model
      */
     public function tours(): BelongsToMany
     {
-        return $this->belongsToMany(Tour::class);
+        return $this->belongsToMany(Tour::class, 'tour_service');
     }
 }

@@ -93,6 +93,11 @@ class TourController extends Controller
         $tour->categories()->sync($request->categories);
         $tour->destinations()->sync($request->destinations);
         $tour->services()->sync($request->services);
+
+        session()->flash('success', $tour->name . ' ' . __('static.success_create'));
+
+        return redirect()->route('tours.index');
+
     }
 
     /**
@@ -108,7 +113,15 @@ class TourController extends Controller
      */
     public function edit(Tour $tour)
     {
-        //
+        $regions = Region::all();
+        $categories = Category::all();
+        $destinations = Destination::all();
+        $services = Service::all();
+        $guides = User::whereHas('role', function ($query) {
+                                $query->where('slug', 'guide');
+                            })->get();
+
+        return view('admin.tours.edit', compact('tour', 'guides', 'regions', 'categories', 'destinations', 'services'));
     }
 
     /**

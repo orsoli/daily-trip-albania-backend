@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="@yield('form-action')">
+                    <form method="POST" action="@yield('form-action')" enctype="multipart/form-data">
                         @csrf
                         @yield('form-method')
 
@@ -165,7 +165,7 @@
                                         <input type="checkbox" id="destination_{{ $destination->id }}"
                                             name="destinations[]" value="{{ $destination->id }}"
                                             class="form-check-input @error('destinations') is-invalid @enderror" {{
-                                            in_array($destination->id, old('destinations', [])) ?
+                                            in_array($destination->id, $tour->destinations->pluck('id')->toArray()) ?
                                         'checked' : '' }}>
                                         <label class="form-check-label" for="destination_{{ $destination->id }}">
                                             {{ $destination->name }}
@@ -187,9 +187,9 @@
                                         <input type="checkbox" id="category_{{ $category->id }}" name="categories[]"
                                             value="{{ $category->id }}"
                                             class="form-check-input @error('categories') is-invalid @enderror" {{
-                                            in_array($category->id,
-                                        old('categories', [])) ? 'checked'
-                                        : '' }}>
+                                            isset($tour->categories) && in_array($category->id,
+                                        $tour->categories->pluck('id')->toArray()) ?
+                                        'checked' : '' }}>
                                         <label class="form-check-label" for="category_{{ $category->id }}">
                                             {{ $category->name }}
                                         </label>
@@ -210,8 +210,8 @@
                                         <input type="checkbox" id="service_{{ $service->id }}" name="services[]"
                                             value="{{ $service->id }}"
                                             class="form-check-input @error('services') is-invalid @enderror" {{
-                                            in_array($service->id,
-                                        old('services',[])) ? 'checked' : ''
+                                            in_array($service->id, $tour->services->pluck('id')->toArray()) ? 'checked'
+                                        : ''
                                         }}>
                                         <label class="form-check-label" for="service_{{ $service->id }}">
                                             {{ $service->name }}

@@ -5,6 +5,7 @@ return [
     'add_tour'                              => 'Shto Tour',
     'create_new_tour'                       => 'Krijo nje Tur te ri',
     'update_tours'                          => 'Perditeso Turet',
+    'update_tour'                           => 'Perditeso Turin',
     'tours_panel'                           => 'Paneli i Tureve',
     'all_tours'                             => 'Te gjitha Turet',
     'available_tours'                       => 'Turet e Disponueshme',
