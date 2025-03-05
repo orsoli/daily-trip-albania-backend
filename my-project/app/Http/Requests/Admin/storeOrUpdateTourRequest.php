@@ -27,23 +27,25 @@ class storeOrUpdateTourRequest extends FormRequest
             'title'                => 'required|string|max:255',
             'thumbnail'            => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description'          => 'nullable|string',
-            'is_active'            => 'boolean',
-            'price'                => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'is_active'            => 'sometimes|boolean',
+            'price'                => 'required|numeric|min:0|decimal:0,2',
             'duration'             => 'nullable|string|max:255',
             'difficulty'           => 'nullable|string|max:255',
 
             // Pivot tables
-            'categories'           => 'required|array',
+            'categories'           => 'nullable|array',
             'categories.*'         => 'exists:categories,id',
 
-            'destinations'         => 'required|array',
+            'destinations'         => 'nullable|array',
             'destinations.*'       => 'exists:destinations,id',
 
-            'services'             => 'required|array',
+            'services'             => 'nullable|array',
             'services.*'           => 'exists:services,id',
 
             // Gallery images
-            'gallery_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'gallery_images'       => 'nullable|array',
+            'gallery_images.*'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
+
     }
 }

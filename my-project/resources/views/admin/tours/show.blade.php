@@ -13,7 +13,7 @@
                 <div class="card-body text-center">
                     {{-- Tour logo image --}}
                     <div class="tour-logo">
-                        <img src="{{asset('img/ksamil-albania.png')}}" alt="ksamil-albania" class="tour-thumbnail">
+                        <img src="{{$tour->thumbnail}}" alt="{{$tour->slug . '-image' }}" class="tour-thumbnail">
                     </div>
 
                     {{-- Title --}}

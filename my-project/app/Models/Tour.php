@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Tour extends Model
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, MediaAlly;
 
     /**
      * The attributes that are mass assignable.
@@ -80,7 +81,7 @@ class Tour extends Model
      */
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'category_tour');
     }
 
     /**
@@ -131,7 +132,7 @@ class Tour extends Model
      */
     public function destinations(): BelongsToMany
     {
-        return $this->belongsToMany(Destination::class);
+        return $this->belongsToMany(Destination::class, 'destination_tour');
     }
 
     /**
@@ -151,6 +152,6 @@ class Tour extends Model
      */
     public function bookings(): BelongsToMany
     {
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsToMany(Booking::class, 'booking_tour');
     }
 }

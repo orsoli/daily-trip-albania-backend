@@ -20,6 +20,7 @@
                         @yield('form-method')
 
                         <div class="row mb-3 px-4 px-md-5">
+
                             {{-- Thumbnail --}}
                             <div class="col-12 col-md-6 input-container">
                                 <div class="position-relative">
@@ -117,7 +118,7 @@
                                     </p>
                                     @endif
                                     <select id="guide" class="form-control bg-transparent rounded-5 mt-3 text-light @error('guide')
-                                                                    is-invalid @enderror" name="guide" required>
+                                                                    is-invalid @enderror" name="guide_id" required>
                                         <option value="" selected disabled>
                                             {{__('static.select_guide')}} . . . *</option>
                                         @foreach ($guides as $guide)
@@ -140,7 +141,7 @@
                                     <p class="fs-3 py-2"> Region: {{$region->name}} </p>
                                     @endif
                                     <select id="region" class="form-control bg-transparent rounded-5 mt-3 text-light @error('region')
-                                                                    is-invalid @enderror" name="region" required>
+                                                                    is-invalid @enderror" name="region_id" required>
                                         <option value="" selected disabled>
                                             {{__('static.select_region')}} . . . *</option>
                                         @foreach ($regions as $region)
@@ -165,7 +166,8 @@
                                         <input type="checkbox" id="destination_{{ $destination->id }}"
                                             name="destinations[]" value="{{ $destination->id }}"
                                             class="form-check-input @error('destinations') is-invalid @enderror" {{
-                                            in_array($destination->id, $tour->destinations->pluck('id')->toArray()) ?
+                                            isset($tour->destinations) && in_array($destination->id,
+                                        $tour->destinations->pluck('id')->toArray()) ?
                                         'checked' : '' }}>
                                         <label class="form-check-label" for="destination_{{ $destination->id }}">
                                             {{ $destination->name }}
@@ -210,7 +212,8 @@
                                         <input type="checkbox" id="service_{{ $service->id }}" name="services[]"
                                             value="{{ $service->id }}"
                                             class="form-check-input @error('services') is-invalid @enderror" {{
-                                            in_array($service->id, $tour->services->pluck('id')->toArray()) ? 'checked'
+                                            isset($tour->services) && in_array($service->id,
+                                        $tour->services->pluck('id')->toArray()) ? 'checked'
                                         : ''
                                         }}>
                                         <label class="form-check-label" for="service_{{ $service->id }}">

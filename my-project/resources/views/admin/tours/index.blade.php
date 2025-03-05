@@ -56,7 +56,7 @@
                     <div class="card-body">
                         <div class="row align-items-center m-0">
                             <div class="col d-none d-lg-block">
-                                <img src="{{ asset('img/DailyTrip-logo.png') }}" alt="">
+                                <img src="{{ $tour->thumbnail }}" alt="{{$tour->title}}" class="thumbnail">
                             </div>
                             <div class="col fw-bold">{{ $tour->title }}</div>
                             <div class="col d-none d-lg-block">
