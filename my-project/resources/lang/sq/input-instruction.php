@@ -11,10 +11,13 @@ return [
     'personal_nr'           => ['E detyrueshme.', 'Duhet të jetë një tekst.', 'Saktësisht 10 karaktere.', 'Duhet të jetë unik.'],
     'password'              => ['E detyrueshme.', 'Duhet të jetë një tekst.', 'Minimumi 8 karaktere.', 'Duhet të konfirmohet.'],
     'description'           => ['E detyrueshme.',  'Duhet të jetë një tekst.', 'Maksimumi 500 karaktere.', 'Duhet të ofrojë një përshkrim të qartë dhe konciz.', 'Shmang përdorimin e karaktereve speciale të panevojshme.'],
-    'thumbnail'             => ['Opsionale.', 'Duhet te jete imazh.', 'Formatet e lejuara: jpeg, png, jpg, gif, svg.', 'Max size: 2MB.'],
     'duration'              => ['E detyrueshme.', 'Duhet të jetë një tekst.', 'Maksimumi 255 karaktere.'],
     'difficulty'            => ['E detyrueshme.', 'Duhet të jetë një tekst.', 'Maksimumi 255 karaktere.'],
     'price'                 => ['E detyrueshme.', 'Duhet te jete nje numer.', 'Vlera min 0.', 'Max dy vlera pas presjes.'],
-    'gallery_images'        => ['Opsionale.', 'Duhet te jene imazhe.', 'Formatet e lejuara: jpeg, png, jpg, gif, svg.', 'Max size: 2MB/secila.']
+    'thumbnail'             => ['Opsionale.', 'Duhet te jete imazh.', 'Formatet e lejuara: jpeg, png, jpg, gif, svg.', 'Max size: 2MB.'],
+    'gallery_images'        => ['Opsionale.', 'Duhet te jene imazhe.', 'Formatet e lejuara: jpeg, png, jpg, gif, svg.', 'Max size: 2MB/secila.'],
+    'is_active'             => ['Opsionale.', 'Aktivizimi i kësaj opsioni do të botojë artikullin dhe do ta bëjë të dukshëm në faqen kryesore.'],
+    'delete_gallery_images' => ['Opsionale.', 'Shënoni kutinë për të fshirë një imazh nga galeria. Imazhet e zgjedhura do të hiqen pas ruajtjes së ndryshimeve.']
+
 
 ];

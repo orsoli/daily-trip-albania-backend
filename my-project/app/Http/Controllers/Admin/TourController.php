@@ -136,7 +136,8 @@ class TourController extends Controller
                 // Add each uploaded image URL to the gallery table associated with the tour
                 $newTour->gallery()->create([
                     'url' => $imageUrl,
-                    'tour_id' => $newTour->id
+                    'tour_id' => $newTour->id,
+                    'caption' => $image->getClientOriginalName(),
                 ]);
             }
         }

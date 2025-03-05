@@ -28,7 +28,7 @@ class storeOrUpdateTourRequest extends FormRequest
             'thumbnail'            => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description'          => 'nullable|string',
             'is_active'            => 'sometimes|boolean',
-            'price'                => 'required|numeric|min:0|decimal:0,2',
+            'price'                => 'required|numeric|min:0|decimal:0,2|regex:/^\d{1,8}(\.\d{1,2})?$/',
             'duration'             => 'nullable|string|max:255',
             'difficulty'           => 'nullable|string|max:255',
 

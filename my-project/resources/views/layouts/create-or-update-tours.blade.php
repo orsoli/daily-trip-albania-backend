@@ -13,14 +13,22 @@
                         @yield('form-header')
                     </h2>
                 </div>
-
                 <div class="card-body">
                     <form method="POST" action="@yield('form-action')" enctype="multipart/form-data">
                         @csrf
                         @yield('form-method')
 
-                        <div class="row mb-3 px-4 px-md-5">
 
+                        <div class="row mb-3 px-4 px-md-5">
+                            {{-- Thumbnail img --}}
+                            @if (isset($tour))
+                            <div class="col-12">
+                                <div>
+                                    <img src="{{ $tour->thumbnail }}" alt="{{ $tour->slug  . 'image'}}"
+                                        style="width:200px; height: 200px; object-fit: fill; margin: 20px; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
+                                </div>
+                            </div>
+                            @endif
                             {{-- Thumbnail --}}
                             <div class="col-12 col-md-6 input-container">
                                 <div class="position-relative">
@@ -33,14 +41,14 @@
                                         __('static.image')}}
                                     </label>
                                     @if (Route::is('tours.create'))
-                                    {{-- Input instructions --}}
-                                    @include('partials.input-instruction', ['instructionMessages' =>
-                                    __('input-instruction.thumbnail') ])
-                                    @endif
                                     {{-- thumbnail Error --}}
                                     @error('thumbnail')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
+                                    {{-- Input instructions --}}
+                                    @include('partials.input-instruction', ['instructionMessages' =>
+                                    __('input-instruction.thumbnail') ])
+                                    @endif
                                 </div>
                             </div>
 
@@ -55,14 +63,14 @@
                                         __('static.title')}} *
                                     </label>
                                     @if (Route::is('tours.create'))
-                                    {{-- Input instructions --}}
-                                    @include('partials.input-instruction', ['instructionMessages' =>
-                                    __('input-instruction.title') ])
-                                    @endif
                                     {{-- Title Error --}}
                                     @error('title')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
+                                    {{-- Input instructions --}}
+                                    @include('partials.input-instruction', ['instructionMessages' =>
+                                    __('input-instruction.title') ])
+                                    @endif
                                 </div>
                             </div>
 
@@ -77,14 +85,14 @@
                                         __('static.duration')}} *
                                     </label>
                                     @if (Route::is('tours.create'))
-                                    {{-- Input instructions --}}
-                                    @include('partials.input-instruction', ['instructionMessages' =>
-                                    __('input-instruction.duration') ])
-                                    @endif
                                     {{-- duration Error --}}
                                     @error('duration')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
+                                    {{-- Input instructions --}}
+                                    @include('partials.input-instruction', ['instructionMessages' =>
+                                    __('input-instruction.duration') ])
+                                    @endif
                                 </div>
                             </div>
 
@@ -99,14 +107,14 @@
                                         __('static.difficulty')}} *
                                     </label>
                                     @if (Route::is('tours.create'))
-                                    {{-- Input instructions --}}
-                                    @include('partials.input-instruction', ['instructionMessages' =>
-                                    __('input-instruction.difficulty') ])
-                                    @endif
                                     {{-- difficulty Error --}}
                                     @error('difficulty')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
+                                    {{-- Input instructions --}}
+                                    @include('partials.input-instruction', ['instructionMessages' =>
+                                    __('input-instruction.difficulty') ])
+                                    @endif
                                 </div>
                             </div>
 
@@ -122,7 +130,7 @@
                                         <option value="" selected disabled>
                                             {{__('static.select_guide')}} . . . *</option>
                                         @foreach ($guides as $guide)
-                                        <option value="{{ $guide->id }}" {{ old('guide', $tour->guide_id ?? '') ==
+                                        <option value="{{ $guide->id }}" {{ old('guide_id', $tour->guide_id ?? '') ==
                                             $guide->id ?
                                             "selected" : "" }}>{{$guide->first_name }} {{$guide->last_name}} </option>
                                         @endforeach
@@ -145,7 +153,7 @@
                                         <option value="" selected disabled>
                                             {{__('static.select_region')}} . . . *</option>
                                         @foreach ($regions as $region)
-                                        <option value="{{ $region->id }}" {{ old('region', $tour->region_id ?? '') ==
+                                        <option value="{{ $region->id }}" {{ old('region_id', $tour->region_id ?? '') ==
                                             $region->id ?
                                             "selected" : "" }}>{{$region->name }}</option>
                                         @endforeach
@@ -166,14 +174,16 @@
                                         <input type="checkbox" id="destination_{{ $destination->id }}"
                                             name="destinations[]" value="{{ $destination->id }}"
                                             class="form-check-input @error('destinations') is-invalid @enderror" {{
-                                            isset($tour->destinations) && in_array($destination->id,
-                                        $tour->destinations->pluck('id')->toArray()) ?
-                                        'checked' : '' }}>
+                                            (old('destinations') && in_array($destination->id, old('destinations'))) ||
+                                        (isset($tour) &&
+                                        $tour->destinations->pluck('id')->contains($destination->id)) ? 'checked' : ''
+                                        }}>
                                         <label class="form-check-label" for="destination_{{ $destination->id }}">
                                             {{ $destination->name }}
                                         </label>
                                     </div>
                                     @endforeach
+                                    {{-- Destinations error --}}
                                     @error('destinations')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
@@ -189,14 +199,15 @@
                                         <input type="checkbox" id="category_{{ $category->id }}" name="categories[]"
                                             value="{{ $category->id }}"
                                             class="form-check-input @error('categories') is-invalid @enderror" {{
-                                            isset($tour->categories) && in_array($category->id,
-                                        $tour->categories->pluck('id')->toArray()) ?
-                                        'checked' : '' }}>
+                                            (old('categories') && in_array($category->id, old('categories'))) ||
+                                        (isset($tour) &&
+                                        $tour->categories->pluck('id')->contains($category->id)) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="category_{{ $category->id }}">
                                             {{ $category->name }}
                                         </label>
                                     </div>
                                     @endforeach
+                                    {{-- Categories error --}}
                                     @error('categories')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
@@ -212,15 +223,15 @@
                                         <input type="checkbox" id="service_{{ $service->id }}" name="services[]"
                                             value="{{ $service->id }}"
                                             class="form-check-input @error('services') is-invalid @enderror" {{
-                                            isset($tour->services) && in_array($service->id,
-                                        $tour->services->pluck('id')->toArray()) ? 'checked'
-                                        : ''
-                                        }}>
+                                            (old('services') && in_array($service->id, old('services'))) ||
+                                        (isset($tour) &&
+                                        $tour->services->pluck('id')->contains($service->id)) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="service_{{ $service->id }}">
                                             {{ $service->name }}
                                         </label>
                                     </div>
                                     @endforeach
+                                    {{-- Services error --}}
                                     @error('services')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
@@ -235,18 +246,45 @@
                                         value="{{ old('price', $tour->price ?? '') }}" required autocomplete="price">
                                     <label for="price">{{__('static.price')}} *</label>
                                     @if (Route::is('tours.create'))
-                                    {{-- Input instructions --}}
-                                    @include('partials.input-instruction', ['instructionMessages' =>
-                                    __('input-instruction.price') ])
-                                    @endif
                                     {{-- price Error --}}
                                     @error('price')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
+                                    {{-- Input instructions --}}
+                                    @include('partials.input-instruction', ['instructionMessages' =>
+                                    __('input-instruction.price') ])
+                                    @endif
                                 </div>
                             </div>
 
-                            {{-- Input Gallery --}}
+                            <!-- Display existing images if the tour has a gallery -->
+                            @if(isset($tour) && !empty($tour->gallery))
+                            <div class="mb-3">
+                                <label class="form-label">{{__('static.gallery_images')}}:</label>
+                                <div class="d-flex flex-wrap gap-3 mb-3">
+                                    @foreach($tour->gallery as $image)
+                                    <div class="position-relative" style="width: 100px; height: 100px;">
+                                        <img src="{{ $image->url }}" alt="Gallery Image"
+                                            style="width:100%; height:100%; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
+
+                                        <!-- Checkbox to delete the image -->
+                                        <div class="position-absolute top-0 start-0 mt-2 ms-2 z-index-1">
+                                            <input type="checkbox" name="delete_gallery_images[]"
+                                                value="{{ $image->id }}" class="form-check-input">
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                {{-- Input instructions on the create page --}}
+                                @if (Route::is('tours.edit'))
+                                @include('partials.input-instruction', ['instructionMessages' =>
+                                __('input-instruction.delete_gallery_images'),
+                                'class' => 'text-warning'])
+                                @endif
+                            </div>
+                            @endif
+
+                            {{-- Input ADD Gallery --}}
                             <div class="col-12 col-md-6 input-container">
                                 <div class="position-relative">
                                     <input id="gallery" type="file"
@@ -254,7 +292,12 @@
                                         name="gallery_images[]"
                                         value="{{ old('gallery_images', $tour->gallery ?? '') }}" autocomplete="gallery"
                                         accept="image/jpeg,image/png,image/jpg,image/gif,image/svg" multiple>
-                                    <label for="gallery">{{ __('static.gallery') }}</label>
+                                    <label for="gallery">{{ __('static.add') }} {{ __('static.gallery') }}</label>
+
+                                    {{-- Display validation errors --}}
+                                    @error('gallery_images')
+                                    @include('partials.input-validation-error-msg')
+                                    @enderror
 
                                     {{-- Input instructions on the create page --}}
                                     @if (Route::is('tours.create'))
@@ -262,10 +305,6 @@
                                     __('input-instruction.gallery_images')])
                                     @endif
 
-                                    {{-- Display validation errors --}}
-                                    @error('gallery_images')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
                                 </div>
                             </div>
 
@@ -279,14 +318,14 @@
                                     <label for="description">{{
                                         __('static.description')}} *</label>
                                     @if (Route::is('tours.create'))
+                                    {{-- Description Error --}}
+                                    @error('description')
+                                    @include('partials.input-validation-error-msg')
+                                    @enderror
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.description') ])
                                     @endif
-                                    {{-- Last Name Error --}}
-                                    @error('description')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
                                 </div>
                             </div>
 
@@ -311,6 +350,9 @@
                                         {{ __('static.is_active') }}
                                     </label>
                                 </div>
+                                {{-- Input instructions --}}
+                                @include('partials.input-instruction', ['instructionMessages' =>
+                                __('input-instruction.is_active'), 'class' => 'text-warning'])
                             </div>
 
 
