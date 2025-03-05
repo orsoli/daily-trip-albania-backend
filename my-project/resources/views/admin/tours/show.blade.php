@@ -8,7 +8,7 @@
     @include('partials.notifications')
 
     <div class="row justify-content-center pt-5">
-        <div class="col-sm-12 col-lg-6">
+        <div class="col-sm-12 col-lg-7">
             <div class="card my-card">
                 <div class="card-body text-center">
                     {{-- Tour logo image --}}
@@ -137,6 +137,22 @@
                                 </strong>
                             </span>
                         </p>
+
+                        @if ($tour->gallery->count() > 0)
+                        <!-- Display existing images if the tour has a gallery -->
+                        <div class="mb-3">
+                            <label class="form-label">{{__('static.gallery_images')}}:</label>
+                            <div class="d-flex flex-wrap gap-3 mb-3">
+                                @foreach($tour->gallery as $image)
+                                <div class="position-relative" style="width: 100px; height: 100px;">
+                                    <img src="{{ $image->url }}" alt="Gallery Image"
+                                        style="width:100%; height:100%; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
                     </div>
 
                     {{-- logo --}}

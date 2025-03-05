@@ -7,6 +7,12 @@
     {{-- Include Notifications --}}
     @include('partials.notifications')
 
+    {{-- Create new tour btn --}}
+    <div class="mb-4">
+        <a class="btn btn-primary border rounded-5 text-secondary" data-tab='deleted_data'
+            href="{{route('tours.create')}}">{{__('tours.create_new_tour')}}</a>
+    </div>
+
     <div class="my-card px-2 px-md-4">
         {{-- Tours Table header navbars --}}
         <div class="card-header">
@@ -23,12 +29,6 @@
                     <li class="nav-item">
                         <a class="nav-link data-nav-link text-secondary" data-tab='deleted_data'
                             href="{{route('tours.index',['trashed' => true])}}">{{__('tours.deleted_tours')}}</a>
-                    </li>
-                </ul>
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="btn btn-primary border rounded-5 text-secondary" data-tab='deleted_data'
-                            href="{{route('tours.create')}}">{{__('tours.create_new_tour')}}</a>
                     </li>
                 </ul>
             </div>
@@ -120,9 +120,9 @@
     </div>
 
 </div>
-<!-- Modal -->
+<!-- Deleting Modal -->
 <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="deleteModalLabel" aria-hidden="true">
+    aria-labelledby="deleteModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header text-light bg-danger">
@@ -147,7 +147,7 @@
 @endsection
 
 @section('add-script')
-@if (isset($users) && $users->count() && !request()->query('with_trashed'))
+@if (isset($tours) && $tours->count() && !request()->query('with_trashed'))
 @vite(['resources/js/actions-btns.js', 'resources/js/nav-tabs.js'])
 @else
 @vite(['resources/js/nav-tabs.js'])
