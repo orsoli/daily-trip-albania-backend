@@ -122,8 +122,8 @@
                         <p class="card-subtitle d-flex justify-content-between mb-1">
                             <span>
                                 {{__('static.wheel_chair_accessible')}}:
-                                <strong class="{{ $tour->wheel_chair_accessible ? 'text-success' : 'text-danger'}} ">
-                                    {{$tour->wheel_chair_accessible ? 'YES' : 'NO'}}
+                                <strong class="{{ $tour->wheelchair_accessible ? 'text-success' : 'text-danger'}} ">
+                                    {{$tour->wheelchair_accessible ? 'YES' : 'NO'}}
                                 </strong>
                             </span>
                         </p>

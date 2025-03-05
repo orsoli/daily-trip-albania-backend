@@ -257,8 +257,8 @@
                                 </div>
                             </div>
 
+                            @if(Route::is('tours.edit') && isset($tour) && $tour->gallery->isNotEmpty())
                             <!-- Display existing images if the tour has a gallery -->
-                            @if(isset($tour) && !empty($tour->gallery))
                             <div class="mb-3">
                                 <label class="form-label">{{__('static.gallery_images')}}:</label>
                                 <div class="d-flex flex-wrap gap-3 mb-3">
@@ -276,11 +276,9 @@
                                     @endforeach
                                 </div>
                                 {{-- Input instructions on the create page --}}
-                                @if (Route::is('tours.edit'))
                                 @include('partials.input-instruction', ['instructionMessages' =>
                                 __('input-instruction.delete_gallery_images'),
                                 'class' => 'text-warning'])
-                                @endif
                             </div>
                             @endif
 
@@ -290,7 +288,6 @@
                                     <input id="gallery" type="file"
                                         class="form-control text-light position-relative @error('gallery_images') is-invalid @enderror"
                                         name="gallery_images[]"
-                                        value="{{ old('gallery_images', $tour->gallery ?? '') }}" autocomplete="gallery"
                                         accept="image/jpeg,image/png,image/jpg,image/gif,image/svg" multiple>
                                     <label for="gallery">{{ __('static.add') }} {{ __('static.gallery') }}</label>
 
