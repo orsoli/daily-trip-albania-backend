@@ -141,7 +141,7 @@ class UserController extends Controller
      */
     public function restore($id)
     {
-        $user = User::withTrashed()->findOrFail($id);
+        $user = User::onlyTrashed()->findOrFail($id);
 
         $user['deleted_by'] = 'restored by' . ' ' . auth()->user()->email;
 
@@ -157,7 +157,7 @@ class UserController extends Controller
      */
     public function forceDelete($id)
     {
-        $user = User::withTrashed()->findOrFail($id);
+        $user = User::onlyTrashed()->findOrFail($id);
 
         $user->forceDelete();
 

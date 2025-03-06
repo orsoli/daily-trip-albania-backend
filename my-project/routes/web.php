@@ -67,6 +67,10 @@ Route::prefix('/admin/users')->name('user.')->group(function () {
 // Roles Routes
 Route::prefix('admin')->group(function () {
     Route::resource('roles', RoleController::class);
+
     Route::resource('tours', TourController::class);
+    Route::post('{tour}/restore', [TourController::class, 'restore'])->name('tours.restore');
+    Route::delete('{tour}/force-delete', [TourController::class, 'forceDelete'])->name('tours.forceDelete');
+
     Route::resource('destinations', DestinationController::class);
 });

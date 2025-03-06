@@ -77,9 +77,9 @@
                                 @if (request()->query('trashed'))
                                 @include('partials.action-buttons', [
                                 'isShowPage' => false,
-                                'restore_href' => route('tours.restore', $tour->slug),
+                                'restore_href' => route('tours.restore', $tour->id),
                                 'data_name' => $tour->title,
-                                'form_action' => route('tours.forceDelete', $tour->slug),
+                                'form_action' => route('tours.forceDelete', $tour->id),
                                 'modal_header' => __('static.permanently_deleting'),
                                 'modal_body' => __('static.sure_to_permanently_delete')
                                 ])

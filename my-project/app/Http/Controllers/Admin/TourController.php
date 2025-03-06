@@ -307,4 +307,56 @@ class TourController extends Controller
 
         return redirect()->route('tours.index');
     }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($id)
+    {
+        $tour = Tour::onlyTrashed()->findOrFail($id);
+
+        $tour['deleted_by'] = 'restored by' . ' ' . auth()->user()->email;
+
+        $tour->restore();
+
+        session()->flash('success', $tour->title . ' ' . __('static.success_restore'));
+
+        return redirect()->route('tours.index',['trashed' => true]);
+    }
+
+    /**
+     * Permanently Delete the specified resource from DB.
+     */
+    public function forceDelete($id)
+    {
+        $tour = Tour::onlyTrashed()->findOrFail($id);
+
+        // Delete the thumbnail from Cloudinary if it exists
+        if ($tour->thumbnail) {
+            // Parse only the public_id from the full URL
+            $publicId = pathinfo(parse_url($tour->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
+            // Delete the previous thumbnail from Cloudinary
+            if ($tour->thumbnail) {
+                Cloudinary::destroy('tours_thumbnails/' . $publicId);
+            }
+        }
+
+        // Get only trashed galleries
+        $galleries = $tour->gallery()->onlyTrashed()->get();
+        // Delete selected gallery images if the user requested
+        if ($galleries->isNotEmpty()) {
+            foreach ($galleries as $image) {
+                // Extract public_id from full URL
+                $publicId = pathinfo(parse_url($image->url, PHP_URL_PATH), PATHINFO_FILENAME);
+                // Delete from Cloudinary
+                Cloudinary::destroy('tours_gallery/' . $publicId);
+             }
+        }
+
+        $tour->forceDelete();
+
+        session()->flash('success', $tour->title . ' ' . __('static.success_permanently_delete'));
+
+        return redirect()->route('tours.index', ['trashed' => true]);
+    }
 }
