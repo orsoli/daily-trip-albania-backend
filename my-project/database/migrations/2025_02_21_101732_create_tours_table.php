@@ -34,9 +34,9 @@ return new class extends Migration
 
             $table->timestamps();
             $table->string('created_by')->default('from system');
-            $table->string('updated_by')->default('not deleted');
+            $table->string('updated_by')->default('not updated');
             $table->softDeletes();
-            $table->string('deleted_by')->nullable();
+            $table->string('deleted_by')->default('not deleted');
         });
     }
 

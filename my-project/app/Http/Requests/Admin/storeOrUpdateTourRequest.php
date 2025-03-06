@@ -46,6 +46,10 @@ class storeOrUpdateTourRequest extends FormRequest
             // Gallery images
             'gallery_images'        => 'nullable|array',
             'gallery_images.*'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+            // Delete gallery images
+            'delete_gallery_images' => 'nullable|array',
+            'delete_gallery_images.*' => 'exists:galleries,id',
         ];
 
     }

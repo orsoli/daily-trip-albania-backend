@@ -4,8 +4,12 @@
 
 @section('form-header', __('tours.update_tour'))
 
+@section('form-method')
+@method('PUT')
+@endsection
+
 @section('form-action')
-{{route('tours.update', $tour->id)}}
+{{route('tours.update', $tour->slug)}}
 @endsection
 
 @section('create-or-update-btn', __('static.update'))

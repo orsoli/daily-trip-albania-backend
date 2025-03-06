@@ -106,8 +106,10 @@ class TourController extends Controller
                 'transformation' => [
                     [
                         'width' => 400,
-                        'height' => 500,
-                        'crop' => 'fill'
+                        'height' => 300,
+                        'crop' => 'fill',
+                        'quality' => 'auto', // Automatically adjust quality
+                        'format' => 'webp' // Force WebP format
                     ]
                 ]
             ]);
@@ -127,7 +129,17 @@ class TourController extends Controller
             foreach ($request->file('gallery_images') as $image) {
                 // Upload each image to Cloudinary
                 $uploadedFile = Cloudinary::upload($image->getRealPath(), [
-                    'folder' => 'tours_gallery' // Specify the folder where gallery images will be stored
+                    'folder' => 'tours_gallery', // Specify the folder where gallery images will be stored
+                    'transformation' => [
+                    [
+                        'width' => 1200,
+                        'height' => 800,
+                        'crop' => 'limit',
+                        'quality' => 'auto', // Automatically adjust quality
+                        'format' => 'webp' // Force WebP format
+                    ]
+                ]
+
                 ]);
 
                 // Get the secure URL of the uploaded gallery image
@@ -175,9 +187,110 @@ class TourController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tour $tour)
+    public function update(storeOrUpdateTourRequest $request, Tour $tour)
     {
-        //
+        // Validate the request data
+        $tourData = $request->validated();
+
+        // Only update the slug if the title has changed
+        if ($tourData['title'] !== $tour->title) {
+            $tourData['slug'] = Str::slug($tourData['title']);
+        }
+
+        // Store the name of the user who updated the tour
+        $tourData['updated_by'] = auth()->user()->first_name . ' ' . auth()->user()->last_name;
+
+        // If a new thumbnail is uploaded, remove the old one and upload the new one
+        if ($request->hasFile('thumbnail')) {
+            // Parse only the public_id from the full URL
+            $publicId = pathinfo(parse_url($tour->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
+            // Delete the previous thumbnail from Cloudinary
+            if ($tour->thumbnail) {
+                Cloudinary::destroy('tours_thumbnails/' . $publicId);
+            }
+
+            // Upload the new thumbnail to Cloudinary with transformations
+            $file = $request->file('thumbnail');
+            $uploadedFile = Cloudinary::upload($file->getRealPath(), [
+                'folder' => 'tours_thumbnails',
+                'transformation' => [
+                    [
+                        'width'   => 400,
+                        'height'  => 300,
+                        'crop'    => 'fill',
+                        'quality' => 'auto', // Automatically adjust quality
+                        'format' => 'webp' // Force WebP format
+                    ]
+                ]
+            ]);
+
+            // Store the new thumbnail URL
+            $tourData['thumbnail'] = $uploadedFile->getSecurePath();
+        }
+
+        // Update the tour with the modified data
+        $tour->update($tourData);
+
+        // Sync categories only if they are different
+        if ($tour->categories->pluck('id')->sort()->values()->toArray() !== ($request->categories ?? [])) {
+            $tour->categories()->sync($request->categories ?? []);
+        }
+        // Sync destinations only if they are different
+        if ($tour->destinations->pluck('id')->sort()->values()->toArray() !== ($request->destinations ?? [])) {
+            $tour->destinations()->sync($request->destinations ?? []);
+        }
+
+        // Sync services only if they are different
+        if ($tour->services->pluck('id')->sort()->values()->toArray() !== ($request->services ?? [])) {
+            $tour->services()->sync($request->services ?? []);
+        }
+
+        // Delete selected gallery images if the user requested
+        if ($request->has('delete_gallery_images')) {
+            foreach ($request->delete_gallery_images as $imageId) {
+                $image = $tour->gallery()->find($imageId);
+                if ($image) {
+                    // Extract public_id from full URL
+                    $publicId = pathinfo(parse_url($image->url, PHP_URL_PATH), PATHINFO_FILENAME);
+                    // Delete from Cloudinary
+                    Cloudinary::destroy('tours_gallery/' . $publicId);
+
+                    // Remove from the database
+                    $image->forceDelete();
+                }
+            }
+        }
+
+        // Upload new gallery images if provided
+        if ($request->hasFile('gallery_images') && count($request->file('gallery_images')) > 0) {
+            foreach ($request->file('gallery_images') as $image) {
+                // Upload image to Cloudinary
+                $uploadedFile = Cloudinary::upload($image->getRealPath(), [
+                    'folder' => 'tours_gallery',
+                    'transformation' => [
+                        [
+                            'width' => 1200,
+                            'height' => 800,
+                            'crop' => 'limit',
+                            'quality' => 'auto', // Automatically adjust quality
+                            'format' => 'webp' // Force WebP format
+                        ]
+                    ]
+                ]);
+
+                // Store the uploaded image in the database
+                $tour->gallery()->create([
+                    'url' => $uploadedFile->getSecurePath(),
+                    'tour_id' => $tour->id,
+                    'caption' => $image->getClientOriginalName(),
+                ]);
+            }
+        }
+
+        // Flash success message
+        session()->flash('success', $tour->title . ' ' . __('static.success_update'));
+
+        return redirect()->route('tours.index');
     }
 
     /**
