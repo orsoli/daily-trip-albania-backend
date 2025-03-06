@@ -95,7 +95,7 @@
                                 'show_href' => route('tours.show', $tour->slug),
                                 'edit_href' => route('tours.edit', $tour->slug),
                                 'data_name' => $tour->title,
-                                'form_action' => route('tours.destroy', $tour->id),
+                                'form_action' => route('tours.destroy', $tour->slug),
                                 'modal_header' => __('static.deleting'),
                                 'modal_body' => __('static.sure_to_delete')
                                 ])

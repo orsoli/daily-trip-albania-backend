@@ -129,8 +129,6 @@ class UserController extends Controller
         $user['deleted_by'] = auth()->user()->email;
         $user->update();
 
-        // dd($user);
-
         $user->delete();
 
         session()->flash('success', $user->first_name . ' ' . $user->last_name . ' ' . __('static.success_delete'));

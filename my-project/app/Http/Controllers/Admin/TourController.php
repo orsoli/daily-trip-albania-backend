@@ -94,7 +94,7 @@ class TourController extends Controller
 
         $tourData['slug'] = Str::slug($tourData['title']);
         $tourData['default_currency_id'] = Currency::where('is_default', true)->first()->id;
-        $tourData['created_by'] = auth()->user()->first_name . ' ' . auth()->user()->last_name;
+        $tourData['created_by'] = auth()->user()->email;
 
         // Upload the thumbnail image to Cloudinary if it's provided
         if ($request->hasFile('thumbnail')) {
@@ -198,7 +198,7 @@ class TourController extends Controller
         }
 
         // Store the name of the user who updated the tour
-        $tourData['updated_by'] = auth()->user()->first_name . ' ' . auth()->user()->last_name;
+        $tourData['updated_by'] = auth()->user()->email;
 
         // If a new thumbnail is uploaded, remove the old one and upload the new one
         if ($request->hasFile('thumbnail')) {
@@ -298,6 +298,13 @@ class TourController extends Controller
      */
     public function destroy(Tour $tour)
     {
-        //
+        $tour['deleted_by'] = auth()->user()->email;
+        $tour->update();
+
+        $tour->delete();
+
+        session()->flash('success', $tour->title . __('static.success_delete'));
+
+        return redirect()->route('tours.index');
     }
 }
