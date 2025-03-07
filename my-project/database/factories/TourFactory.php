@@ -39,7 +39,6 @@ class TourFactory extends Factory
             'wheelchair_accessible' => $this->faker->boolean(),
             'created_by'            => User::inRandomOrder()->first()->id ?? User::factory(),
             'updated_by'            => User::inRandomOrder()->first()->id ?? User::factory(),
-            'deleted_by'            => null, // Leave null by default
         ];
     }
 }

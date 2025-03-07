@@ -72,8 +72,11 @@
                             <div class="col">{{ $tour->currency->code }}</div>
                             <div class="col d-none d-lg-block">{{ $tour->region->name }}</div>
                             <div class="col d-none d-lg-block">{{ $tour->guide->first_name }}</div>
-                            <div class="col">{{ $tour->is_active ? 'Yes' : 'No' }}</div>
-                            <div class="col ">
+                            <div class="col {{ $tour->is_active ? 'text-success' : 'text-danger'}}">{{ $tour->is_active
+                                ?
+                                __('static.published') :
+                                __('static.unpublished') }}</div>
+                            <div class=" col ">
                                 @if (request()->query('trashed'))
                                 @include('partials.action-buttons', [
                                 'isShowPage' => false,
@@ -85,7 +88,7 @@
                                 ])
                                 @elseif (request()->query('with_trashed'))
                                 @if ($tour->deleted_at !== null)
-                                <strong class="text-danger">{{__('tours.deleted_tours')}}</strong>
+                                <strong class=" text-danger">{{__('tours.deleted_tours')}}</strong>
                                 @else
                                 <strong class="text-success">{{__('tours.available_tours')}}</strong>
                                 @endif

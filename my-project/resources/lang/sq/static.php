@@ -77,6 +77,8 @@ return [
     'thumbnail'                             => 'Miniatura',
     'is_active'                             => 'Aktiv',
     'is_available'                          => 'Në dispozicion',
+    'published'                             => 'Publikuar',
+    'unpublished'                         => 'Jo i publikuar',
     'price'                                 => 'Çmimi',
     'duration'                              => 'Kohëzgjatja',
     'difficulty'                            => 'Vështirësi',

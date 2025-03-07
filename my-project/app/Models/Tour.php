@@ -166,6 +166,8 @@ class Tour extends Model
         static::deleting(function ($tour) {
             // Soft delete related galleries
             $tour->gallery()->delete();
+
+
         });
 
         static::restoring(function ($tour) {

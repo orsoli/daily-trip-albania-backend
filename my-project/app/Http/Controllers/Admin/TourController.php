@@ -299,6 +299,7 @@ class TourController extends Controller
     public function destroy(Tour $tour)
     {
         $tour['deleted_by'] = auth()->user()->email;
+        $tour['is_active'] = false;
         $tour->update();
 
         $tour->delete();
