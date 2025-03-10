@@ -7,6 +7,10 @@
     {{-- Include Notifications --}}
     @include('partials.notifications')
 
+    {{-- Go back button --}}
+    @include('partials.go-back-btn', ['route' => 'tours.index'])
+
+    {{-- Tour Details --}}
     <div class="row justify-content-center pt-5">
         <div class="col-sm-12 col-lg-7">
             <div class="card my-card">

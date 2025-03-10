@@ -180,7 +180,7 @@
                 </nav>
             </header>
             {{-- Main --}}
-            <main class="flex-grow-1 d-flex py-5">
+            <main class="flex-grow-1 d-flex py-2">
                 @yield('content')
             </main>
             {{-- Footer --}}

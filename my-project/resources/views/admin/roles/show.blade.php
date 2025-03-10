@@ -7,6 +7,9 @@
     {{-- Include Notifications --}}
     @include('partials.notifications')
 
+    {{-- Go back btn --}}
+    @include('partials.go-back-btn', ['route' => 'roles.index'])
+
     <div class="row justify-content-center pt-5">
         <div class="col-sm-12 col-lg-6">
             <div class="card my-card">

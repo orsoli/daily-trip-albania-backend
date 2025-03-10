@@ -3,8 +3,11 @@
 @section('title', __('static.add'). ' or ' . __('tours.update_tours') . ' | ' . config('app.name'))
 
 @section('content')
+
+
 {{-- Title --}}
 <div class="container align-self-center">
+    @include('partials.go-back-btn', ['route' => 'tours.index'])
     <div class="row justify-content-center">
         <div class="col-12 col-md-10">
             <div class="card my-card">

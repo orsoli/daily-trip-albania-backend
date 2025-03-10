@@ -58,7 +58,8 @@
                             <div class="col d-none d-lg-block">
                                 <img src="{{ $tour->thumbnail }}" alt="{{$tour->title}}" class="thumbnail">
                             </div>
-                            <div class="col fw-bold">{{ $tour->title }}</div>
+                            <div class="col fw-bold text-break">{{ $tour->title }}
+                            </div>
                             <div class="col d-none d-lg-block">
                                 <ul class="list-unstyled">
                                     @foreach ($tour->categories as $category)
@@ -76,7 +77,7 @@
                                 ?
                                 __('static.published') :
                                 __('static.unpublished') }}</div>
-                            <div class=" col ">
+                            <div class="col">
                                 @if (request()->query('trashed'))
                                 @include('partials.action-buttons', [
                                 'isShowPage' => false,

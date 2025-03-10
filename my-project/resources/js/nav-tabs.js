@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const navLinks = document.querySelectorAll(".data-nav-link");
-    const currentUrl = window.location.href;
+    const currentUrl = window.location.href
+        .replace(/([&?])page=\d+/g, "")
+        .replace(/([?&])$/, "");
 
     navLinks.forEach((link) => {
         // Remove classes from all links to ensure a clean reset

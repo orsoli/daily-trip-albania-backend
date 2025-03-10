@@ -4,6 +4,10 @@
 
 @section('content')
 <div class="container align-self-center">
+
+    {{-- Go back btn --}}
+    @include('partials.go-back-btn', ['route' => 'roles.index'])
+
     <div class="row justify-content-center">
         <div class="col-12 col-md-10">
             <div class="card my-card">
