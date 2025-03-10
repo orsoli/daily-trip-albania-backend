@@ -146,13 +146,13 @@ class Tour extends Model
     }
 
     /**
-     * Define the many-to-many relationship with the Booking model.
+     * Define the one-to-many relationship with the Booking model.
      *
-     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function bookings(): BelongsToMany
+    public function bookings(): HasMany
     {
-        return $this->belongsToMany(Booking::class, 'booking_tour');
+        return $this->hasMany(Booking::class, 'booking_tour');
     }
 
     /**

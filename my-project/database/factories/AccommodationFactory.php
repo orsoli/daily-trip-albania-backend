@@ -19,13 +19,15 @@ class AccommodationFactory extends Factory
     public function definition(): array
     {
         return [
-            'destination_id' => Destination::inRandomOrder()->first()->id ?? null,
-            'tour_id'        => Tour::inRandomOrder()->first()->id ?? null,
-            'property_name'  => $this->faker->company . ' ' . $this->faker->word,
-            'type'           => $this->faker->randomElement(['Hotel', 'BNB', 'Apartment']),
-            'description'    => $this->faker->paragraph,
-            'latitude'       => $this->faker->latitude,
-            'longitude'      => $this->faker->longitude,
+            'destination_id'      => Destination::inRandomOrder()->first()->id ?? null,
+            'tour_id'             => Tour::inRandomOrder()->first()->id ?? null,
+            'property_name'       => $this->faker->company . ' ' . $this->faker->word,
+            'type'                => $this->faker->randomElement(['Hotel', 'BNB', 'Apartment']),
+            'price'               => $this->faker->randomFloat(2, 10, 1000),
+            'default_currency_id' => 1,
+            'description'         => $this->faker->paragraph,
+            'latitude'            => $this->faker->latitude,
+            'longitude'           => $this->faker->longitude,
         ];
     }
 }

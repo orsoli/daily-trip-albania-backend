@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -18,6 +19,8 @@ class Booking extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'tour_id',
+        'accommodation_id',
         'guest_name',
         'guest_email',
         'guest_phone',
@@ -33,12 +36,32 @@ class Booking extends Model
     // Relations
 
     /**
-     * Define the many-to-many relationship with the Tour model.
+     * Define the many-to-one relationship with the Tour model.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tour(): BelongsTo
+    {
+        return $this->belongsTo(Tour::class);
+    }
+
+    /**
+     * Define the many-to-one relationship with the Accommodation model.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function accommodation(): BelongsTo
+    {
+        return $this->belongsTo(Accommodation::class);
+    }
+
+    /**
+     * Define the many-to-many relationship with the Destination model.
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function tours(): BelongsToMany
+    public function destinations(): BelongsToMany
     {
-        return $this->belongsToMany(Tour::class);
+        return $this->belongsToMany(Destination::class, 'booking_destination');
     }
 }

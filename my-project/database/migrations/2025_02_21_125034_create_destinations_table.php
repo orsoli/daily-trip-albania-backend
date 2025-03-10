@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('region_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->string('name');
+            $table->decimal('price', 10, 2);
+            $table->foreignId('default_currency_id')->constrained('currencies')->cascadeOnUpdate()->onDelete('restrict');
             $table->string('country');
             $table->string('city');
             $table->text('description')->nullable();

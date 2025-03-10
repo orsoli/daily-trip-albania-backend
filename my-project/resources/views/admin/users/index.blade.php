@@ -67,7 +67,7 @@
                                 @if ($user->deleted_at !== null)
                                 <strong class="text-danger">{{__('static.deleted_users')}}</strong>
                                 @else
-                                <strong class="text-success">{{__('static.active_users')}}</strong>
+                                <strong class="text-success">{{__('static.available_users')}}</strong>
                                 @endif
                                 @else
                                 @include('partials.action-buttons', [

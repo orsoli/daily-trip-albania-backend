@@ -18,6 +18,8 @@ return new class extends Migration
 
             $table->string('property_name');
             $table->string('type');
+            $table->decimal('price', 10, 2);
+            $table->foreignId('default_currency_id')->constrained('currencies')->cascadeOnUpdate()->onDelete('restrict');
             $table->text('description')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();

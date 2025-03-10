@@ -23,14 +23,13 @@ class DatabaseSeeder extends Seeder
             CategoryTourSeeder::class,
             DestinationSeeder::class,
             DestinationTourSeeder::class,
-            BookingSeeder::class,
             TourServiceSeeder::class,
             ItinerarySeeder::class,
             AccommodationSeeder::class,
+            BookingSeeder::class,
 
             GallerySeeder::class,
-            BookingTourSeeder::class,
-
+            BookingDestinationSeeder::class,
 
         ]);
     }

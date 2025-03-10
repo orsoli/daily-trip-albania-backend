@@ -22,6 +22,8 @@ class Destination extends Model
     protected $fillable = [
         'region_id',
         'name',
+        'price',
+        'default_currency_id',
         'country',
         'city',
         'description',
@@ -40,6 +42,16 @@ class Destination extends Model
     public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
+    }
+
+    /**
+     * Get the currency that owns the destination.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class, 'default_currency_id');
     }
 
     /**
@@ -70,5 +82,15 @@ class Destination extends Model
     public function tours(): BelongsToMany
     {
         return $this->belongsToMany(Tour::class);
+    }
+
+    /**
+     * Define the many-to-many relationship with the Booking model.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function bookings(): BelongsToMany
+    {
+        return $this->belongsToMany(Booking::class, 'booking_destinaiton');
     }
 }

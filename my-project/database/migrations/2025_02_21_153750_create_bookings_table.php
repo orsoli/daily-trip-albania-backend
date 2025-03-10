@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('tour_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('accommodation_id')->nullable()->constrained()->nullOnDelete();
+
             $table->string('guest_name');
             $table->string('guest_email');
             $table->string('guest_phone');

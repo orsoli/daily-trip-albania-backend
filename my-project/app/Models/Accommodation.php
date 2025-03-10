@@ -23,12 +23,24 @@ class Accommodation extends Model
         'tour_id',
         'property_name',
         'type',
+        'price',
+        'default_currency_id',
         'description',
         'latitude',
         'longitude',
     ];
 
     // Relations
+
+    /**
+     * Get the bookings for the accommodation.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function booking(): HasMany
+    {
+        return $this->hasMany(Booking::class, 'accommodation_id');
+    }
 
     /**
      * Get the destination that owns the accommodation.
@@ -48,6 +60,16 @@ class Accommodation extends Model
     public function tour(): BelongsTo
     {
         return $this->belongsTo(Tour::class);
+    }
+
+    /**
+     * Get the default currency that owns the accommodation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function currency(): BelongsTo
+    {
+        return $this->belongsTo(Currency::class, 'default_currency_id');
     }
 
     /**

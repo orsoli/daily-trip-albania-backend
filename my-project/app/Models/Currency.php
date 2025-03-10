@@ -37,6 +37,26 @@ class Currency extends Model
         return $this->hasMany(Tour::class);
     }
 
+    /**
+     * Get the destinations accociated with the carrecy.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function destinations(): HasMany
+    {
+        return $this->hasMany(Destination::class);
+    }
+
+    /**
+     * Get the accommodations accociated with the carrecy.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function accommodations(): HasMany
+    {
+        return $this->hasMany(Accommodation::class);
+    }
+
     // /**
     //  * The attributes that should be cast to native types.
     //  *

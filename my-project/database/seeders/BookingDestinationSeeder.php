@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Booking;
-use App\Models\Tour;
+use App\Models\Destination;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class BookingTourSeeder extends Seeder
+class BookingDestinationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,24 +15,24 @@ class BookingTourSeeder extends Seeder
     public function run(): void
     {
         $bookingIds = Booking::pluck('id')->toArray();
-        $tourIds = Tour::pluck('id')->toArray();
+        $destinationIds = Destination::pluck('id')->toArray();
 
-        $pairs = []; // Për të ruajtur kombinimet unike
+        $pairs = [];
 
-        while (count($pairs) < 10) { // Ndrysho numrin sipas nevojës
+        while (count($pairs) < 10) {
             $bookingId = $bookingIds[array_rand($bookingIds)];
-            $tourId = $tourIds[array_rand($tourIds)];
+            $destinationId = $destinationIds[array_rand($destinationIds)];
 
-            $pair = "{$bookingId}_{$tourId}";
+            $pair = "{$bookingId}_{$destinationId}";
 
-            // Kontrollo nëse kombinimi është i ri
+            // Check if the combination is new
             if (!in_array($pair, $pairs)) {
                 $pairs[] = $pair;
 
                 // Inserting into the pivot table
-                DB::table('booking_tour')->insert([
+                DB::table('booking_destination')->insert([
                     'booking_id' => $bookingId,
-                    'tour_id'    => $tourId,
+                    'destination_id'    => $destinationId,
                 ]);
             }
         }

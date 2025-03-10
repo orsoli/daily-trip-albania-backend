@@ -17,6 +17,8 @@ class BookingFactory extends Factory
     public function definition(): array
     {
         return [
+            'tour_id'          => $this->faker->numberBetween(1, 10),
+            'accommodation_id' => $this->faker->numberBetween(1, 10),
             'guest_name'       => $this->faker->name,
             'guest_email'      => $this->faker->unique()->safeEmail,
             'guest_phone'      => $this->faker->phoneNumber,

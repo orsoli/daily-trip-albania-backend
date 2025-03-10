@@ -19,6 +19,8 @@ class DestinationFactory extends Factory
         return [
             'region_id'       => $this->faker->numberBetween(1,5),
             'name'            => $this->faker->city,
+            'price'           => $this->faker->randomFloat(2, 10, 1000),
+            'default_currency_id' => 1,
             'country'         => 'Albania',
             'city'            => $this->faker->city,
             'description'     => $this->faker->paragraph,
