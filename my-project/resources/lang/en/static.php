@@ -1,9 +1,11 @@
 <?php
 return [
+    'menu'                                  => 'Menu',
     'toggle_navigation'                     => 'Toggle Navigation',
     'admin_panel'                           => 'Admin Panel',
     'Login'                                 => 'Login',
     'user'                                  => 'User',
+    'users'                                 => 'Users',
     'all_users'                             => 'All Users',
     'available_users'                       => 'Available Users',
     'deleted_users'                         => 'Deleted Users',
@@ -111,6 +113,7 @@ return [
 
     'my_profile'                            => 'My Profile',
     'role'                                  => 'Role',
+    'roles'                                 => 'Roles',
     'role_description'                      => 'Role Description',
     'select_role'                           => 'Select Role',
     'view-this-role-users'                  => 'View this Role Users',

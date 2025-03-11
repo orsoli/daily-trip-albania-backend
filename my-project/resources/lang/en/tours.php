@@ -2,6 +2,7 @@
 
 return [
 
+    'tours_panel'                           => 'Tours Panel',
     'add_tour'                              => 'Add Tour',
     'create_new_tour'                       => 'Create New Tour',
     'update_tours'                          => 'Update Tours',

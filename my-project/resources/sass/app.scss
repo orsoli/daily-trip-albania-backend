@@ -19,6 +19,10 @@ body{
     line-height:              $line-height-base;
 }
 
+hr{
+    border: 1px solid $secondary;
+}
+
 // Utils
 .bg-yellow{
     background-color:         $yellow;
@@ -38,6 +42,10 @@ body{
 
 .my-card-shadow{
     box-shadow:               $my-card-shadow;
+}
+
+.filter-invert{
+    filter:         invert(1);
 }
 
 .bg-img{

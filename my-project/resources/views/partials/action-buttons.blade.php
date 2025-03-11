@@ -32,7 +32,6 @@
     </li>
     @endif
     <li>
-        {{-- Delete Modal --}}
         <!-- Button trigger modal -->
         @if ($isShowPage)
         <button class="btn btn-danger text-light bg-transparent rounded-5 p-1 px-5 m-0" type="button"

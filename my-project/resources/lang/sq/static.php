@@ -1,14 +1,17 @@
 <?php
 return [
+    'menu'                                  => 'Menu',
     'toggle_navigation'                     => 'Ndrysho Navigimin',
     'admin_panel'                           => 'Paneli i Adminit',
     'Login'                                 => 'Hyr',
     'user'                                  => 'Perdorues',
+    'users'                                 => 'Perdoruesit',
     'all_users'                             => 'Te gjithe Perdoruesit',
     'active_users'                          => 'Perdoruesit Aktive',
     'deleted_users'                         => 'Perdoruesit e Fshire',
     'users_index'                           => 'Indeksi i Perdoruesve',
     'users_trash'                           => 'Përdoruesit e Fshirë',
+    'users_panel'                           => 'Paneli i Perdoruesve',
     'add'                                   => 'Shto',
     'update'                                => 'Perditeso',
     'add_or_update'                         => 'Shto ose Perditeso',
@@ -108,6 +111,7 @@ return [
 
     'my-profile'                            => 'Profili Im',
     'role'                                  => 'Roli',
+    'roles'                                 => 'Rolet',
     'role_description'                      => 'Pershkrimi i Rolit',
     'select_role'                           => 'Zgjidh Rolin',
     'view-this-role-users'                  => 'Shiko Perdoruesit e ketij Roli',
