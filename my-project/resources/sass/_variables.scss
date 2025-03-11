@@ -27,9 +27,9 @@ $margin-50:         50px;
 // utils
 $primary:                   $poseidon;
 $secondary:                 lighten($primary, 40%);
-$app-logo:                  url("../../public/img/DailyTrip-logo.png");
-$my-bg-img:                 url('../../public/img/3d-office.jpg');
-$my-user-logo:              url("../../public/img/user.png");
+$app-logo:                  url("../../public/storage/img/DailyTrip-logo.png");
+$my-bg-img:                 url('../../public/storage/img/3d-office.jpg');
+$my-user-logo:              url("../../public/storage/img/user.png");
 $my-card-shadow:            5px 10px 20px $primary;
 $user-logo-shadow:          0 2px 5px 0 $primary;
 $my-border:                 1px solid $secondary;

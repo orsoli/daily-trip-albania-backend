@@ -16,9 +16,9 @@
                 <div class="card-body text-center">
                     <div class="user-logo">
                         @if ($role->slug === 'super-admin')
-                        <img src="{{asset('img/super-admin.png')}}" alt="super-admin-logo">
+                        <img src="{{asset('storage/img/super-admin.png')}}" alt="super-admin-logo">
                         @else
-                        <img src="{{asset('img/roles-logo.png')}}" alt="roles-logo">
+                        <img src="{{asset('storage/img/roles-logo.png')}}" alt="roles-logo">
                         @endif
                     </div>
                     <h5 class="card-title mt-3">

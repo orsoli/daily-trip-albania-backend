@@ -17,9 +17,9 @@
                         <div class="w-25">
                             <div class="role-logo" style="width: 100px">
                                 @if ($role->slug === 'super-admin')
-                                <img src="{{asset('img/super-admin.png')}}" alt="super-admin-logo">
+                                <img src="{{asset('storage/app/public/img/super-admin.png')}}" alt="super-admin-logo">
                                 @else
-                                <img src="{{asset('img/roles-logo.png')}}" alt="roles-logo">
+                                <img src="{{asset('storage/app/public/img/roles-logo.png')}}" alt="roles-logo">
                                 @endif
                             </div>
                             <div class="card-title">

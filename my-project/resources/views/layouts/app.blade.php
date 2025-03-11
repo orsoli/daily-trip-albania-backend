@@ -11,7 +11,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="/img/DailyTrip-logo.png" type="image/png">
+    <link rel="icon" href="{{ asset('img/DailyTrip-logo.png') }}" type="image/png">
 
     <title>@yield('title')</title>
 
@@ -40,7 +40,8 @@
                                 {{-- App Logo --}}
                                 <div class="header-logo m-0" style="width: 70px;">
                                     <a class="navbar-brand" href="{{ url('/') }}">
-                                        <img src="{{asset('img/DailyTrip-logo.png')}}" alt="daily-trip-albania-logo">
+                                        <img src="{{ asset('storage/img/DailyTrip-logo.png') }}"
+                                            alt="daily-trip-albania-logo">
                                     </a>
                                 </div>
                                 {{-- Left Side of Navbars --}}
@@ -85,8 +86,9 @@
                                     @guest
                                     @if (Route::has('login'))
                                     <li class="nav-item">
-                                        <a class="nav-link text-light" href="{{ route('login') }}">{{ __('static.Login')
-                                            }}</a>
+                                        <a class="nav-link text-light fs-5" href="{{ route('login') }}">
+                                            {{ __('static.Login')}}
+                                        </a>
                                     </li>
                                     @endif
                                     @else
@@ -135,7 +137,7 @@
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle text-light fs-6 fs-md-5"
                                             href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" v-pre>
-                                            <img src="{{asset('img/user.png')}}" alt="user-img"
+                                            <img src="{{ asset('storage/img/user.png') }}" alt="user-img"
                                                 class="rounded-circle bg-light bg-opacity-50 filter-invert p-1 m-1"
                                                 width="30" height="30">
                                             <span class="d-none d-md-inline">
