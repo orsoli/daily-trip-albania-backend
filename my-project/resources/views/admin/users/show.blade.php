@@ -15,7 +15,7 @@
             <div class="card my-card">
                 <div class="card-body text-center">
                     <div class="user-logo">
-                        <img src="{{asset('img/user.png')}}" alt="profile-img" class="user-logo-img">
+                        <img src="{{asset('storage/img/user.png')}}" alt="profile-img" class="user-logo-img">
                     </div>
                     <h5 class="card-title mt-3">
                         {{$user->first_name}} {{$user->last_name}}
@@ -53,7 +53,7 @@
 
                     {{-- logo --}}
                     <div class="logo w-25 m-auto">
-                        <img src="{{asset('img/DailyTrip-logo.png')}}" alt="daily-trip-logo">
+                        <img src="{{asset('storage/img/DailyTrip-logo.png')}}" alt="daily-trip-logo">
                     </div>
                 </div>
             </div>

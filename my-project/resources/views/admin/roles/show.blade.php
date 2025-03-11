@@ -50,7 +50,7 @@
 
                     {{-- logo --}}
                     <div class="logo w-25 m-auto">
-                        <img src="{{asset('img/DailyTrip-logo.png')}}" alt="daily-trip-logo">
+                        <img src="{{asset('storage/img/DailyTrip-logo.png')}}" alt="daily-trip-logo">
                     </div>
                 </div>
             </div>

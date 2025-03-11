@@ -14,9 +14,9 @@
             <div class="card my-card">
                 <div class="user-logo">
                     @if (Route::is('register'))
-                    <img src="{{asset('img/new-user.png')}}" alt="new-user-img" class="user-logo-img">
+                    <img src="{{asset('storage/img/new-user.png')}}" alt="new-user-img" class="user-logo-img">
                     @else
-                    <img src="{{asset('img/update-user.png')}}" alt="new-user-img" class="user-logo-img">
+                    <img src="{{asset('storage/img/update-user.png')}}" alt="new-user-img" class="user-logo-img">
                     @endif
                 </div>
                 <div class="card-header">

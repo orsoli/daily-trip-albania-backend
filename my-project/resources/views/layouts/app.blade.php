@@ -11,7 +11,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="{{ asset('img/DailyTrip-logo.png') }}" type="image/png">
+
+    <link rel="icon" href="{{ asset('storage/img/DailyTrip-logo.png') }}" type="image/png">
 
     <title>@yield('title')</title>
 

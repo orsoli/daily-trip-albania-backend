@@ -10,7 +10,7 @@
         <div class="col-12 col-lg-8">
             <div class="card my-card position-relative">
                 <div class="user-logo">
-                    <img src="{{asset('img/user.png')}}" alt="user-logo" class="user-logo-img">
+                    <img src="{{asset('storage/img/user.png')}}" alt="user-logo" class="user-logo-img">
                 </div>
                 <div class="card-body">
                     {{-- Log in form --}}
