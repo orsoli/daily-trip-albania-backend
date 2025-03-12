@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Accommodation;
 use App\Models\Destination;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class DestinationController extends Controller
@@ -63,7 +65,11 @@ class DestinationController extends Controller
      */
     public function create()
     {
-        //
+        $regions = Region::all();
+        $accommodations = Accommodation::all();
+
+
+        return view('admin.destinations.create', compact('regions', 'accommodations'));
     }
 
     /**

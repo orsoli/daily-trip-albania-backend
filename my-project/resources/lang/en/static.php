@@ -109,6 +109,8 @@ return [
     'end_at'                                => 'End At',
     'lunch_time'                            => 'Lunch Time',
     'activities'                            => 'Activities',
+    'longitude'                             => 'Longitude',
+    'latitude'                              => 'Latitude',
 
     // Copyright
     'copy_right'                            => '© ' . now()->year . ' Daily Trip Albania. All rights reserved.',

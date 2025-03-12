@@ -17,8 +17,12 @@ return [
         'price'                 => ['Required.', 'Must be a number.', 'Minimum value: 0.', 'Maximum two decimal places.'],
         'gallery_images'        => ['Optional.', 'Must be images file.', 'Allowed formats: jpeg, png, jpg, gif, svg.', 'Max size: 2MB/each.'],
         'is_active'             => ['Optional.', 'Activating this option will publish the article and make it visible on the homepage.'],
-        'delete_gallery_images' => ['Optional.', 'Check the box to delete an image from the gallery. The selected images will be removed upon updating the changes.']
-
+        'delete_gallery_images' => ['Optional.', 'Check the box to delete an image from the gallery. The selected images will be removed upon updating the changes.'],
+        'country'               => ['Required.', 'Must be a string.', 'Max 255 characters.'],
+        'city'                  => ['Required.', 'Must be a string.', 'Max 255 characters.'],
+        'nearest_airport'       => ['Optional.', 'Must be a string.', 'Max 255 characters.'],
+        'latitude'              => ['Optional.', 'Must be a numeric value.', 'Should be a valid latitude coordinate.'],
+        'longitude'             => ['Optional.', 'Must be a numeric value.', 'Should be a valid longitude coordinate.'],
 
 
 

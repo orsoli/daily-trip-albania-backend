@@ -23,7 +23,7 @@ class StoreOrUpdateDestinationRequest extends FormRequest
     {
         return [
             'region_id'            => 'required|exists:regions,id',
-            'title'                => 'required|string|max:255',
+            'name'                 => 'required|string|max:255',
             'thumbnail'            => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price'                => 'required|numeric|min:0|decimal:0,2|regex:/^\d{1,8}(\.\d{1,2})?$/',
             'country'              => 'required|string|max:255',

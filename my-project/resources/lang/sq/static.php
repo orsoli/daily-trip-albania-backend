@@ -106,6 +106,8 @@ return [
     'end_at'                                => 'Përfundon në',
     'lunch_time'                            => 'Koha e drekës',
     'activities'                            => 'Aktivitetet',
+    'longitude'                             => 'Longitude',
+    'latitude'                              => 'Latitude',
 
 
     // Copyright

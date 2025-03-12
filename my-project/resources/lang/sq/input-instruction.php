@@ -17,7 +17,11 @@ return [
     'thumbnail'             => ['Opsionale.', 'Duhet te jete imazh.', 'Formatet e lejuara: jpeg, png, jpg, gif, svg.', 'Max size: 2MB.'],
     'gallery_images'        => ['Opsionale.', 'Duhet te jene imazhe.', 'Formatet e lejuara: jpeg, png, jpg, gif, svg.', 'Max size: 2MB/secila.'],
     'is_active'             => ['Opsionale.', 'Aktivizimi i kësaj opsioni do të botojë artikullin dhe do ta bëjë të dukshëm në faqen kryesore.'],
-    'delete_gallery_images' => ['Opsionale.', 'Shënoni kutinë për të fshirë një imazh nga galeria. Imazhet e zgjedhura do të hiqen pas ruajtjes së ndryshimeve.']
-
+    'delete_gallery_images' => ['Opsionale.', 'Shënoni kutinë për të fshirë një imazh nga galeria. Imazhet e zgjedhura do të hiqen pas ruajtjes së ndryshimeve.'],
+    'country'               => ['E detyrueshme.', 'Duhet të jetë një string.', 'Maksimumi 255 karaktere.'],
+    'city'                  => ['E detyrueshme.', 'Duhet të jetë një string.', 'Maksimumi 255 karaktere.'],
+    'nearest_airport'       => ['Opsionale.', 'Duhet të jetë një string.', 'Maksimumi 255 karaktere.'],
+    'latitude'              => ['Opsionale.', 'Duhet të jetë një vlerë numerike.', 'Duhet të jetë një koordinatë gjerësie gjeografike e vlefshme.'],
+    'longitude'             => ['Opsionale.', 'Duhet të jetë një vlerë numerike.', 'Duhet të jetë një koordinatë gjatësie gjeografike e vlefshme.'],
 
 ];
