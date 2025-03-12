@@ -335,7 +335,7 @@
                                     <input class="form-check-input" type="checkbox" id="is_active" name="is_active"
                                         value="1" {{ old('is_active', $tour->is_active ?? false) ? 'checked' : '' }}>
                                     <label class="form-check-label text-light" for="is_active">
-                                        {{ __('static.is_active') }}
+                                        {{ __('static.visible') }}
                                     </label>
                                 </div>
                                 {{-- Input instructions --}}

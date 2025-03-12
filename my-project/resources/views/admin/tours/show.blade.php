@@ -146,8 +146,8 @@
                         {{-- Is Active tour --}}
                         <p class="card-subtitle d-flex justify-content-between mb-1">
                             <span>
-                                <i class="bi bi-check-circle-fill"></i>
-                                {{__('static.is_active')}}:
+                                <i class="bi bi-globe"></i>
+                                {{__('static.visible')}}:
                                 <strong class="{{ $tour->is_active ? 'text-success' : 'text-danger'}}">
                                     {{$tour->is_active ? 'YES' : 'NO'}}
                                 </strong>

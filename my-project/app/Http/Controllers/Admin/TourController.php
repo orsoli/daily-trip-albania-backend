@@ -40,7 +40,7 @@ class TourController extends Controller
             __('static.currency'),
             __('static.region'),
             __('static.guide'),
-            __('static.is_active'),
+            __('static.visibility'),
             __('static.action')
 
         ];

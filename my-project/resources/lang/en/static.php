@@ -83,6 +83,8 @@ return [
     'thumbnail'                             => 'Thumbnail',
     'is_active'                             => 'Active',
     'is_available'                          => 'Is Available',
+    'visible'                               => 'Visible',
+    'visibility'                            => 'Visibility',
     'published'                             => 'Published',
     'unpublished'                           => 'Unpublished',
     'price'                                 => 'Price',
