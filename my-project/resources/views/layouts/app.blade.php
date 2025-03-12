@@ -134,6 +134,13 @@
                                                         {{ __('tours.add_tour') }}
                                                     </a>
                                                 </li>
+                                                <li>
+                                                    <a class="nav-link text-secondary"
+                                                        href="{{ route('destinations.create') }}">
+                                                        <i class="bi bi-plus-circle-dotted"></i>
+                                                        {{ __('destinations.add_destination') }}
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>
