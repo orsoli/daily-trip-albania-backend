@@ -33,6 +33,20 @@ class StoreOrUpdateDestinationRequest extends FormRequest
             'latitude'             => 'nullable|numeric',
             'longitude'            => 'nullable|numeric',
             'is_visible'           => 'boolean',
+
+            //    ---- Pivot tables ----
+
+            // Accommodations
+            'accommodations'          => 'nullable|array',
+            'accommodations.*'        => 'exists:accommodations,id',
+
+            // Gallery images
+            'gallery_images'        => 'nullable|array',
+            'gallery_images.*'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+            // Delete gallery images
+            'delete_gallery_images' => 'nullable|array',
+            'delete_gallery_images.*' => 'exists:galleries,id',
         ];
     }
 }
