@@ -26,7 +26,8 @@
 
                 <div class="card-body">
                     <form method="POST"
-                        action="{{Route::is('roles.create') ? route('roles.store') : route('roles.update', $role)}}">
+                        action="{{Route::is('roles.create') ? route('roles.store') : route('roles.update', $role)}}"
+                        id="form">
                         @csrf
                         @if (Route::is('roles.edit'))
                         @method('PUT')
@@ -93,16 +94,16 @@
                             {{-- Submit Button --}}
                             <div class="col-12 text-center py-3">
                                 @if(Route::is('roles.create'))
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" disabled>
                                     {{__('static.addRole')}}
                                 </button>
                                 @endif
                                 @if(Route::is('roles.edit'))
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" disabled>
                                     {{__('static.update_role')}}
                                 </button>
                                 @endif
-                                <button type="reset" class="btn btn-warning">Reset</button>
+                                <button type="reset" class="btn btn-warning" disabled>Reset</button>
                             </div>
                         </div>
                     </form>
@@ -111,4 +112,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('add-scss')
+@vite(['resources/js/form-btn-disable.js'])
 @endsection

@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="@yield('form-action')">
+                    <form method="POST" action="@yield('form-action')" id="form">
                         @csrf
                         @yield('form-method')
 
@@ -41,11 +41,9 @@
                                     <label for="first_name">{{
                                         __('static.first_name')}} *
                                     </label>
-                                    @if (Route::is('register'))
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.first_name') ])
-                                    @endif
                                     {{-- FirstName Error --}}
                                     @error('first_name')
                                     @include('partials.input-validation-error-msg')
@@ -62,11 +60,9 @@
                                         autocomplete="last_name" autofocus>
                                     <label for="last_name">{{
                                         __('static.last_name')}} *</label>
-                                    @if (Route::is('register'))
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.last_name') ])
-                                    @endif
                                     {{-- Last Name Error --}}
                                     @error('last_name')
                                     @include('partials.input-validation-error-msg')
@@ -123,11 +119,9 @@
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email', $user->email ?? '') }}" required autocomplete="email">
                                     <label for="email">{{__('static.email_address')}} *</label>
-                                    @if (Route::is('register'))
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.email') ])
-                                    @endif
                                     {{-- Email Error --}}
                                     @error('email')
                                     @include('partials.input-validation-error-msg')
@@ -143,11 +137,9 @@
                                         name="personal_nr" value="{{ old('personal_nr', $user->personal_nr ?? '') }}"
                                         required autocomplete="personal_nr">
                                     <label for="personal_nr">{{__('static.personal_nr')}} *</label>
-                                    @if (Route::is('register'))
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.personal_nr') ])
-                                    @endif
                                     {{-- Personal_nr Error --}}
                                     @error('personal_nr')
                                     @include('partials.input-validation-error-msg')
@@ -186,10 +178,10 @@
 
                             {{-- Submit Button --}}
                             <div class="col-12 text-center py-3">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" disabled>
                                     @yield('create-or-update-btn')
                                 </button>
-                                <button type="reset" class="btn btn-warning">Reset</button>
+                                <button type="reset" class="btn btn-warning" disabled>Reset</button>
                             </div>
 
                         </div>
@@ -199,4 +191,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('add-scss')
+@vite(['resources/js/form-btn-disable.js'])
 @endsection

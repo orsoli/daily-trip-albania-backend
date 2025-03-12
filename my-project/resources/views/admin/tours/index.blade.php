@@ -58,7 +58,7 @@
                             <div class="col d-none d-lg-block">
                                 <img src="{{ $tour->thumbnail }}" alt="{{$tour->title}}" class="thumbnail">
                             </div>
-                            <div class="col fw-bold text-break">{{ $tour->title }}
+                            <div class="col fw-bold text-truncate">{{ $tour->title }}
                             </div>
                             <div class="col d-none d-lg-block">
                                 <ul class="list-unstyled">

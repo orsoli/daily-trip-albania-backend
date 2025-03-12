@@ -36,19 +36,35 @@
                     <p class="card-text"><i> {{$user->role->description}}
                         </i></p>
 
-                    <div class="details col-6 text-start m-auto">
-                        <p class="card-subtitle mb-1">{{__('static.personal_nr')}}: <strong>
+                    <div class="details col-10 text-start m-auto">
+                        <p class="card-subtitle mb-1">
+                            <i class="bi bi-person-fill me-1"></i>
+                            {{__('static.personal_nr')}}:
+                            <strong class="text-secondary">
                                 {{$user->personal_nr}}
                             </strong>
                         </p>
-                        <p class="card-subtitle mb-1">{{__('static.dob')}}: <strong> {{$user->date_of_birth}} </strong>
-                        </p>
-                        <p class="card-subtitle mb-1">{{__('static.email_address')}}: <strong> {{$user->email}}
+                        <p class="card-subtitle mb-1">
+                            <i class="bi bi-calendar-date me-1"></i>
+                            {{__('static.dob')}}:
+                            <strong class="text-secondary">
+                                {{$user->date_of_birth}}
                             </strong>
                         </p>
-                        <p class="card-subtitle mb-1">{{__('static.verified_email')}}: <strong>
-                                {{$user->email_verified_at
-                                ? 'YES' : "NO"}} </strong></p>
+                        <p class="card-subtitle mb-1">
+                            <i class="bi bi-envelope-at-fill me-1"></i>
+                            {{__('static.email_address')}}:
+                            <strong class="text-secondary">
+                                {{$user->email}}
+                            </strong>
+                        </p>
+                        <p class="card-subtitle mb-1">
+                            <i class="bi bi-envelope-check-fill me-1"></i>
+                            {{__('static.verified_email')}}:
+                            <strong class="{{$user->email_verified_at ? 'text-secondary' : " text-danger"}}">
+                                {{$user->email_verified_at ? 'YES' : "NO"}}
+                            </strong>
+                        </p>
                     </div>
 
                     {{-- logo --}}

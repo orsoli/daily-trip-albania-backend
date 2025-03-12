@@ -64,19 +64,25 @@
                         </i>
                     </p>
 
+                    <hr>
+
                     {{-- Tour Details --}}
-                    <div class="details col-6 text-start m-auto">
+                    <div class="details col-10 text-start m-auto">
                         {{-- Price --}}
-                        <p class="card-subtitle fs-5 mb-1">
+                        <p class="card-subtitle fs-5">
+                            <i class="bi bi-tag-fill"></i>
                             {{__('static.price')}}:
                             <strong class="text-info">
                                 {{$tour->price}} {{$tour->currency->code}}
                             </strong>
                         </p>
 
+                        <hr>
+
                         {{--Duration and Difficulty --}}
                         <p class="card-subtitle d-flex justify-content-between mb-1">
                             <span class="me-5">
+                                <i class="bi bi-clock-fill"></i>
                                 {{__('static.duration')}}
                                 <strong class="text-info">
                                     {{$tour->duration}}
@@ -87,12 +93,14 @@
                                     {{$tour->difficulty}}
                                 </strong>
                                 {{__('static.difficulty')}}
+                                <i class="bi bi-speedometer"></i>
                             </span>
                         </p>
 
                         {{-- Featured and popularity --}}
                         <p class="card-subtitle d-flex justify-content-between mb-1">
                             <span>
+                                <i class="bi bi-person-hearts"></i>
                                 {{__('static.popularity')}}:
                                 <strong class="text-info">
                                     {{$tour->popularity}}
@@ -103,12 +111,14 @@
                                     {{$tour->is_featured ? 'Yes' : __('static.is_not')}}
                                 </strong>
                                 {{__('static.is_featured')}}
+                                <i class="bi bi-gem text-secondary"></i>
                             </span>
                         </p>
 
                         {{-- Vies and rating --}}
                         <p class=" card-subtitle d-flex justify-content-between mb-1">
                             <span>
+                                <i class="bi bi-eye-fill"></i>
                                 {{__('static.views')}}:
                                 <strong class="text-info">
                                     {{$tour->view_count}}
@@ -125,6 +135,7 @@
                         {{-- Wheelchair Accessible --}}
                         <p class="card-subtitle d-flex justify-content-between mb-1">
                             <span>
+                                <i class="bi bi-person-wheelchair"></i>
                                 {{__('static.wheel_chair_accessible')}}:
                                 <strong class="{{ $tour->wheelchair_accessible ? 'text-success' : 'text-danger'}} ">
                                     {{$tour->wheelchair_accessible ? 'YES' : 'NO'}}
@@ -135,6 +146,7 @@
                         {{-- Is Active tour --}}
                         <p class="card-subtitle d-flex justify-content-between mb-1">
                             <span>
+                                <i class="bi bi-check-circle-fill"></i>
                                 {{__('static.is_active')}}:
                                 <strong class="{{ $tour->is_active ? 'text-success' : 'text-danger'}}">
                                     {{$tour->is_active ? 'YES' : 'NO'}}

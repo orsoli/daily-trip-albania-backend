@@ -5,19 +5,19 @@
 @section('content')
 
 
-{{-- Title --}}
 <div class="container align-self-center">
     @include('partials.go-back-btn', ['route' => 'tours.index'])
     <div class="row justify-content-center">
         <div class="col-12 col-md-10">
             <div class="card my-card">
                 <div class="card-header">
+                    {{-- Title --}}
                     <h2 class="pt-4">
                         @yield('form-header')
                     </h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="@yield('form-action')" enctype="multipart/form-data">
+                    <form method="POST" action="@yield('form-action')" enctype="multipart/form-data" id="form">
                         @csrf
                         @yield('form-method')
 
@@ -43,7 +43,6 @@
                                     <label for="thumbnail">{{
                                         __('static.image')}}
                                     </label>
-                                    @if (Route::is('tours.create'))
                                     {{-- thumbnail Error --}}
                                     @error('thumbnail')
                                     @include('partials.input-validation-error-msg')
@@ -51,7 +50,6 @@
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.thumbnail') ])
-                                    @endif
                                 </div>
                             </div>
 
@@ -65,7 +63,6 @@
                                     <label for="title">{{
                                         __('static.title')}} *
                                     </label>
-                                    @if (Route::is('tours.create'))
                                     {{-- Title Error --}}
                                     @error('title')
                                     @include('partials.input-validation-error-msg')
@@ -73,7 +70,6 @@
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.title') ])
-                                    @endif
                                 </div>
                             </div>
 
@@ -87,7 +83,6 @@
                                     <label for="duration">{{
                                         __('static.duration')}} *
                                     </label>
-                                    @if (Route::is('tours.create'))
                                     {{-- duration Error --}}
                                     @error('duration')
                                     @include('partials.input-validation-error-msg')
@@ -95,7 +90,6 @@
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.duration') ])
-                                    @endif
                                 </div>
                             </div>
 
@@ -109,7 +103,6 @@
                                     <label for="difficulty">{{
                                         __('static.difficulty')}} *
                                     </label>
-                                    @if (Route::is('tours.create'))
                                     {{-- difficulty Error --}}
                                     @error('difficulty')
                                     @include('partials.input-validation-error-msg')
@@ -117,7 +110,6 @@
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.difficulty') ])
-                                    @endif
                                 </div>
                             </div>
 
@@ -248,7 +240,6 @@
                                         class="form-control @error('price') is-invalid @enderror" name="price"
                                         value="{{ old('price', $tour->price ?? '') }}" required autocomplete="price">
                                     <label for="price">{{__('static.price')}} *</label>
-                                    @if (Route::is('tours.create'))
                                     {{-- price Error --}}
                                     @error('price')
                                     @include('partials.input-validation-error-msg')
@@ -256,7 +247,6 @@
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.price') ])
-                                    @endif
                                 </div>
                             </div>
 
@@ -300,10 +290,8 @@
                                     @enderror
 
                                     {{-- Input instructions on the create page --}}
-                                    @if (Route::is('tours.create'))
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.gallery_images')])
-                                    @endif
 
                                 </div>
                             </div>
@@ -317,7 +305,6 @@
                                         autofocus>{{ old('description', $tour->description ?? '') }}</textarea>
                                     <label for="description">{{
                                         __('static.description')}} *</label>
-                                    @if (Route::is('tours.create'))
                                     {{-- Description Error --}}
                                     @error('description')
                                     @include('partials.input-validation-error-msg')
@@ -325,13 +312,13 @@
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
                                     __('input-instruction.description') ])
-                                    @endif
                                 </div>
                             </div>
 
                             {{-- Wheelschair_accessible --}}
                             <div class="col-12 mt-3">
                                 <div class="form-check">
+                                    <input type="hidden" name="wheelchair_accessible" value="0">
                                     <input class="form-check-input" type="checkbox" id="wheelchair_accessible"
                                         name="wheelchair_accessible" value="1" {{ old('wheelchair_accessible',
                                         $tour->wheelchair_accessible ?? false) ? 'checked' : '' }}>
@@ -344,6 +331,7 @@
                             {{-- Is_active check box --}}
                             <div class="col-12 mt-3">
                                 <div class="form-check">
+                                    <input type="hidden" name="is_active" value="0">
                                     <input class="form-check-input" type="checkbox" id="is_active" name="is_active"
                                         value="1" {{ old('is_active', $tour->is_active ?? false) ? 'checked' : '' }}>
                                     <label class="form-check-label text-light" for="is_active">
@@ -359,10 +347,10 @@
 
                             {{-- Submit Button --}}
                             <div class="col-12 text-center py-3">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" disabled>
                                     @yield('create-or-update-btn')
                                 </button>
-                                <button type="reset" class="btn btn-warning">Reset</button>
+                                <button type="reset" class="btn btn-warning" disabled>Reset</button>
                             </div>
 
                         </div>
@@ -372,4 +360,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('add-scss')
+@vite(['resources/js/form-btn-disable.js'])
 @endsection
