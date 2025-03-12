@@ -34,6 +34,16 @@ class Destination extends Model
         'longitude',
     ];
 
+    /**
+     * Get the route key name for Laravel.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     // Relations
 
     /**

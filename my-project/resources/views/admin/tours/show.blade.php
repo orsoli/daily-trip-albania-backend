@@ -28,6 +28,8 @@
                     {{-- Destinations Region --}}
                     <div class="card-subtitle mb-3 text-secondary">
                         <h5> {{__('static.region')}}: {{$tour->region->name}} </h5>
+                        {{-- Destinations --}}
+                        @if ($tour->destinations->count() > 0)
                         <span>{{__('static.destinations')}}:</span>
                         <strong class="fs-6">
                             <ul class="list-unstyled">
@@ -38,6 +40,7 @@
                                 @endforeach
                             </ul>
                         </strong>
+                        @endif
                     </div>
 
                     {{-- Guide Name --}}
