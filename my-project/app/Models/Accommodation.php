@@ -22,6 +22,8 @@ class Accommodation extends Model
         'destination_id',
         'tour_id',
         'property_name',
+        'slug',
+        'thumbnail',
         'type',
         'price',
         'default_currency_id',

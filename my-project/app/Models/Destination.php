@@ -22,6 +22,8 @@ class Destination extends Model
     protected $fillable = [
         'region_id',
         'name',
+        'slug',
+        'thumbnail',
         'price',
         'default_currency_id',
         'country',

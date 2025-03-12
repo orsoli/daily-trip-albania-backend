@@ -20,12 +20,14 @@ class TourFactory extends Factory
      */
     public function definition(): array
     {
+        $title = $this->faker->sentence(2);
+
         return [
             'guide_id'              => User::where('role_id', 4)->inRandomOrder()->first()->id,
             'default_currency_id'   => Currency::where('is_default', true)->inRandomOrder()->first()->id,
             'region_id'             => Region::inRandomOrder()->first()->id,
-            'title'                 => $this->faker->sentence(4),
-            'slug'                  => Str::slug($this->faker->sentence(4)),
+            'title'                 => $title,
+            'slug'                  => Str::slug($title),
             'thumbnail'             => $this->faker->imageUrl(640, 480, 'travel'),
             'description'           => $this->faker->paragraph(3),
             'is_active'             => $this->faker->boolean(80), // 80% chance to be active

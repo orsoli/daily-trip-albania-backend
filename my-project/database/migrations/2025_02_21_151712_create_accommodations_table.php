@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('tour_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
 
             $table->string('property_name');
+            $table->string('slug')->unique();
+            $table->string('thumbnail')->nullable();
             $table->string('type');
             $table->decimal('price', 10, 2);
             $table->foreignId('default_currency_id')->constrained('currencies')->cascadeOnUpdate()->onDelete('restrict');

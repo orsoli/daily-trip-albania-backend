@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('destination_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('tour_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('accommodation_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+
             $table->string('url');
             $table->string('caption')->nullable();
             $table->integer('order')->default(0);

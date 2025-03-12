@@ -34,17 +34,6 @@ Route::get('/email/verify', function () {
 // Dashboard route
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
-// Admin Users route
-// Route::prefix('/admin/users/')->name('user.')->group(function () {
-//     Route::get('index', [UserController::class, 'index'])->name('index')->middleware('superadmin');
-//     Route::get('{user}/show', [UserController::class, 'show'])->name('show')->middleware('check.profile');
-//     Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit')->middleware('check.profile');
-//     Route::put('{user}/update', [UserController::class, 'update'])->name('update')->middleware('check.profile');
-//     Route::delete('{user}/delete', [UserController::class, 'destroy'])->name('destroy')->middleware('superadmin');
-//     Route::post('{user}/restore', [UserController::class, 'restore'])->name('restore')->middleware('superadmin');
-//     Route::delete('{user}/force-delete', [UserController::class, 'forceDelete'])->name('forceDelete')->middleware('superadmin');
-// });
-
 // Users Routes
 Route::prefix('/admin/users')->name('user.')->group(function () {
 
@@ -64,13 +53,18 @@ Route::prefix('/admin/users')->name('user.')->group(function () {
     });
 });
 
-// Roles Routes
+// All other Routes
 Route::prefix('admin')->group(function () {
+    // Roles Routes
     Route::resource('roles', RoleController::class);
 
+    // Tours Routes
     Route::resource('tours', TourController::class);
     Route::post('{tour}/restore', [TourController::class, 'restore'])->name('tours.restore');
     Route::delete('{tour}/force-delete', [TourController::class, 'forceDelete'])->name('tours.forceDelete');
 
+    // Destinations Routes
     Route::resource('destinations', DestinationController::class);
+    Route::post('{destinaiton}/restore', [TourController::class, 'restore'])->name('destinaitons.restore');
+    Route::delete('{destinaiton}/force-delete', [TourController::class, 'forceDelete'])->name('destinaitons.forceDelete');
 });

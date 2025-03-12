@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Destination;
 use App\Models\Tour;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Accomodation>
@@ -18,10 +19,14 @@ class AccommodationFactory extends Factory
      */
     public function definition(): array
     {
+        $propertyName = $this->faker->company . ' ' . $this->faker->word;
+
         return [
             'destination_id'      => Destination::inRandomOrder()->first()->id ?? null,
             'tour_id'             => Tour::inRandomOrder()->first()->id ?? null,
-            'property_name'       => $this->faker->company . ' ' . $this->faker->word,
+            'property_name'       => $propertyName,
+            'slug'                => Str::slug($propertyName),
+            'thumbnail'           => $this->faker->imageUrl(100, 100, 'accommodations'),
             'type'                => $this->faker->randomElement(['Hotel', 'BNB', 'Apartment']),
             'price'               => $this->faker->randomFloat(2, 10, 1000),
             'default_currency_id' => 1,

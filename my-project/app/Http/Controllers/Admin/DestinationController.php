@@ -8,12 +8,54 @@ use Illuminate\Http\Request;
 
 class DestinationController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+                $columns = [
+            __('static.image'),
+            __('static.name'),
+            __('static.country'),
+            __('static.city'),
+            __('static.price'),
+            __('static.currency'),
+            __('static.visibility'),
+            __('static.action')
+
+        ];
+
+
+        if ($request->has('trashed')) {
+
+            $destinations = Destination::onlyTrashed()
+                ->paginate(10)
+                ->appends(['trashed' => true]);
+
+        } elseif ($request->has('with_trashed')) {
+
+            $destinations = Destination::withTrashed()
+                ->paginate(10)
+                ->appends(['with_trashed' => true]);
+
+        } else {
+
+            $destinations = Destination::paginate(10);
+
+        }
+
+        return view('admin.destinations.index', compact('columns', 'destinations'));
     }
 
     /**

@@ -60,6 +60,11 @@
                                                 {{__('static.tours')}}
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="{{route('destinations.index')}}" class="nav-link text-light">
+                                                {{__('static.destinations')}}
+                                            </a>
+                                        </li>
                                         @if(Auth::user()->role->name
                                         ===
                                         'Super Admin')
@@ -218,6 +223,12 @@
                                             <a href="{{route('tours.index')}}" class="nav-link text-secondary">
                                                 <i class="bi bi-person-walking"></i>
                                                 {{__('static.tours')}}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('destinations.index')}}" class="nav-link text-secondary">
+                                                <i class="bi bi-pin-map"></i>
+                                                {{__('static.destinations')}}
                                             </a>
                                         </li>
                                         @if(Auth::user()->role->name

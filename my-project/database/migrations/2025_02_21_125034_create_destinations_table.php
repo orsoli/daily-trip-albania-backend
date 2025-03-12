@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('region_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('thumbnail')->nullable();
             $table->decimal('price', 10, 2);
             $table->foreignId('default_currency_id')->constrained('currencies')->cascadeOnUpdate()->onDelete('restrict');
             $table->string('country');
