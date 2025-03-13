@@ -142,7 +142,7 @@
                                         name="nearest_airport"
                                         value="{{ old('nearest_airport', $destination->nearest_airport ?? '') }}"
                                         autocomplete="nearest_airport" required>
-                                    <label for="nearest_airport">{{ __('static.nearest_airport') }}</label>
+                                    <label for="nearest_airport">{{ __('static.nearest_airport') }} *</label>
                                     {{-- Nearest Airport Error --}}
                                     @error('nearest_airport')
                                     @include('partials.input-validation-error-msg')
@@ -160,7 +160,7 @@
                                         class="form-control text-light position-relative @error('latitude') is-invalid @enderror"
                                         name="latitude" value="{{ old('latitude', $destination->latitude ?? '') }}"
                                         autocomplete="latitude" required>
-                                    <label for="latitude">{{ __('static.latitude') }}</label>
+                                    <label for="latitude">{{ __('static.latitude') }} *</label>
                                     {{-- Latitude Error --}}
                                     @error('latitude')
                                     @include('partials.input-validation-error-msg')
@@ -178,7 +178,7 @@
                                         class="form-control text-light position-relative @error('longitude') is-invalid @enderror"
                                         name="longitude" value="{{ old('longitude', $destination->longitude ?? '') }}"
                                         autocomplete="longitude" required>
-                                    <label for="longitude">{{ __('static.longitude') }}</label>
+                                    <label for="longitude">{{ __('static.longitude') }} *</label>
                                     {{-- Longitude Error --}}
                                     @error('longitude')
                                     @include('partials.input-validation-error-msg')
