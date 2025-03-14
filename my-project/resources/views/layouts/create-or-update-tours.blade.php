@@ -27,7 +27,7 @@
                             @if (isset($tour))
                             <div class="col-12">
                                 <div>
-                                    @if ($tour->thumbnailExists)
+                                    @if ($tour->thumbnail && @get_headers($tour->thumbnail))
                                     <img src="{{ $tour->thumbnail }}" alt="{{ $tour->slug  . 'image'}}"
                                         style="width:200px; height: 200px; object-fit: fill; margin: 20px; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
                                     @else
@@ -263,7 +263,7 @@
                                 <div class="d-flex flex-wrap gap-3 mb-3">
                                     @foreach($tour->gallery as $image)
                                     <div class="position-relative" style="width: 100px; height: 100px;">
-                                        @if ($image->urlExists)
+                                        @if ($image->url && @get_headers($image->url))
                                         <img src="{{ $image->url }}" alt="Gallery Image"
                                             style="width:100%; height:100%; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
                                         @else

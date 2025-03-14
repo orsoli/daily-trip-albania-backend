@@ -56,7 +56,7 @@
                     <div class="card-body">
                         <div class="row align-items-center m-0">
                             <div class="col d-none d-lg-block">
-                                @if($tour->thumbnailExists)
+                                @if($tour->thumbnail && @get_headers($tour->thumbnail))
                                 <img src="{{ $tour->thumbnail }}" alt="{{$tour->title}}" class="thumbnail">
                                 @else
                                 <img src="{{ asset('storage/img/img-placeholder.png') }}" alt="{{$tour->title}}"

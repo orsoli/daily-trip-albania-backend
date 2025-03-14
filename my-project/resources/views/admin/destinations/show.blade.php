@@ -17,7 +17,7 @@
                 <div class="card-body text-center">
                     {{-- Destination logo image --}}
                     <div class="tour-logo">
-                        @if ($destination->thumbnailExists)
+                        @if ($destination->thumbnail && @get_headers($destination->thumbnail))
                         <img src="{{$destination->thumbnail}}" alt="{{$destination->slug . '-image' }}"
                             class="tour-thumbnail">
                         @else
@@ -114,7 +114,7 @@
                             <div class="d-flex flex-wrap gap-3 mb-3">
                                 @foreach($destination->gallery as $image)
                                 <div class="position-relative" style="width: 100px; height: 100px;">
-                                    @if($image->urlExists)
+                                    @if($image->url && @get_headers($image->url))
                                     <img src="{{ $image->url }}" alt="Gallery Image"
                                         style="width:100%; height:100%; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
                                     @else

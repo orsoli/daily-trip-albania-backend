@@ -27,7 +27,7 @@
                             @if (isset($destination))
                             <div class="col-12">
                                 <div>
-                                    @if ($destination->thumbnailExists)
+                                    @if ($destination->thumbnail && @get_headers($destination->thumbnail))
                                     <img src="{{ $destination->thumbnail }}" alt="{{ $destination->slug  . 'image'}}"
                                         style="width:200px; height: 200px; object-fit: fill; margin: 20px; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
                                     @else
@@ -159,8 +159,10 @@
                                 </div>
                             </div>
 
+
+                            {{-- --------- --}}
                             {{-- accommodations Check list --}}
-                            <div class="col-12 col-lg-4 my-4">
+                            {{-- <div class="col-12 col-lg-4 my-4">
                                 <div class="position-relative">
                                     <span class="fs-3 py-2">{{ __('static.accommodations') }}:</span>
                                     @foreach ($accommodations as $accommodation)
@@ -171,27 +173,31 @@
                                             (old('accommodations') && in_array($accommodation->id,
                                         old('accommodations')))
                                         ||
-                                        (isset($tour) &&
-                                        $tour->accommodations->pluck('id')->contains($accommodation->id)) ? 'checked' :
+                                        (isset($destination) &&
+                                        $destination->accommodations->pluck('id')->contains($accommodation->id)) ?
+                                        'checked' :
                                         ''
                                         }}>
                                         <label class="form-check-label" for="accommodation_{{ $accommodation->id }}">
                                             {{ $accommodation->property_name }}
                                         </label>
                                     </div>
-                                    @endforeach
+                                    @endforeach --}}
                                     {{-- accommodations error --}}
-                                    @error('accommodations')
+                                    {{-- @error('accommodations')
                                     @include('partials.input-validation-error-msg')
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
+                            {{-- ---------- --}}
+
+
 
                             {{-- Description --}}
-                            <div class="col-12 col-lg-8 input-container">
+                            <div class="col-12 col-lg-10 input-container">
                                 <div class="position-relative">
                                     <textarea id="description" name="description"
-                                        class="form-control @error('description') is-invalid @enderror" rows="8"
+                                        class="form-control @error('description') is-invalid @enderror" rows="4"
                                         maxlength="500" required autocomplete="description"
                                         autofocus>{{ old('description', $destination->description ?? '') }}</textarea>
                                     <label for="description">{{
@@ -232,7 +238,7 @@
                                 <div class="d-flex flex-wrap gap-3 mb-3">
                                     @foreach($destination->gallery as $image)
                                     <div class="position-relative" style="width: 100px; height: 100px;">
-                                        @if ($image->urlExists)
+                                        @if ($image->url && @get_headers($image->url))
                                         <img src="{{ $image->url }}" alt="Gallery Image"
                                             style="width:100%; height:100%; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
                                         @else

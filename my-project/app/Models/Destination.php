@@ -30,6 +30,8 @@ class Destination extends Model
         'city',
         'description',
         'nearest_airport',
+        'latitude',
+        'longitude',
         'is_visible'
     ];
 
