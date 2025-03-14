@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $destination->title . ' | ' . config('app.name'))
+@section('title', $destination->name . ' | ' . config('app.name'))
 
 @section('content')
 <div class="container align-self-center">

@@ -85,7 +85,9 @@ class DestinationController extends Controller
      */
     public function show(Destination $destination)
     {
-        return view('admin.destinations.show', compact('destination'));
+        $apiKey = env('GOOGLE_MAPS_API_KEY');
+
+        return view('admin.destinations.show', compact('destination', 'apiKey'));
     }
 
     /**

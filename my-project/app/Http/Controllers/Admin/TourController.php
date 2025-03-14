@@ -165,7 +165,9 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        return view('admin.tours.show', compact('tour'));
+        $apiKey = env('GOOGLE_MAPS_API_KEY');
+
+        return view('admin.tours.show', compact('tour', 'apiKey'));
     }
 
     /**

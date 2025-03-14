@@ -1,6 +1,6 @@
 @extends('layouts.create-or-update-destinations')
 
-@section('title', __('destinations.create_new_tour') . ' | ' . config('app.name'))
+@section('title', __('destinations.create_new_destination') . ' | ' . config('app.name'))
 
 @section('form-header', __('destinations.create_new_destination'))
 

@@ -1,0 +1,10 @@
+// Variables
+@import '../variables';
+
+#map{
+    color: $primary;
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    box-shadow: $my-card-shadow;
+}

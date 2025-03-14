@@ -174,6 +174,14 @@
 
                     </div>
 
+
+                    {{-- Google MAP --}}
+                    {{-- @include('partials.map',[
+                    'destinations' => [$tour]
+                    ]) --}}
+
+
+
                     {{-- logo --}}
                     <div class="logo w-25 m-auto">
                         <img src="{{asset('storage/img/DailyTrip-logo.png')}}" alt="daily-trip-logo">
