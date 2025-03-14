@@ -27,8 +27,14 @@
                             @if (isset($destination))
                             <div class="col-12">
                                 <div>
+                                    @if ($destination->thumbnailExists)
                                     <img src="{{ $destination->thumbnail }}" alt="{{ $destination->slug  . 'image'}}"
                                         style="width:200px; height: 200px; object-fit: fill; margin: 20px; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
+                                    @else
+                                    <img src="{{ asset('storage/img/img-placeholder.png') }}"
+                                        alt="{{ $destination->slug  . 'image'}}"
+                                        style="width:200px; height: 200px; object-fit: fill; margin: 20px; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
+                                    @endif
                                 </div>
                             </div>
                             @endif
@@ -153,42 +159,6 @@
                                 </div>
                             </div>
 
-                            {{-- Latitude --}}
-                            <div class="col-12 col-md-6 input-container">
-                                <div class="position-relative">
-                                    <input id="latitude" type="text"
-                                        class="form-control text-light position-relative @error('latitude') is-invalid @enderror"
-                                        name="latitude" value="{{ old('latitude', $destination->latitude ?? '') }}"
-                                        autocomplete="latitude" required>
-                                    <label for="latitude">{{ __('static.latitude') }} *</label>
-                                    {{-- Latitude Error --}}
-                                    @error('latitude')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
-                                    {{-- Input instructions --}}
-                                    @include('partials.input-instruction', ['instructionMessages' =>
-                                    __('input-instruction.latitude') ])
-                                </div>
-                            </div>
-
-                            {{-- Longitude --}}
-                            <div class="col-12 col-md-6 input-container">
-                                <div class="position-relative">
-                                    <input id="longitude" type="text"
-                                        class="form-control text-light position-relative @error('longitude') is-invalid @enderror"
-                                        name="longitude" value="{{ old('longitude', $destination->longitude ?? '') }}"
-                                        autocomplete="longitude" required>
-                                    <label for="longitude">{{ __('static.longitude') }} *</label>
-                                    {{-- Longitude Error --}}
-                                    @error('longitude')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
-                                    {{-- Input instructions --}}
-                                    @include('partials.input-instruction', ['instructionMessages' =>
-                                    __('input-instruction.longitude') ])
-                                </div>
-                            </div>
-
                             {{-- accommodations Check list --}}
                             <div class="col-12 col-lg-4 my-4">
                                 <div class="position-relative">
@@ -262,8 +232,13 @@
                                 <div class="d-flex flex-wrap gap-3 mb-3">
                                     @foreach($destination->gallery as $image)
                                     <div class="position-relative" style="width: 100px; height: 100px;">
+                                        @if ($image->urlExists)
                                         <img src="{{ $image->url }}" alt="Gallery Image"
                                             style="width:100%; height:100%; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
+                                        @else
+                                        <img src="{{ asset('storage/img/img-placeholder.png') }}" alt="Gallery Image"
+                                            style="width:100%; height:100%; border-radius: 20px; box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.3);">
+                                        @endif
 
                                         <!-- Checkbox to delete the image -->
                                         <div class="position-absolute top-0 start-0 mt-2 ms-2 z-index-1">

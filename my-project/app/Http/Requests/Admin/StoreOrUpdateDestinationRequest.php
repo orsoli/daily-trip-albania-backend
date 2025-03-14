@@ -30,8 +30,6 @@ class StoreOrUpdateDestinationRequest extends FormRequest
             'city'                 => 'required|string|max:255',
             'description'          => 'nullable|string',
             'nearest_airport'      => 'nullable|string|max:255',
-            'latitude'             => 'nullable|numeric',
-            'longitude'            => 'nullable|numeric',
             'is_visible'           => 'boolean',
 
             //    ---- Pivot tables ----

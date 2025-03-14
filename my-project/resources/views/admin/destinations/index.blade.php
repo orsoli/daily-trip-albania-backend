@@ -56,7 +56,12 @@
                         <div class="row align-items-center m-0">
                             {{-- Destination thumbnail --}}
                             <div class="col d-none d-lg-block">
+                                @if ($destination->thumbnailExists)
                                 <img src="{{ $destination->thumbnail }}" alt="{{$destination->name}}" class="thumbnail">
+                                @else
+                                <img src="{{ asset('storage/img/img-placeholder.png') }}" alt="{{$destination->name}}"
+                                    class="thumbnail">
+                                @endif
                             </div>
 
                             {{-- Destination name --}}
