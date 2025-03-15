@@ -24,6 +24,7 @@ class storeOrUpdateTourRequest extends FormRequest
         return [
             'guide_id'              => 'nullable|exists:users,id',
             'region_id'             => 'required|exists:regions,id',
+            'accommodation_id'      => 'nullable|exists:accommodations,id',
             'title'                 => 'required|string|max:255',
             'thumbnail'             => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description'           => 'nullable|string',

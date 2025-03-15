@@ -68,16 +68,6 @@ class Destination extends Model
     }
 
     /**
-     * Get the accommodations associated with the destination.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function accommodations(): HasMany
-    {
-        return $this->hasMany(Accommodation::class);
-    }
-
-    /**
      * Get the gallery accociated with the destination.
      *
      * @return Illuminate\Database\Eloquent\Relations\HasMany

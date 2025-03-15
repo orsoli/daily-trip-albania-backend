@@ -25,6 +25,7 @@ class Tour extends Model
         'guide_id',
         'default_currency_id',
         'region_id',
+        'accommodation_id',
         'title',
         'slug',
         'thumbnail',
@@ -97,11 +98,11 @@ class Tour extends Model
     /**
      * Get the accommodations associated with the tour.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function accommodations(): HasMany
+    public function accommodation(): BelongsTo
     {
-        return $this->hasMany(Accommodation::class);
+        return $this->belongsTo(Accommodation::class);
     }
 
     /**

@@ -119,65 +119,114 @@
                                 </div>
                             </div>
 
-                            {{-- Guide select --}}
-                            <div class="col-6">
-                                <div class="position-relative">
-                                    @if (isset($guide))
-                                    <p class="fs-3 py-2"> Guide: {{$guide->first_name}} {{$guide->last_name}}
-                                    </p>
-                                    @endif
-                                    <select id="guide" class="form-control bg-transparent rounded-5 mt-3 text-light @error('guide')
-                                                                    is-invalid @enderror" name="guide_id" required>
-                                        <option value="" selected disabled>
-                                            {{__('static.select_guide')}} . . . *</option>
-                                        @foreach ($guides as $guide)
-                                        <option value="{{ $guide->id }}" {{ old('guide_id', $tour->guide_id ?? '') ==
-                                            $guide->id ?
-                                            "selected" : "" }}>{{$guide->first_name }} {{$guide->last_name}} </option>
-                                        @endforeach
-                                    </select>
-                                    {{-- guide Error --}}
-                                    @error('guide')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
+                            {{-- Selecting list --}}
+                            <div class="row border rounded-4 p-2 position-relative">
+
+                                {{-- Container title --}}
+                                <div
+                                    class="col border rounded-5 bg-primary w-auto px-2 position-absolute top-0 start-10 translate-middle-y">
+                                    {{__('static.select_options')}}
+                                </div>
+
+                                {{-- Guide select --}}
+                                <div class='col-4'>
+                                    <div class="position-relative">
+                                        @if (isset($guide))
+                                        <p class="fs-3 py-2"> Guide: {{$guide->first_name}} {{$guide->last_name}}
+                                        </p>
+                                        @endif
+                                        <select id="guide" class="form-control bg-transparent rounded-5 mt-3 text-light @error('guide')
+                                                                        is-invalid @enderror" name="guide_id" required>
+                                            <option value="" selected disabled>
+                                                {{__('static.select_guide')}} . . . *</option>
+                                            @foreach ($guides as $guide)
+                                            <option value="{{ $guide->id }}" {{ old('guide_id', $tour->guide_id ?? '')
+                                                ==
+                                                $guide->id ?
+                                                "selected" : "" }}>{{$guide->first_name }} {{$guide->last_name}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        {{-- guide Error --}}
+                                        @error('guide')
+                                        @include('partials.input-validation-error-msg')
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Region select --}}
+                                <div class='col-4'>
+                                    <div class="position-relative">
+                                        @if (isset($region))
+                                        <p class="fs-3 py-2"> Region: {{$region->name}} </p>
+                                        @endif
+                                        <select id="region" class="form-control bg-transparent rounded-5 mt-3 text-light @error('region')
+                                                                        is-invalid @enderror" name="region_id"
+                                            required>
+                                            <option value="" selected disabled>
+                                                {{__('static.select_region')}} . . . *</option>
+                                            @foreach ($regions as $region)
+                                            <option value="{{ $region->id }}" {{ old('region_id', $tour->region_id ??
+                                                '') ==
+                                                $region->id ?
+                                                "selected" : "" }}>{{$region->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        {{-- region Error --}}
+                                        @error('region')
+                                        @include('partials.input-validation-error-msg')
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                {{-- Accomodation select --}}
+                                <div class='col-4'>
+                                    <div class="position-relative">
+                                        @if (isset($accomodation))
+                                        <p class="fs-3 py-2"> Accommodation: {{$accommodation->name}} </p>
+                                        @endif
+                                        <select id="accommodation" class="form-control bg-transparent rounded-5 mt-3 text-light @error('accommodation')
+                                                                        is-invalid @enderror" name="accommodation_id">
+                                            <option value="" selected disabled>
+                                                {{__('static.select_accommodation')}} . . . </option>
+                                            @foreach ($accommodations as $accommodation)
+                                            <option value="{{ $accommodation->id }}" {{ old('accommodation_id', $tour->
+                                                accommodation_id ??
+                                                '') ==
+                                                $accommodation->id ?
+                                                "selected" : "" }}>{{$accommodation->property_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        {{-- accommodation Error --}}
+                                        @error('accommodation')
+                                        @include('partials.input-validation-error-msg')
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
-                            {{-- Region select --}}
-                            <div class="col-6">
-                                <div class="position-relative">
-                                    @if (isset($region))
-                                    <p class="fs-3 py-2"> Region: {{$region->name}} </p>
-                                    @endif
-                                    <select id="region" class="form-control bg-transparent rounded-5 mt-3 text-light @error('region')
-                                                                    is-invalid @enderror" name="region_id" required>
-                                        <option value="" selected disabled>
-                                            {{__('static.select_region')}} . . . *</option>
-                                        @foreach ($regions as $region)
-                                        <option value="{{ $region->id }}" {{ old('region_id', $tour->region_id ?? '') ==
-                                            $region->id ?
-                                            "selected" : "" }}>{{$region->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    {{-- region Error --}}
-                                    @error('region')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
-                                </div>
-                            </div>
+                            {{-- Check lists container --}}
+                            <div class="row border rounded-4 p-2 my-4 position-relative">
 
-                            {{-- Destinations Check list --}}
-                            <div class="col-12 col-md-4 my-4">
-                                <div class="position-relative">
+                                {{-- Container title --}}
+                                <div
+                                    class="col border rounded-5 bg-primary w-auto px-2 position-absolute top-0 start-10 translate-middle-y">
+                                    {{__('static.check_options')}}
+                                </div>
+
+                                {{-- Destinations Check list --}}
+                                <div class="col-12 col-md-4 my-4 overflow-scroll" style="height: 200px">
                                     <span class="fs-3 py-2">{{ __('static.select_destinations') }}:</span>
                                     @foreach ($destinations as $destination)
                                     <div class="form-check">
                                         <input type="checkbox" id="destination_{{ $destination->id }}"
                                             name="destinations[]" value="{{ $destination->id }}"
                                             class="form-check-input @error('destinations') is-invalid @enderror" {{
-                                            (old('destinations') && in_array($destination->id, old('destinations'))) ||
+                                            (old('destinations') && in_array($destination->id, old('destinations')))
+                                        ||
                                         (isset($tour) &&
-                                        $tour->destinations->pluck('id')->contains($destination->id)) ? 'checked' : ''
+                                        $tour->destinations->pluck('id')->contains($destination->id)) ? 'checked' :
+                                        ''
                                         }}>
                                         <label class="form-check-label" for="destination_{{ $destination->id }}">
                                             {{ $destination->name }}
@@ -189,53 +238,54 @@
                                     @include('partials.input-validation-error-msg')
                                     @enderror
                                 </div>
-                            </div>
 
-                            {{-- Categories Check list --}}
-                            <div class="col-12 col-md-4 my-4">
-                                <div class="position-relative">
-                                    <span class="fs-3">{{ __('static.select_categories') }}:</span>
-                                    @foreach ($categories as $category)
-                                    <div class="form-check">
-                                        <input type="checkbox" id="category_{{ $category->id }}" name="categories[]"
-                                            value="{{ $category->id }}"
-                                            class="form-check-input @error('categories') is-invalid @enderror" {{
-                                            (old('categories') && in_array($category->id, old('categories'))) ||
-                                        (isset($tour) &&
-                                        $tour->categories->pluck('id')->contains($category->id)) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="category_{{ $category->id }}">
-                                            {{ $category->name }}
-                                        </label>
+                                {{-- Categories Check list --}}
+                                <div class="col-12 col-md-4 my-4 overflow-scroll" style="height: 200px">
+                                    <div class="position-relative">
+                                        <span class="fs-3">{{ __('static.select_categories') }}:</span>
+                                        @foreach ($categories as $category)
+                                        <div class="form-check">
+                                            <input type="checkbox" id="category_{{ $category->id }}" name="categories[]"
+                                                value="{{ $category->id }}"
+                                                class="form-check-input @error('categories') is-invalid @enderror" {{
+                                                (old('categories') && in_array($category->id, old('categories'))) ||
+                                            (isset($tour) &&
+                                            $tour->categories->pluck('id')->contains($category->id)) ? 'checked' : ''
+                                            }}>
+                                            <label class="form-check-label" for="category_{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                        {{-- Categories error --}}
+                                        @error('categories')
+                                        @include('partials.input-validation-error-msg')
+                                        @enderror
                                     </div>
-                                    @endforeach
-                                    {{-- Categories error --}}
-                                    @error('categories')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
                                 </div>
-                            </div>
 
-                            {{-- Services check list --}}
-                            <div class="col-12 col-md-4 my-4">
-                                <div class="position-relative">
-                                    <span class="fs-3">{{ __('static.select_services') }}:</span>
-                                    @foreach ($services as $service)
-                                    <div class="form-check">
-                                        <input type="checkbox" id="service_{{ $service->id }}" name="services[]"
-                                            value="{{ $service->id }}"
-                                            class="form-check-input @error('services') is-invalid @enderror" {{
-                                            (old('services') && in_array($service->id, old('services'))) ||
-                                        (isset($tour) &&
-                                        $tour->services->pluck('id')->contains($service->id)) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="service_{{ $service->id }}">
-                                            {{ $service->name }}
-                                        </label>
+                                {{-- Services check list --}}
+                                <div class="col-12 col-md-4 my-4 overflow-scroll" style="height: 200px">
+                                    <div class="position-relative">
+                                        <span class="fs-3">{{ __('static.select_services') }}:</span>
+                                        @foreach ($services as $service)
+                                        <div class="form-check">
+                                            <input type="checkbox" id="service_{{ $service->id }}" name="services[]"
+                                                value="{{ $service->id }}"
+                                                class="form-check-input @error('services') is-invalid @enderror" {{
+                                                (old('services') && in_array($service->id, old('services'))) ||
+                                            (isset($tour) &&
+                                            $tour->services->pluck('id')->contains($service->id)) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="service_{{ $service->id }}">
+                                                {{ $service->name }}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                        {{-- Services error --}}
+                                        @error('services')
+                                        @include('partials.input-validation-error-msg')
+                                        @enderror
                                     </div>
-                                    @endforeach
-                                    {{-- Services error --}}
-                                    @error('services')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
                                 </div>
                             </div>
 

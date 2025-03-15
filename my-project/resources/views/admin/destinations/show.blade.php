@@ -81,21 +81,6 @@
                             </span>
                         </p>
 
-                        {{--Destination Accommodation --}}
-                        @if ($destination->accommodations->count() > 0)
-                        <p class="card-subtitle d-flex justify-content-between mb-1">
-                            <span class="me-5">
-                                <i class="bi bi-building-check"></i>
-                                {{__('static.accommodations')}}:
-                                @foreach ($destination->accommodations as $accommodation)
-                                <strong class="text-info">
-                                    {{$accommodation->property_name}}
-                                </strong>
-                                @endforeach
-                            </span>
-                        </p>
-                        @endif
-
                         {{-- Is visible destination --}}
                         <p class="card-subtitle d-flex justify-content-between mb-1">
                             <span>

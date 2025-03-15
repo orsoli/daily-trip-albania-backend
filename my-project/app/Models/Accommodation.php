@@ -19,8 +19,6 @@ class Accommodation extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'destination_id',
-        'tour_id',
         'property_name',
         'slug',
         'thumbnail',
@@ -28,6 +26,8 @@ class Accommodation extends Model
         'price',
         'default_currency_id',
         'description',
+        'country',
+        'city',
         'latitude',
         'longitude',
     ];
@@ -35,33 +35,13 @@ class Accommodation extends Model
     // Relations
 
     /**
-     * Get the bookings for the accommodation.
-     *
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function booking(): HasMany
-    {
-        return $this->hasMany(Booking::class, 'accommodation_id');
-    }
-
-    /**
-     * Get the destination that owns the accommodation.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function destination(): BelongsTo
-    {
-        return $this->belongsTo(Destination::class);
-    }
-
-    /**
      * Get the tour that owns the accommodation.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tour(): BelongsTo
+    public function tour(): HasMany
     {
-        return $this->belongsTo(Tour::class);
+        return $this->hasMany(Tour::class);
     }
 
     /**

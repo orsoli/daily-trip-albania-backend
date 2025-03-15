@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             RegionSeeder::class,
 
+            AccommodationSeeder::class,
             TourSeeder::class,
             CategoryTourSeeder::class,
             DestinationSeeder::class,
             DestinationTourSeeder::class,
             TourServiceSeeder::class,
             ItinerarySeeder::class,
-            AccommodationSeeder::class,
             BookingSeeder::class,
 
             GallerySeeder::class,

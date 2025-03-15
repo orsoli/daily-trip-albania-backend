@@ -16,7 +16,7 @@
     <div class="my-card px-2 px-md-4">
         {{-- Destinations Table header navbars --}}
         <div class="card-header">
-            <div class="navbars d-flex justify-content-between mb-4">
+            <div class="navbars mb-4">
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link data-nav-link text-secondary" data-tab='all_data'

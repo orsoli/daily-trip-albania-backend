@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\storeOrUpdateTourRequest;
+use App\Models\Accommodation;
 use App\Models\Category;
 use App\Models\Currency;
 use App\Models\Destination;
@@ -76,12 +77,13 @@ class TourController extends Controller
         $categories = Category::all();
         $destinations = Destination::all();
         $services = Service::all();
+        $accommodations = Accommodation::all();
         $guides = User::whereHas('role', function ($query) {
                                 $query->where('slug', 'guide');
                             })->get();
 
 
-        return view('admin.tours.create', compact('regions', 'categories', 'destinations', 'services', 'guides'));
+        return view('admin.tours.create', compact('regions', 'categories', 'destinations', 'services', 'accommodations', 'guides'));
     }
 
     /**
@@ -179,11 +181,12 @@ class TourController extends Controller
         $categories = Category::all();
         $destinations = Destination::all();
         $services = Service::all();
+        $accommodations = Accommodation::all();
         $guides = User::whereHas('role', function ($query) {
                                 $query->where('slug', 'guide');
                             })->get();
 
-        return view('admin.tours.edit', compact('tour', 'guides', 'regions', 'categories', 'destinations', 'services'));
+        return view('admin.tours.edit', compact('tour', 'guides', 'regions', 'categories', 'destinations', 'services', 'accommodations'));
     }
 
     /**

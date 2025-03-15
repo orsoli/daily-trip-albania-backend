@@ -34,10 +34,6 @@ class StoreOrUpdateDestinationRequest extends FormRequest
 
             //    ---- Pivot tables ----
 
-            // Accommodations
-            'accommodations'          => 'nullable|array',
-            'accommodations.*'        => 'exists:accommodations,id',
-
             // Gallery images
             'gallery_images'        => 'nullable|array',
             'gallery_images.*'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',

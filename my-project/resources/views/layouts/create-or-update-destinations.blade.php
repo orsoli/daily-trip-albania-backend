@@ -159,40 +159,6 @@
                                 </div>
                             </div>
 
-
-                            {{-- --------- --}}
-                            {{-- accommodations Check list --}}
-                            {{-- <div class="col-12 col-lg-4 my-4">
-                                <div class="position-relative">
-                                    <span class="fs-3 py-2">{{ __('static.accommodations') }}:</span>
-                                    @foreach ($accommodations as $accommodation)
-                                    <div class="form-check">
-                                        <input type="checkbox" id="accommodation_{{ $accommodation->id }}"
-                                            name="accommodations[]" value="{{ $accommodation->id }}"
-                                            class="form-check-input @error('accommodations') is-invalid @enderror" {{
-                                            (old('accommodations') && in_array($accommodation->id,
-                                        old('accommodations')))
-                                        ||
-                                        (isset($destination) &&
-                                        $destination->accommodations->pluck('id')->contains($accommodation->id)) ?
-                                        'checked' :
-                                        ''
-                                        }}>
-                                        <label class="form-check-label" for="accommodation_{{ $accommodation->id }}">
-                                            {{ $accommodation->property_name }}
-                                        </label>
-                                    </div>
-                                    @endforeach --}}
-                                    {{-- accommodations error --}}
-                                    {{-- @error('accommodations')
-                                    @include('partials.input-validation-error-msg')
-                                    @enderror
-                                </div>
-                            </div> --}}
-                            {{-- ---------- --}}
-
-
-
                             {{-- Description --}}
                             <div class="col-12 col-lg-10 input-container">
                                 <div class="position-relative">

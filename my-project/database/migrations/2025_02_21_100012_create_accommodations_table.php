@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('accommodations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('destination_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
-            $table->foreignId('tour_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
-
             $table->string('property_name');
             $table->string('slug')->unique();
             $table->string('thumbnail')->nullable();
@@ -23,6 +20,8 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->foreignId('default_currency_id')->constrained('currencies')->cascadeOnUpdate()->onDelete('restrict');
             $table->text('description')->nullable();
+            $table->string('country');
+            $table->string('city');
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->boolean('is_visible')->default(false);

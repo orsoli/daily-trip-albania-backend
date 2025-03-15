@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('guide_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
             $table->foreignId('default_currency_id')->constrained('currencies')->cascadeOnUpdate()->onDelete('restrict');
             $table->foreignId('region_id')->constrained('regions')->cascadeOnUpdate()->onDelete('restrict');
+            $table->foreignId('accommodation_id')->nullable()->constrained('accommodations')->cascadeOnUpdate()->nullOnDelete();
 
             $table->string('title');
             $table->string('slug')->unique();

@@ -56,6 +56,9 @@ return [
     'sure_to_permanently_delete'            => 'Jeni i sigurt që deshironi të FSHINI PERGJITHMONE,',
     'sure_to_delete_role'                   => 'Fshirja e këtij roli do të ndikojë tek të gjithë përdoruesit që e kanë këtë rol. Të gjithë përdoruesit e lidhur me këtë rol do të fshihen gjithashtu. A jeni i sigurt që dëshironi të vazhdoni me fshirjen?',
 
+    'check_options'                         => 'Qeko Opsionet',
+    'select_options'                        => 'Selekto Opsionet',
+
     'destinations'                          => 'Destinacione',
     'destination'                           => 'Destinacion',
     'tours'                                 => 'Ekskursione',
@@ -69,6 +72,7 @@ return [
     'guide'                                 => 'Udhëzues',
     'currency'                              => 'Monedhë',
     'region'                                => 'Rajoni',
+    'select_accommodation'                  => 'Zgjidhni Akomodimin',
     'select_region'                         => 'Zgjidhni Rajonin',
     'select_guide'                          => 'Zgjidh Guiden',
     'select_categories'                     => 'Zgjidh Kategorite',

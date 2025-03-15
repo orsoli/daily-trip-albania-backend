@@ -59,6 +59,9 @@ return [
     'sure_to_delete_role'                   => 'Deleting this role will affect all users assigned to it. All users associated with this role will also be deleted.
                                                 Are you sure you want to proceed with the deletion?',
 
+    'check_options'                         => 'Check Options',
+    'select_options'                        => 'Select Options',
+
     'destinations'                          => 'Destinations',
     'destination'                           => 'Destination',
     'tours'                                 => 'Tours',
@@ -72,6 +75,7 @@ return [
     'guide'                                 => 'Guide',
     'currency'                              => 'Currency',
     'region'                                => 'Region',
+    'select_accommodation'                  => 'Select Accommodation',
     'select_region'                         => 'Select Region',
     'select_guide'                          => 'Select Guide',
     'select_categories'                     => 'Select Categories',

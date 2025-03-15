@@ -162,6 +162,23 @@
                             </span>
                         </p>
 
+                        <hr>
+
+                        {{--Tour Accommodation --}}
+                        @if ($tour->accommodation)
+                        <p class="card-subtitle d-flex justify-content-between mb-1">
+                            <span class="me-5">
+                                <i class="bi bi-building-check"></i>
+                                {{__('static.accommodation')}}:
+                                <strong class="text-info">
+                                    {{$tour->accommodation->property_name}}
+                                </strong>
+                            </span>
+                        </p>
+                        @endif
+
+                        <hr>
+
                         @if ($tour->gallery->count() > 0)
                         <!-- Display existing images if the tour has a gallery -->
                         <div class="mb-3">
@@ -183,14 +200,6 @@
                         @endif
 
                     </div>
-
-
-                    {{-- Google MAP --}}
-                    {{-- @include('partials.map',[
-                    'destinations' => [$tour]
-                    ]) --}}
-
-
 
                     {{-- logo --}}
                     <div class="logo w-25 m-auto">
