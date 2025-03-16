@@ -16,22 +16,24 @@
     <div class="my-card px-2 px-md-4">
         {{-- Destinations Table header navbars --}}
         <div class="card-header">
-            <div class="navbars mb-4">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary" data-tab='all_data'
-                            href="{{route('destinations.index', ['with_trashed' => true])}}">{{__('destinations.all_destinations')}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary" data-tab='active_data'
-                            href="{{route('destinations.index')}}">{{__('destinations.available_destinations')}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary" data-tab='deleted_data'
-                            href="{{route('destinations.index',['trashed' => true])}}">{{__('destinations.deleted_destinations')}}</a>
-                    </li>
-                </ul>
-            </div>
+
+            @include('partials.nav-tabs', [
+            'navTabs' => [
+            [
+            'title' => __('destinations.all_destinations'),
+            'href' => route('destinations.index', ['with_trashed' => true])
+            ],
+            [
+            'title' => __('destinations.available_destinations'),
+            'href' => route('destinations.index')
+            ],
+            [
+            'title' => __('destinations.deleted_destinations'),
+            'href' => route('destinations.index',['trashed' => true])
+            ]
+            ],
+            ])
+
         </div>
 
         {{-- Chck if table is not empty --}}

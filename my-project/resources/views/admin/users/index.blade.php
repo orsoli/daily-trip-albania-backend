@@ -10,22 +10,23 @@
     <div class="my-card px-2 px-md-4">
         {{-- Users Table header navbars --}}
         <div class="card-header">
-            <div class="navbars mb-4">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary"
-                            href="{{route('user.index', ['with_trashed' => true])}}">{{__('static.all_users')}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary"
-                            href="{{route('user.index')}}">{{__('static.available_users')}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary"
-                            href="{{route('user.index',['trashed' => true])}}">{{__('static.deleted_users')}}</a>
-                    </li>
-                </ul>
-            </div>
+
+            @include('partials.nav-tabs', [
+            'navTabs' => [
+            [
+            'title' => __('static.all_users'),
+            'href' => route('user.index', ['with_trashed' => true])
+            ],
+            [
+            'title' => __('static.available_users'),
+            'href' => route('user.index')
+            ],
+            [
+            'title' => __('static.deleted_users'),
+            'href' => route('user.index',['trashed' => true])
+            ]
+            ],
+            ])
         </div>
 
         {{-- Chck if table is not empty --}}

@@ -16,22 +16,24 @@
     <div class="my-card px-2 px-md-4">
         {{-- Tours Table header navbars --}}
         <div class="card-header">
-            <div class="navbars d-flex justify-content-between mb-4">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary" data-tab='all_data'
-                            href="{{route('tours.index', ['with_trashed' => true])}}">{{__('tours.all_tours')}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary" data-tab='active_data'
-                            href="{{route('tours.index')}}">{{__('tours.available_tours')}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link data-nav-link text-secondary" data-tab='deleted_data'
-                            href="{{route('tours.index',['trashed' => true])}}">{{__('tours.deleted_tours')}}</a>
-                    </li>
-                </ul>
-            </div>
+
+            @include('partials.nav-tabs', [
+            'navTabs' => [
+            [
+            'title' => __('tours.all_tours'),
+            'href' => route('tours.index', ['with_trashed' => true])
+            ],
+            [
+            'title' => __('tours.available_tours'),
+            'href' => route('tours.index')
+            ],
+            [
+            'title' => __('tours.deleted_tours'),
+            'href' => route('tours.index',['trashed' => true])
+            ]
+            ],
+            ])
+
         </div>
 
         {{-- Chck if table is not empty --}}
