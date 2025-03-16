@@ -50,18 +50,21 @@ class TourController extends Controller
         if ($request->has('trashed')) {
 
             $tours = Tour::onlyTrashed()
+                ->orderBy('deleted_at', 'asc')
                 ->paginate(10)
                 ->appends(['trashed' => true]);
 
         } elseif ($request->has('with_trashed')) {
 
             $tours = Tour::withTrashed()
+                ->orderBy('created_at', 'asc')
                 ->paginate(10)
                 ->appends(['with_trashed' => true]);
 
         } else {
 
-            $tours = Tour::paginate(10);
+            $tours = Tour::orderBy('created_at', 'asc')
+                ->paginate(10);
 
         }
 
@@ -73,14 +76,14 @@ class TourController extends Controller
      */
     public function create()
     {
-        $regions = Region::all();
-        $categories = Category::all();
-        $destinations = Destination::all();
-        $services = Service::all();
-        $accommodations = Accommodation::all();
+        $regions = Region::orderBy('name', 'asc')->get();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $destinations = Destination::orderBy('name', 'asc')->get();
+        $services = Service::orderBy('name', 'asc')->get();
+        $accommodations = Accommodation::orderBy('property_name', 'asc')->get();
         $guides = User::whereHas('role', function ($query) {
                                 $query->where('slug', 'guide');
-                            })->get();
+                            })->orderBy('first_name', 'asc')->get();
 
 
         return view('admin.tours.create', compact('regions', 'categories', 'destinations', 'services', 'accommodations', 'guides'));
@@ -177,14 +180,15 @@ class TourController extends Controller
      */
     public function edit(Tour $tour)
     {
-        $regions = Region::all();
-        $categories = Category::all();
-        $destinations = Destination::all();
-        $services = Service::all();
-        $accommodations = Accommodation::all();
+
+        $regions = Region::orderBy('name', 'asc')->get();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $destinations = Destination::orderBy('name', 'asc')->get();
+        $services = Service::orderBy('name', 'asc')->get();
+        $accommodations = Accommodation::orderBy('property_name', 'asc')->get();
         $guides = User::whereHas('role', function ($query) {
                                 $query->where('slug', 'guide');
-                            })->get();
+                            })->orderBy('first_name', 'asc')->get();
 
         return view('admin.tours.edit', compact('tour', 'guides', 'regions', 'categories', 'destinations', 'services', 'accommodations'));
     }

@@ -48,18 +48,20 @@ class DestinationController extends Controller
         if ($request->has('trashed')) {
 
             $destinations = Destination::onlyTrashed()
+                ->orderBy('deleted_at', 'asc')
                 ->paginate(10)
                 ->appends(['trashed' => true]);
 
         } elseif ($request->has('with_trashed')) {
 
             $destinations = Destination::withTrashed()
+                ->orderBy('created_at', 'asc')
                 ->paginate(10)
                 ->appends(['with_trashed' => true]);
 
         } else {
 
-            $destinations = Destination::paginate(10);
+            $destinations = Destination::orderBy('created_at', 'asc')->paginate(10);
 
         }
 
@@ -71,11 +73,10 @@ class DestinationController extends Controller
      */
     public function create()
     {
-        $regions = Region::all();
-        $accommodations = Accommodation::all();
+        $regions = Region::orderBy('name', 'asc')->get();
 
 
-        return view('admin.destinations.create', compact('regions', 'accommodations'));
+        return view('admin.destinations.create', compact('regions'));
     }
 
     /**
@@ -168,10 +169,9 @@ class DestinationController extends Controller
      */
     public function edit(Destination $destination)
     {
-        $regions = Region::all();
-        $accommodations = Accommodation::all();
+        $regions = Region::orderBy('name', 'asc')->get();
 
-        return view('admin.destinations.edit', compact('destination', 'regions', 'accommodations'));
+        return view('admin.destinations.edit', compact('destination', 'regions'));
     }
 
     /**

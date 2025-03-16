@@ -43,6 +43,7 @@ class UserController extends Controller
 
             $users = User::onlyTrashed()
                 ->whereHas('role', fn($q) => $q->whereNull('deleted_at'))
+                ->orderBy('deleted_at', 'asc')
                 ->paginate(10)
                 ->appends(['trashed' => true]);
 
@@ -50,12 +51,14 @@ class UserController extends Controller
 
             $users = User::withTrashed()
                 ->whereHas('role', fn($q) => $q->whereNull('deleted_at'))
+                ->orderBy('created_at', 'asc')
                 ->paginate(10)
                 ->appends(['with_trashed' => true]);
 
         } else {
 
             $users = User::whereHas('role', fn($q) => $q->whereNull('deleted_at'))
+                ->orderBy('created_at', 'asc')
                 ->paginate(10);
 
         }
@@ -77,7 +80,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $roles = Role::all();
+        $roles = Role::orderBy('name', 'asc')->get();
 
         return view('admin.users.edit', compact('user', 'roles'));
     }
