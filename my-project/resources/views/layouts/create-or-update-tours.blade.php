@@ -120,7 +120,7 @@
                             </div>
 
                             {{-- Selecting list --}}
-                            <div class="row border rounded-4 p-2 position-relative">
+                            <div class="row border rounded-4 py-2 my-3 position-relative">
 
                                 {{-- Container title --}}
                                 <div
@@ -206,7 +206,7 @@
                             </div>
 
                             {{-- Check lists container --}}
-                            <div class="row border rounded-4 p-2 my-4 position-relative">
+                            <div class="row border rounded-4 my-3 position-relative">
 
                                 {{-- Container title --}}
                                 <div

@@ -96,4 +96,30 @@ class Destination extends Model
     {
         return $this->belongsToMany(Booking::class, 'booking_destinaiton');
     }
+
+    /**
+     * The "booted" method of the model.
+     * This method is used to handle model events such as deleting, restoring, and force deleting.
+     * It ensures that related galleries are also soft deleted, restored, or permanently deleted
+     * when the corresponding tour is deleted, restored, or force deleted.
+     */
+    protected static function booted()
+    {
+        static::deleting(function ($destination) {
+            // Soft delete related galleries
+            $destination->gallery()->delete();
+
+
+        });
+
+        static::restoring(function ($destination) {
+            // Restore related galleries when restoring a destination
+            $destination->gallery()->restore();
+        });
+
+        static::forceDeleted(function ($destination) {
+            // Permanently delete related galleries when destination is force deleted
+            $destination->gallery()->forceDelete();
+        });
+    }
 }

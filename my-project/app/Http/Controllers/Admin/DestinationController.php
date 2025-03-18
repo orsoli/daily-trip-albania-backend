@@ -303,7 +303,73 @@ class DestinationController extends Controller
      */
     public function destroy(Destination $destination)
     {
-        //
+        $destination['is_visible'] = false;
+        $destination->update();
+
+        $destination->delete();
+
+        session()->flash('success', $destination->name . __('static.success_delete'));
+
+        return redirect()->route('destinations.index');
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore($id)
+    {
+        $destination = Destination::onlyTrashed()->findOrFail($id);
+
+        $destination->restore();
+
+        session()->flash('success', $destination->name . ' ' . __('static.success_restore'));
+
+        return redirect()->route('destinations.index',['trashed' => true]);
+    }
+
+    /**
+     * Permanently Delete the specified resource from DB.
+     */
+    public function forceDelete($id)
+    {
+        $destination = Destination::onlyTrashed()->findOrFail($id);
+
+        // If a new thumbnail is uploaded, delete the old one and upload the new one
+        if ($destination->thumbnail) {
+            // Parse only the public_id from the full URL
+            $parsedUrl = pathinfo(parse_url($destination->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
+            $publicId = 'destinations_thumbnails/' . $parsedUrl;
+
+            $mediaService = new CloudinaryService();
+            $mediaService->destroy($publicId);
+        }
+
+        // Get only trashed galleries
+        $files = $destination->gallery()->onlyTrashed()->get();
+
+        // Delete selected gallery images if the user requested
+        if ($files->isNotEmpty()) {
+            foreach ($files as $file) {
+                if ($file) {
+                    // Extract public_id from full URL
+                    $parsedUrl = pathinfo(parse_url($file->url, PHP_URL_PATH), PATHINFO_FILENAME);
+                    $publicId = 'destinations_gallery/' . $parsedUrl;
+
+                    // Delete from Cloudinary
+                    $mediaService = new CloudinaryService();
+                    $mediaService->destroy($publicId);
+
+                    // Remove from the database
+                    $file->forceDelete();
+                }
+            }
+        }
+
+        $destination->forceDelete();
+
+        session()->flash('success', $destination->name . ' ' . __('static.success_permanently_delete'));
+
+        return redirect()->route('destinations.index', ['trashed' => true]);
     }
 
 }

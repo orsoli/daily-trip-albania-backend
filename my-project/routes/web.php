@@ -60,11 +60,16 @@ Route::prefix('admin')->group(function () {
 
     // Tours Routes
     Route::resource('tours', TourController::class);
-    Route::post('{tour}/restore', [TourController::class, 'restore'])->name('tours.restore');
-    Route::delete('{tour}/force-delete', [TourController::class, 'forceDelete'])->name('tours.forceDelete');
+    Route::prefix('/tours/')->group(function(){
+        Route::post('{tour}/restore', [TourController::class, 'restore'])->name('tours.restore');
+        Route::delete('{tour}/force-delete', [TourController::class, 'forceDelete'])->name('tours.forceDelete');
+
+    });
 
     // Destinations Routes
     Route::resource('destinations', DestinationController::class);
-    Route::post('{destinaiton}/restore', [TourController::class, 'restore'])->name('destinaitons.restore');
-    Route::delete('{destinaiton}/force-delete', [TourController::class, 'forceDelete'])->name('destinaitons.forceDelete');
+    Route::prefix('/destinations/')->group(function(){
+        Route::post('{destination}/restore', [DestinationController::class, 'restore'])->name('destinations.restore');
+        Route::delete('{destination}/force-delete', [DestinationController::class, 'forceDelete'])->name('destinations.forceDelete');
+    });
 });
