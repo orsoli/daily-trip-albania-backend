@@ -24,6 +24,7 @@
 
 <body>
     <div id="app">
+
         <div class="bg-img d-flex flex-column overflow-scroll">
             {{-- Header Nav bars --}}
             <header class="position-sticky bg-transparent top-0 z-1" style="transition: background-color 0.5s;">
@@ -297,6 +298,9 @@
 
             {{-- Main --}}
             <main class="flex-grow-1 d-flex py-3">
+                {{-- Include Notifications --}}
+                @include('partials.notifications')
+
                 {{-- Main content --}}
                 @yield('content')
             </main>

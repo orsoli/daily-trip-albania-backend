@@ -4,15 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreOrUpdateDestinationRequest;
-use App\Models\Accommodation;
 use App\Models\Currency;
 use App\Models\Destination;
 use App\Models\Region;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use GuzzleHttp\Client;
+use App\Services\CloudinaryService;
+use App\Services\GeolocationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-
 
 class DestinationController extends Controller
 {
@@ -32,7 +31,8 @@ class DestinationController extends Controller
      */
     public function index(Request $request)
     {
-                $columns = [
+
+        $columns = [
             __('static.image'),
             __('static.name'),
             __('static.country'),
@@ -93,60 +93,67 @@ class DestinationController extends Controller
         if ($request->hasFile('thumbnail')) {
             // Get the uploaded file
             $file = $request->file('thumbnail');
-            // Upload the file to Cloudinary with a transformation (resize and crop)
-            $uploadedFile = Cloudinary::upload($file->getRealPath(), [
-                'folder' => 'destinations_thumbnails',
-                'transformation' => [
-                    [
-                        'width' => 400,
-                        'height' => 300,
-                        'crop' => 'fill',
-                        'quality' => 'auto', // Automatically adjust quality
-                        'format' => 'webp' // Force WebP format
-                    ]
-                ]
-            ]);
 
-            $destinationData['thumbnail'] = $uploadedFile->getSecurePath();
+            // Upload the file to Cloudinary with a transformation (resize and crop)
+            $mediaServices = new CloudinaryService();
+            $uploadedFile = $mediaServices->upload($file, 'destinations_thumbnails', [
+                    'width' => 400,
+                    'height' => 300,
+                    'crop' => 'fill',
+                    'quality' => 'auto',
+                    'format' => 'webp'
+                ]);
+
+            if($uploadedFile){
+                $destinationData['thumbnail'] = $uploadedFile['url'];
+            }else{
+                Log::error('Thumbnail upload failed');
+                session()->flash('error', __('static.failed_media_upload'));
+                return redirect()->back()->withInput();
+            }
         }
 
         // Get coordinates from Google Maps API
-        $coordinates = $this->getCoordinates($request->country, $request->city);
+        $geoService = new GeolocationService();
+        $coordinates = $geoService->getCoordinates($request->name, $request->city, $request->country);
 
-        $destinationData['latitude'] = $coordinates['lat'] ?? null;
-        $destinationData['longitude'] = $coordinates['lng'] ?? null;
+        if($coordinates){
+            $destinationData['latitude'] = $coordinates['lat'] ?? null;
+            $destinationData['longitude'] = $coordinates['lng'] ?? null;
+        }
 
 
         $newDestination = Destination::create($destinationData);
 
         // Upload gallery images to Cloudinary if provided
         if ($request->hasFile('gallery_images')) {
-            foreach ($request->file('gallery_images') as $image) {
-                // Upload each image to Cloudinary
-                $uploadedFile = Cloudinary::upload($image->getRealPath(), [
-                    'folder' => 'destinations_gallery', // Specify the folder where gallery images will be stored
-                    'transformation' => [
-                    [
-                        'width' => 1200,
-                        'height' => 800,
+            $files = $request->file('gallery_images');
+            foreach ( $files as $file) {
+                // Upload each file to Cloudinary
+                $mediaServices = new CloudinaryService();
+                $uploadedFile = $mediaServices->upload($file, 'destinations_gallery', [
+                        'width' => 500,
+                        'height' => 500,
                         'crop' => 'limit',
-                        'quality' => 'auto', // Automatically adjust quality
-                        'format' => 'webp' // Force WebP format
-                    ]
-                ]
+                        'quality' => 'auto',
+                        'format' => 'webp'
+                    ]);
 
-                ]);
-
-                // Get the secure URL of the uploaded gallery image
-                $imageUrl = $uploadedFile->getSecurePath();
-
-                // Add each uploaded image URL to the gallery table associated with the destination
-                $newDestination->gallery()->create([
-                    'url' => $imageUrl,
-                    'destination_id' => $newDestination->id,
-                    'caption' => $image->getClientOriginalName(),
-                ]);
+                if($uploadedFile){
+                    // Add each uploaded image URL to the gallery table associated with the destination
+                    $newDestination->gallery()->create([
+                        'url' => $uploadedFile['url'],
+                        'destination_id' => $newDestination->id,
+                        'caption' => $uploadedFile['caption'],
+                    ]);
+                }else{
+                    Log::error('Gallery image upload failed');
+                    session()->flash('error', __('static.failed_media_upload'));
+                    return redirect()->back()->withInput();
+                }
             }
+
+
         }
 
         session()->flash('success', $newDestination->name . ' ' . __('static.success_created'));
@@ -189,81 +196,99 @@ class DestinationController extends Controller
 
         // If a new thumbnail is uploaded, remove the old one and upload the new one
         if ($request->hasFile('thumbnail')) {
-            // Parse only the public_id from the full URL
-            $publicId = pathinfo(parse_url($destination->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
+            // Get the uploaded file
+            $file = $request->file('thumbnail');
+
             // Delete the previous thumbnail from Cloudinary
             if ($destination->thumbnail) {
-                Cloudinary::destroy('destinations_thumbnails/' . $publicId);
+                // Parse only the public_id from the full URL
+                $parsedUrl = pathinfo(parse_url($destination->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
+                $publicId = 'destinations_thumbnails/' . $parsedUrl;
+
+                $mediaService = new CloudinaryService();
+                $mediaService->destroy($publicId);
             }
 
             // Upload the new thumbnail to Cloudinary with transformations
-            $file = $request->file('thumbnail');
-            $uploadedFile = Cloudinary::upload($file->getRealPath(), [
-                'folder' => 'destinations_thumbnails',
-                'transformation' => [
-                    [
-                        'width'   => 400,
-                        'height'  => 300,
-                        'crop'    => 'fill',
-                        'quality' => 'auto', // Automatically adjust quality
-                        'format' => 'webp' // Force WebP format
-                    ]
-                ]
-            ]);
+            $mediaServices = new CloudinaryService();
+            $uploadedFile = $mediaServices->upload($file, 'destinations_thumbnails', [
+                    'width' => 400,
+                    'height' => 300,
+                    'crop' => 'fill',
+                    'quality' => 'auto',
+                    'format' => 'webp'
+                ]);
 
-            // Store the new thumbnail URL
-            $destinationData['thumbnail'] = $uploadedFile->getSecurePath();
+            if($uploadedFile){
+                $destinationData['thumbnail'] = $uploadedFile['url'];
+            }else{
+                Log::error('Thumbnail upload failed');
+                session()->flash('error', __('static.failed_media_upload'));
+                return redirect()->back()->withInput();
+            }
+
         }
 
-        // Get coordinates from Google Maps API
-        $coordinates = $this->getCoordinates($request->country, $request->city);
-
-        $destinationData['latitude'] = $coordinates['lat'] ?? null;
-        $destinationData['longitude'] = $coordinates['lng'] ?? null;
+        if($request->country !== $destination->country || $request->city !== $destination->city){
+            // Get coordinates from Google Maps API
+            $geoService = new GeolocationService();
+            $coordinates = $geoService->getCoordinates($request->name, $request->city, $request->country);
+            $destinationData['latitude'] = $coordinates['lat'] ?? null;
+            $destinationData['longitude'] = $coordinates['lng'] ?? null;
+        }
 
         // Update the destination with the modified data
         $destination->update($destinationData);
 
-
         // Delete selected gallery images if the user requested
         if ($request->has('delete_gallery_images')) {
-            foreach ($request->delete_gallery_images as $imageId) {
-                $image = $destination->gallery()->find($imageId);
-                if ($image) {
+
+            $files = $request->delete_gallery_images;
+
+            foreach ($files as $fileId) {
+                $file = $destination->gallery()->find($fileId);
+                if ($file) {
                     // Extract public_id from full URL
-                    $publicId = pathinfo(parse_url($image->url, PHP_URL_PATH), PATHINFO_FILENAME);
+                    $parsedUrl = pathinfo(parse_url($file->url, PHP_URL_PATH), PATHINFO_FILENAME);
+                    $publicId = 'destinations_gallery/' . $parsedUrl;
+
+
                     // Delete from Cloudinary
-                    Cloudinary::destroy('destinations_gallery/' . $publicId);
+                    $mediaService = new CloudinaryService();
+                    $mediaService->destroy($publicId);
 
                     // Remove from the database
-                    $image->forceDelete();
+                    $file->forceDelete();
                 }
             }
         }
 
         // Upload new gallery images if provided
-        if ($request->hasFile('gallery_images') && count($request->file('gallery_images')) > 0) {
-            foreach ($request->file('gallery_images') as $image) {
-                // Upload image to Cloudinary
-                $uploadedFile = Cloudinary::upload($image->getRealPath(), [
-                    'folder' => 'destinations_gallery',
-                    'transformation' => [
-                        [
-                            'width' => 1200,
-                            'height' => 800,
-                            'crop' => 'limit',
-                            'quality' => 'auto', // Automatically adjust quality
-                            'format' => 'webp' // Force WebP format
-                        ]
-                    ]
-                ]);
+        if ($request->hasFile('gallery_images')) {
+            $files = $request->file('gallery_images');
+            foreach ( $files as $file) {
+                // Upload each file to Cloudinary
+                $mediaServices = new CloudinaryService();
+                $uploadedFile = $mediaServices->upload($file, 'destinations_gallery', [
+                        'width' => 500,
+                        'height' => 500,
+                        'crop' => 'limit',
+                        'quality' => 'auto',
+                        'format' => 'webp'
+                    ]);
 
-                // Store the uploaded image in the database
-                $destination->gallery()->create([
-                    'url' => $uploadedFile->getSecurePath(),
-                    'destination_id' => $destination->id,
-                    'caption' => $image->getClientOriginalName(),
-                ]);
+                if($uploadedFile){
+                    // Add each uploaded image URL to the gallery table associated with the destination
+                    $destination->gallery()->create([
+                        'url' => $uploadedFile['url'],
+                        'destination_id' => $destination->id,
+                        'caption' => $uploadedFile['caption'],
+                    ]);
+                }else{
+                    Log::error('Gallery image upload failed');
+                    session()->flash('error', __('static.failed_media_upload'));
+                    return redirect()->back()->withInput();
+                }
             }
         }
 
@@ -281,33 +306,4 @@ class DestinationController extends Controller
         //
     }
 
-
-
-    /**
-     * Retrieves the geographical coordinates (latitude and longitude) for a given country and city.
-     *
-     * @param string $country The name of the country.
-     * @param string $city The name of the city.
-     * @return array|null An associative array with 'lat' and 'lng' keys if coordinates are found, or null if not found or an error occurs.
-     */
-    private function getCoordinates($country, $city)
-    {
-        $client = new Client();
-        $apiKey = env('GOOGLE_MAPS_API_KEY');
-        $query = urlencode("$city, $country");
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$query}&key={$apiKey}";
-
-        try {
-            $response = $client->get($url);
-            $data = json_decode($response->getBody(), true);
-
-            if (!empty($data['results'])) {
-                return $data['results'][0]['geometry']['location']; // ['lat' => ..., 'lng' => ...]
-            }
-        } catch (\Exception $e) {
-            return null;
-        }
-
-        return null;
-    }
 }

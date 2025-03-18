@@ -4,8 +4,6 @@
 
 @section('content')
 <div class="container">
-    {{-- Include notification --}}
-    @include('partials.notifications')
 
     {{-- Roles cards --}}
     <div class="row row-cols-1 g-3">

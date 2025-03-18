@@ -139,9 +139,7 @@ return [
     'success_permanently_delete'            => 'has been permanently deleted successfully',
     'success_restore'                       => 'has been restore successfully',
     'empty'                                 => 'No data found',
-    'is_not'                                => 'Is Not'
-
-
-
+    'is_not'                                => 'Is Not',
+    'failed_media_upload'                   => 'Failed to upload the media. Please try again later.'
 
 ];

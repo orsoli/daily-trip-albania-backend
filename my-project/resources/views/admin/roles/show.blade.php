@@ -4,8 +4,6 @@
 
 @section('content')
 <div class="container align-self-center">
-    {{-- Include Notifications --}}
-    @include('partials.notifications')
 
     {{-- Go back btn --}}
     @include('partials.go-back-btn', ['route' => 'roles.index'])

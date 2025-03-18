@@ -129,7 +129,7 @@
                                         class="form-control text-light position-relative @error('city') is-invalid @enderror"
                                         name="city" value="{{ old('city', $destination->city ?? '') }}" required
                                         autocomplete="city">
-                                    <label for="city">{{ __('static.city') }} *</label>
+                                    <label for="city">{{ __('static.city') }} / {{__('static.destination')}} *</label>
                                     {{-- City Error --}}
                                     @error('city')
                                     @include('partials.input-validation-error-msg')

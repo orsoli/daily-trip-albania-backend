@@ -4,8 +4,6 @@
 
 @section('content')
 <div class="container">
-    {{-- Include Notifications --}}
-    @include('partials.notifications')
 
     {{-- Create new Destination btn --}}
     <div class="mb-4">

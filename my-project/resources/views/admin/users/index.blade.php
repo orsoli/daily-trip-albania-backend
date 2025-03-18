@@ -4,8 +4,6 @@
 
 @section('content')
 <div class="container">
-    {{-- Include Notifications --}}
-    @include('partials.notifications')
 
     <div class="my-card px-2 px-md-4">
         {{-- Users Table header navbars --}}
