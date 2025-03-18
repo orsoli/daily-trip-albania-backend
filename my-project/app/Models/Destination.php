@@ -108,8 +108,6 @@ class Destination extends Model
         static::deleting(function ($destination) {
             // Soft delete related galleries
             $destination->gallery()->delete();
-
-
         });
 
         static::restoring(function ($destination) {
