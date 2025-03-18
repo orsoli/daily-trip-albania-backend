@@ -95,8 +95,8 @@ class DestinationController extends Controller
             $file = $request->file('thumbnail');
 
             // Upload the file to Cloudinary with a transformation (resize and crop)
-            $mediaServices = new CloudinaryService();
-            $uploadedFile = $mediaServices->upload($file, 'destinations_thumbnails', [
+            $mediaService = new CloudinaryService();
+            $uploadedFile = $mediaService->upload($file, 'destinations_thumbnails', [
                     'width' => 400,
                     'height' => 300,
                     'crop' => 'fill',

@@ -12,8 +12,9 @@ use App\Models\Region;
 use App\Models\Service;
 use App\Models\Tour;
 use App\Models\User;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class TourController extends Controller
@@ -105,21 +106,24 @@ class TourController extends Controller
         if ($request->hasFile('thumbnail')) {
             // Get the uploaded file
             $file = $request->file('thumbnail');
-            // Upload the file to Cloudinary with a transformation (resize and crop)
-            $uploadedFile = Cloudinary::upload($file->getRealPath(), [
-                'folder' => 'tours_thumbnails',
-                'transformation' => [
-                    [
-                        'width' => 400,
-                        'height' => 300,
-                        'crop' => 'fill',
-                        'quality' => 'auto', // Automatically adjust quality
-                        'format' => 'webp' // Force WebP format
-                    ]
-                ]
-            ]);
 
-            $tourData['thumbnail'] = $uploadedFile->getSecurePath();
+            // Upload the file to Cloudinary with a transformation (resize and crop)
+            $mediaService = new CloudinaryService();
+            $uploadedFile = $mediaService->upload($file, 'tours_thumbnails', [
+                    'width' => 400,
+                    'height' => 300,
+                    'crop' => 'fill',
+                    'quality' => 'auto',
+                    'format' => 'webp'
+                ]);
+
+            if($uploadedFile){
+                $tourData['thumbnail'] = $uploadedFile['url'];
+            }else{
+                Log::error('Thumbnail upload failed');
+                session()->flash('error', __('static.failed_media_upload'));
+                return redirect()->back()->withInput();
+            }
         }
 
         $newTour = Tour::create($tourData);
@@ -131,32 +135,33 @@ class TourController extends Controller
 
         // Upload gallery images to Cloudinary if provided
         if ($request->hasFile('gallery_images')) {
-            foreach ($request->file('gallery_images') as $image) {
-                // Upload each image to Cloudinary
-                $uploadedFile = Cloudinary::upload($image->getRealPath(), [
-                    'folder' => 'tours_gallery', // Specify the folder where gallery images will be stored
-                    'transformation' => [
-                    [
-                        'width' => 1200,
-                        'height' => 800,
+            $files = $request->file('gallery_images');
+            foreach ( $files as $file) {
+                // Upload each file to Cloudinary
+                $mediaServices = new CloudinaryService();
+                $uploadedFile = $mediaServices->upload($file, 'tours_gallery', [
+                        'width' => 500,
+                        'height' => 500,
                         'crop' => 'limit',
-                        'quality' => 'auto', // Automatically adjust quality
-                        'format' => 'webp' // Force WebP format
-                    ]
-                ]
+                        'quality' => 'auto',
+                        'format' => 'webp'
+                    ]);
 
-                ]);
-
-                // Get the secure URL of the uploaded gallery image
-                $imageUrl = $uploadedFile->getSecurePath();
-
-                // Add each uploaded image URL to the gallery table associated with the tour
-                $newTour->gallery()->create([
-                    'url' => $imageUrl,
-                    'tour_id' => $newTour->id,
-                    'caption' => $image->getClientOriginalName(),
-                ]);
+                if($uploadedFile){
+                    // Add each uploaded image URL to the gallery table associated with the tour
+                    $newTour->gallery()->create([
+                        'url' => $uploadedFile['url'],
+                        'tour_id' => $newTour->id,
+                        'caption' => $uploadedFile['caption'],
+                    ]);
+                }else{
+                    Log::error('Gallery image upload failed');
+                    session()->flash('error', __('static.failed_media_upload'));
+                    return redirect()->back()->withInput();
+                }
             }
+
+
         }
 
         session()->flash('success', $newTour->title . ' ' . __('static.success_created'));
@@ -209,32 +214,39 @@ class TourController extends Controller
         // Store the name of the user who updated the tour
         $tourData['updated_by'] = auth()->user()->email;
 
-        // If a new thumbnail is uploaded, remove the old one and upload the new one
+        // If a new thumbnail is uploaded, delete the old one and upload the new one
         if ($request->hasFile('thumbnail')) {
-            // Parse only the public_id from the full URL
-            $publicId = pathinfo(parse_url($tour->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
+            // Get the uploaded file
+            $file = $request->file('thumbnail');
+
             // Delete the previous thumbnail from Cloudinary
             if ($tour->thumbnail) {
-                Cloudinary::destroy('tours_thumbnails/' . $publicId);
+                // Parse only the public_id from the full URL
+                $parsedUrl = pathinfo(parse_url($tour->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
+                $publicId = 'tours_thumbnails/' . $parsedUrl;
+
+                $mediaService = new CloudinaryService();
+                $mediaService->destroy($publicId);
             }
 
             // Upload the new thumbnail to Cloudinary with transformations
-            $file = $request->file('thumbnail');
-            $uploadedFile = Cloudinary::upload($file->getRealPath(), [
-                'folder' => 'tours_thumbnails',
-                'transformation' => [
-                    [
-                        'width'   => 400,
-                        'height'  => 300,
-                        'crop'    => 'fill',
-                        'quality' => 'auto', // Automatically adjust quality
-                        'format' => 'webp' // Force WebP format
-                    ]
-                ]
-            ]);
+            $mediaServices = new CloudinaryService();
+            $uploadedFile = $mediaServices->upload($file, 'tours_thumbnails', [
+                    'width' => 400,
+                    'height' => 300,
+                    'crop' => 'fill',
+                    'quality' => 'auto',
+                    'format' => 'webp'
+                ]);
 
-            // Store the new thumbnail URL
-            $tourData['thumbnail'] = $uploadedFile->getSecurePath();
+            if($uploadedFile){
+                $tourData['thumbnail'] = $uploadedFile['url'];
+            }else{
+                Log::error('Thumbnail upload failed');
+                session()->flash('error', __('static.failed_media_upload'));
+                return redirect()->back()->withInput();
+            }
+
         }
 
         // Update the tour with the modified data
@@ -256,43 +268,53 @@ class TourController extends Controller
 
         // Delete selected gallery images if the user requested
         if ($request->has('delete_gallery_images')) {
-            foreach ($request->delete_gallery_images as $imageId) {
-                $image = $tour->gallery()->find($imageId);
-                if ($image) {
+
+            $files = $request->delete_gallery_images;
+
+            foreach ($files as $fileId) {
+                $file = $tour->gallery()->find($fileId);
+                if ($file) {
                     // Extract public_id from full URL
-                    $publicId = pathinfo(parse_url($image->url, PHP_URL_PATH), PATHINFO_FILENAME);
+                    $parsedUrl = pathinfo(parse_url($file->url, PHP_URL_PATH), PATHINFO_FILENAME);
+                    $publicId = 'tours_gallery/' . $parsedUrl;
+
+
                     // Delete from Cloudinary
-                    Cloudinary::destroy('tours_gallery/' . $publicId);
+                    $mediaService = new CloudinaryService();
+                    $mediaService->destroy($publicId);
 
                     // Remove from the database
-                    $image->forceDelete();
+                    $file->forceDelete();
                 }
             }
         }
 
         // Upload new gallery images if provided
-        if ($request->hasFile('gallery_images') && count($request->file('gallery_images')) > 0) {
-            foreach ($request->file('gallery_images') as $image) {
-                // Upload image to Cloudinary
-                $uploadedFile = Cloudinary::upload($image->getRealPath(), [
-                    'folder' => 'tours_gallery',
-                    'transformation' => [
-                        [
-                            'width' => 1200,
-                            'height' => 800,
-                            'crop' => 'limit',
-                            'quality' => 'auto', // Automatically adjust quality
-                            'format' => 'webp' // Force WebP format
-                        ]
-                    ]
-                ]);
+        if ($request->hasFile('gallery_images')) {
+            $files = $request->file('gallery_images');
+            foreach ( $files as $file) {
+                // Upload each file to Cloudinary
+                $mediaServices = new CloudinaryService();
+                $uploadedFile = $mediaServices->upload($file, 'tours_gallery', [
+                        'width' => 500,
+                        'height' => 500,
+                        'crop' => 'limit',
+                        'quality' => 'auto',
+                        'format' => 'webp'
+                    ]);
 
-                // Store the uploaded image in the database
-                $tour->gallery()->create([
-                    'url' => $uploadedFile->getSecurePath(),
-                    'tour_id' => $tour->id,
-                    'caption' => $image->getClientOriginalName(),
-                ]);
+                if($uploadedFile){
+                    // Add each uploaded image URL to the gallery table associated with the tour$tour
+                    $tour->gallery()->create([
+                        'url' => $uploadedFile['url'],
+                        'tour$tour_id' => $tour->id,
+                        'caption' => $uploadedFile['caption'],
+                    ]);
+                }else{
+                    Log::error('Gallery image upload failed');
+                    session()->flash('error', __('static.failed_media_upload'));
+                    return redirect()->back()->withInput();
+                }
             }
         }
 
@@ -341,26 +363,35 @@ class TourController extends Controller
     {
         $tour = Tour::onlyTrashed()->findOrFail($id);
 
-        // Delete the thumbnail from Cloudinary if it exists
+        // If a new thumbnail is uploaded, delete the old one and upload the new one
         if ($tour->thumbnail) {
             // Parse only the public_id from the full URL
-            $publicId = pathinfo(parse_url($tour->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
-            // Delete the previous thumbnail from Cloudinary
-            if ($tour->thumbnail) {
-                Cloudinary::destroy('tours_thumbnails/' . $publicId);
-            }
+            $parsedUrl = pathinfo(parse_url($tour->thumbnail, PHP_URL_PATH), PATHINFO_FILENAME);
+            $publicId = 'tours_thumbnails/' . $parsedUrl;
+
+            $mediaService = new CloudinaryService();
+            $mediaService->destroy($publicId);
         }
 
         // Get only trashed galleries
-        $galleries = $tour->gallery()->onlyTrashed()->get();
+        $files = $tour->gallery()->onlyTrashed()->get();
+
         // Delete selected gallery images if the user requested
-        if ($galleries->isNotEmpty()) {
-            foreach ($galleries as $image) {
-                // Extract public_id from full URL
-                $publicId = pathinfo(parse_url($image->url, PHP_URL_PATH), PATHINFO_FILENAME);
-                // Delete from Cloudinary
-                Cloudinary::destroy('tours_gallery/' . $publicId);
-             }
+        if ($files->isNotEmpty()) {
+            foreach ($files as $file) {
+                if ($file) {
+                    // Extract public_id from full URL
+                    $parsedUrl = pathinfo(parse_url($file->url, PHP_URL_PATH), PATHINFO_FILENAME);
+                    $publicId = 'tours_gallery/' . $parsedUrl;
+
+                    // Delete from Cloudinary
+                    $mediaService = new CloudinaryService();
+                    $mediaService->destroy($publicId);
+
+                    // Remove from the database
+                    $file->forceDelete();
+                }
+            }
         }
 
         $tour->forceDelete();
