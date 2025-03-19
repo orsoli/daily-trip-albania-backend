@@ -62,7 +62,6 @@
                                 <img src="{{ asset('storage/img/img-placeholder.png') }}" alt="{{$tour->title}}"
                                     class="thumbnail">
                                 @endif
-
                             </div>
                             <div class="col fw-bold text-truncate">{{ $tour->title }}
                             </div>

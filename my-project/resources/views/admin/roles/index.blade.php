@@ -12,7 +12,7 @@
             <a href="{{route('roles.show', $role)}}">
                 <div class="card my-card">
                     <div class="card-body d-flex">
-                        <div class="w-25 text-center d-flex flex-column align-items-center">
+                        <div class="text-center d-flex flex-column align-items-center">
                             <div class="role-logo" style="width: 100px">
                                 @if ($role->slug === 'super-admin')
                                 <img src="{{asset('storage/img/super-admin.png')}}" alt="super-admin-logo">

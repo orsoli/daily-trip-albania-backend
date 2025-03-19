@@ -167,18 +167,20 @@ class Tour extends Model
         static::deleting(function ($tour) {
             // Soft delete related galleries
             $tour->gallery()->delete();
-
+            $tour->itinerary()->delete();
 
         });
 
         static::restoring(function ($tour) {
             // Restore related galleries when restoring a tour
             $tour->gallery()->restore();
+            $tour->itinerary()->restore();
         });
 
         static::forceDeleted(function ($tour) {
             // Permanently delete related galleries when tour is force deleted
             $tour->gallery()->forceDelete();
+            $tour->itinerary()->forceDelete();
         });
     }
 
