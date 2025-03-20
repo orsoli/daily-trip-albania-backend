@@ -133,6 +133,21 @@ class TourController extends Controller
         $newTour->destinations()->sync($request->destinations ?? []);
         $newTour->services()->sync($request->services ?? []);
 
+        // Handle itineraries if provided
+        if($request->itineraries){
+            // Create itineraries for this tour
+            foreach($request->itineraries as $itinerary){
+                $newTour->itinerary()->create([
+                    'tour_id' => $newTour->id,
+                    'day' => $itinerary['day'],
+                    'start_at' => $itinerary['start_at'],
+                    'lunch_time' => $itinerary['lunch_time'],
+                    'end_at' => $itinerary['end_at'],
+                    'activities' => $itinerary['activities'],
+                ]);
+            }
+        };
+
         // Upload gallery images to Cloudinary if provided
         if ($request->hasFile('gallery_images')) {
             $files = $request->file('gallery_images');

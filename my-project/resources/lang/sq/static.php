@@ -58,6 +58,8 @@ return [
 
     'check_options'                         => 'Qeko Opsionet',
     'select_options'                        => 'Selekto Opsionet',
+    'create_itinerary'                      => 'Krijo Itinerarin',
+
 
     'destinations'                          => 'Destinacione',
     'destination'                           => 'Destinacion',

@@ -79,6 +79,33 @@
                                 </div>
                             </div>
 
+                            {{-- Itineraries --}}
+                            <div class="row border rounded-4 py-4 my-3 position-relative">
+
+                                {{-- Create itinerary label --}}
+                                <div
+                                    class="col border rounded-5 bg-primary w-auto px-2 position-absolute top-0 start-10 translate-middle-y">
+                                    {{__('static.create_itinerary')}}
+                                </div>
+
+                                <div class="col" id="itineraries-container" data-day-label="{{ __('static.day') }}"
+                                    data-start-time-label="{{ __('itineraries.start_time') }}"
+                                    data-lunch-time-label="{{ __('itineraries.lunch_time') }}"
+                                    data-end-time-label="{{ __('itineraries.end_time') }}"
+                                    data-activities-label="{{ __('static.activities') }}"></div>
+
+                                {{-- Add new itinerary button --}}
+                                <div class="col-12 text-center py-3">
+                                    <button type="button"
+                                        class="btn text-light bg-primary bg-opacity-75 border rounded-5"
+                                        onclick="addItinerary()">
+                                        <i class="bi bi-patch-plus"></i>
+                                        {{__('itineraries.add_itinerary')}}
+                                    </button>
+                                </div>
+                            </div>
+
+
                             {{-- Duration --}}
                             <div class="col-12 col-md-6 input-container">
                                 <div class="position-relative">
@@ -122,7 +149,7 @@
                             {{-- Selecting list --}}
                             <div class="row border rounded-4 py-2 my-3 position-relative">
 
-                                {{-- Container title --}}
+                                {{-- Container label --}}
                                 <div
                                     class="col border rounded-5 bg-primary w-auto px-2 position-absolute top-0 start-10 translate-middle-y">
                                     {{__('static.select_options')}}
@@ -294,7 +321,7 @@
                                 <div class="position-relative">
                                     <input id="price" type="number"
                                         class="form-control @error('price') is-invalid @enderror" name="price"
-                                        value="{{ old('price', $tour->price ?? '') }}" required autocomplete="price">
+                                        value="{{ old('price', $tour->price ?? '') }}" required autocomplete="off">
                                     <label for="price">{{__('static.price')}} *</label>
                                     {{-- price Error --}}
                                     @error('price')
@@ -423,6 +450,6 @@
 </div>
 @endsection
 
-@section('add-scss')
-@vite(['resources/js/form-btn-disable.js'])
+@section('add-script')
+@vite(['resources/js/itinerary.js', 'resources/js/form-btn-disable.js'])
 @endsection

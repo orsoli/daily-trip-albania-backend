@@ -103,7 +103,7 @@
                                         class="form-control custom-date @error('date_of_birth') is-invalid @enderror"
                                         name="date_of_birth"
                                         value="{{ old('date_of_birth', $user->date_of_birth ?? '') }}" required
-                                        autocomplete="date_of_birth">
+                                        autocomplete="of">
                                     <label for="date_of_birth">{{__('static.dob')}} *</label>
                                     {{-- DOB Error --}}
                                     @error('date_of_birth')
@@ -135,7 +135,7 @@
                                     <input id="personal_nr" type="text"
                                         class="form-control @error('personal_nr') is-invalid @enderror"
                                         name="personal_nr" value="{{ old('personal_nr', $user->personal_nr ?? '') }}"
-                                        required autocomplete="personal_nr">
+                                        required autocomplete="off">
                                     <label for="personal_nr">{{__('static.personal_nr')}} *</label>
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
@@ -153,7 +153,7 @@
                                 <div class="position-relative">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                        required autocomplete="off">
                                     <label for="password">{{__('static.password')}} *</label>
                                     {{-- Input instructions --}}
                                     @include('partials.input-instruction', ['instructionMessages' =>
@@ -169,7 +169,7 @@
                             <div class="col-12 col-md-6 input-container">
                                 <div class="position-relative">
                                     <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                                        name="password_confirmation" required autocomplete="off">
                                     <label for="password-confirm">{{__('static.confirm_password')
                                         }} *</label>
                                 </div>

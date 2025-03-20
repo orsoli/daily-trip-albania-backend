@@ -28,8 +28,6 @@ class ItineraryFactory extends Factory
 
             return [
                 'tour_id'     => Tour::inRandomOrder()->first()->id,
-                'name'        => $name,
-                'slug'        => Str::slug($name),
                 'start_at'    => $this->faker->time('H:i'),
                 'lunch_time'  => $this->faker->time('H:i'),
                 'end_at'      => $this->faker->time('H:i'),

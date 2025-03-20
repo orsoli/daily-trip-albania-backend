@@ -19,7 +19,6 @@ class Itinerary extends Model
      */
     protected $fillable = [
         'tour_id',
-        'slug',
         'day',
         'start_at',
         'lunch_time',

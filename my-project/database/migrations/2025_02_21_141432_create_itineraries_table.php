@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('itineraries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tour_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->integer('day')->nullable();
+            $table->string('day')->nullable();
             $table->time('start_at')->nullable();
             $table->time('lunch_time')->nullable();
             $table->time('end_at')->nullable();

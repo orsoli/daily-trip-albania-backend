@@ -61,6 +61,7 @@ return [
 
     'check_options'                         => 'Check Options',
     'select_options'                        => 'Select Options',
+    'create_itinerary'                      => 'Create Itinerary',
 
     'destinations'                          => 'Destinations',
     'destination'                           => 'Destination',

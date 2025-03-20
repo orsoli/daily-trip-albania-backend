@@ -161,22 +161,26 @@ hr{
         }
     }
 
-    input[type="date"].custom-date {
+    input[type="date"].custom-date,
+    input[type="time"].custom-time {
         &::-webkit-calendar-picker-indicator {
-            filter:           invert(1);
+            filter: invert(1);
         }
 
         &::-webkit-datetime-edit {
-            color:            transparent;
+            color: transparent;
         }
     }
 
     input[type="date"].custom-date:focus,
-    input[type="date"].custom-date:valid {
+    input[type="date"].custom-date:valid,
+    input[type="time"].custom-time:focus,
+    input[type="time"].custom-time:valid {
         &::-webkit-datetime-edit {
-            color:            white;
+            color: white;
         }
     }
+
 
 
     label {
