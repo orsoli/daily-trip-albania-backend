@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
@@ -117,13 +117,13 @@ class Tour extends Model
 
 
     /**
-     * Get the itinerary associated with the tour.
+     * Get the itineraries associated with the tour.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function itinerary(): HasOne
+    public function itineraries(): hasMany
     {
-        return $this->hasOne(Itinerary::class);
+        return $this->hasMany(Itinerary::class);
     }
 
     /**
@@ -156,6 +156,7 @@ class Tour extends Model
         return $this->hasMany(Booking::class, 'booking_tour');
     }
 
+
     /**
      * The "booted" method of the model.
      * This method is used to handle model events such as deleting, restoring, and force deleting.
@@ -167,20 +168,20 @@ class Tour extends Model
         static::deleting(function ($tour) {
             // Soft delete related galleries
             $tour->gallery()->delete();
-            $tour->itinerary()->delete();
+            $tour->itineraries()->delete();
 
         });
 
         static::restoring(function ($tour) {
             // Restore related galleries when restoring a tour
             $tour->gallery()->restore();
-            $tour->itinerary()->restore();
+            $tour->itineraries()->restore();
         });
 
         static::forceDeleted(function ($tour) {
             // Permanently delete related galleries when tour is force deleted
             $tour->gallery()->forceDelete();
-            $tour->itinerary()->forceDelete();
+            $tour->itineraries()->forceDelete();
         });
     }
 

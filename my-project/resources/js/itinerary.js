@@ -1,9 +1,9 @@
-let itineraryIndex = 1;
+// Find the div where itineraries will be added
+let container = document.getElementById("itineraries-container");
+
+let itineraryIndex = container.children.length;
 
 window.addItinerary = function () {
-    // Find the div where itineraries will be added
-    let container = document.getElementById("itineraries-container");
-
     // Get data attribute values
     const dayLabel = container.dataset.dayLabel;
     const startTimeLabel = container.dataset.startTimeLabel;
@@ -66,7 +66,7 @@ window.addItinerary = function () {
 
             <!-- Delete Itinerary Button -->
             <div class="w-auto p-0 position-absolute top-0 end-0 translate-middle">
-                <button class="btn btn-sm bg-danger rounded-5" onclick="removeItinerary(this)">
+                <button class="btn-sm bg-danger rounded-5" onclick="removeItinerary(this)">
                     <i class="bi bi-trash3 text-light"></i>
                 </button>
             </div>
@@ -84,4 +84,45 @@ window.addItinerary = function () {
 window.removeItinerary = function (button) {
     // Remove the corresponding div
     button.closest(".itinerary-container").remove();
+
+    // Update Indexes
+    updateIndexes();
 };
+
+// Update indexes in DOM
+function updateIndexes() {
+    // Decrement index
+    itineraryIndex--;
+
+    let itineraries = document.querySelectorAll(".itinerary-container"); // Get all itineraries
+
+    itineraries.forEach((itinerary, index) => {
+        // Update  attributes who included index for all inputs within the itinerary
+        let inputs = itinerary.querySelectorAll("[name^='itineraries']");
+
+        inputs.forEach((input) => {
+            // Name attribute
+            let nameParts = input.name.match(/itineraries\[\d+\]\[(.+)\]/); // Get old name
+            if (nameParts) {
+                let fieldName = nameParts[1]; // Extract the inner part (e.g., "end_at")
+                input.name = `itineraries[${index}][${fieldName}]`; // Update index
+            }
+
+            // id attrubute
+            let idParts = input.id.match(/(.+)-\d+$/);
+            if (idParts) {
+                input.id = `${idParts[1]}-${index}`;
+            }
+        });
+
+        // Update labels attribute whithin itineraries
+        let labels = itinerary.querySelectorAll("label[for]");
+
+        labels.forEach((label) => {
+            let forParts = label.getAttribute("for").match(/(.+)-\d+$/);
+            if (forParts) {
+                label.setAttribute("for", `${forParts[1]}-${index}`);
+            }
+        });
+    });
+}

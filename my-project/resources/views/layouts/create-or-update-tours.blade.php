@@ -88,16 +88,34 @@
                                     {{__('static.create_itinerary')}}
                                 </div>
 
+                                @if (Route::is('tours.edit'))
+
+                                <div class="col" id="itineraries-container" data-day-label="{{ __('static.day') }}"
+                                    data-start-time-label="{{ __('itineraries.start_time') }}"
+                                    data-lunch-time-label="{{ __('itineraries.lunch_time') }}"
+                                    data-end-time-label="{{ __('itineraries.end_time') }}"
+                                    data-activities-label="{{ __('static.activities') }}">
+                                    @if($tour->itineraries)
+                                    @include('partials.itinerary-inputs', [
+                                    'tour' => $tour,
+                                    ])
+                                    @endif
+                                </div>
+
+                                @else
+
                                 <div class="col" id="itineraries-container" data-day-label="{{ __('static.day') }}"
                                     data-start-time-label="{{ __('itineraries.start_time') }}"
                                     data-lunch-time-label="{{ __('itineraries.lunch_time') }}"
                                     data-end-time-label="{{ __('itineraries.end_time') }}"
                                     data-activities-label="{{ __('static.activities') }}"></div>
 
+                                @endif
+
+
                                 {{-- Add new itinerary button --}}
                                 <div class="col-12 text-center py-3">
-                                    <button type="button"
-                                        class="btn text-light bg-primary bg-opacity-75 border rounded-5"
+                                    <button type="button" class="text-light bg-primary bg-opacity-75 border rounded-5"
                                         onclick="addItinerary()">
                                         <i class="bi bi-patch-plus"></i>
                                         {{__('itineraries.add_itinerary')}}
@@ -321,7 +339,7 @@
                                 <div class="position-relative">
                                     <input id="price" type="number"
                                         class="form-control @error('price') is-invalid @enderror" name="price"
-                                        value="{{ old('price', $tour->price ?? '') }}" required autocomplete="off">
+                                        value="{{ old('price', $tour->price ?? '') }}" required autocomplete="price">
                                     <label for="price">{{__('static.price')}} *</label>
                                     {{-- price Error --}}
                                     @error('price')

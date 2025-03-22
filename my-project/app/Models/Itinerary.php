@@ -37,4 +37,53 @@ class Itinerary extends Model
     {
         return $this->belongsTo(Tour::class);
     }
+
+
+
+
+     // /**
+    //  * Set the start_at attribute.
+    //  *
+    //  * This mutator ensures that the 'start_at' attribute is stored in the
+    //  * correct 'H:i' time format. It takes a time string as input, parses it
+    //  * using the 'H:i' format, and then re-formats it to ensure consistency.
+    //  *
+    //  * @param string $value The time value to be set for the 'start_at' attribute.
+    //  * @return void
+    //  */
+    // public function setStartAtAttribute($value)
+    // {
+    //      dd($value);
+    //     $this->attributes['start_at'] = \Carbon\Carbon::createFromFormat('H:i', $value)->format('H:i');
+    // }
+
+    // /**
+    //  * Set the lunch time attribute.
+    //  *
+    //  * This mutator ensures that the provided lunch time value is formatted
+    //  * correctly as 'H:i' (hours and minutes) before being stored in the
+    //  * 'lunch_time' attribute.
+    //  *
+    //  * @param string $value The lunch time value in 'H:i' format.
+    //  * @return void
+    //  */
+    // public function setLunchTimeAttribute($value)
+    // {
+    //     $this->attributes['lunch_time'] = \Carbon\Carbon::createFromFormat('H:i', $value)->format('H:i');
+    // }
+
+    // /**
+    //  * Set the end_at attribute.
+    //  *
+    //  * This mutator ensures that the 'end_at' attribute is stored in the
+    //  * correct 'H:i' time format. It takes a time string as input, parses it
+    //  * using the 'H:i' format, and then re-formats it to ensure consistency.
+    //  *
+    //  * @param string $value The time value to be set for the 'end_at' attribute.
+    //  * @return void
+    //  */
+    // public function setEndAtAttribute($value)
+    // {
+    //     $this->attributes['end_at'] = \Carbon\Carbon::createFromFormat('H:i', $value)->format('H:i');
+    // }
 }

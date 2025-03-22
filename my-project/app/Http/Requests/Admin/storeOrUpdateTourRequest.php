@@ -46,11 +46,11 @@ class storeOrUpdateTourRequest extends FormRequest
 
             // Itineraries
             'itineraries'               => 'nullable|array|min:0',
-            'itineraries.*.day'         => 'nullable|string|max:255',
-            'itineraries.*.start_at'    => 'nullable|date_format:H:i',
-            'itineraries.*.lunch_time'  => 'nullable|date_format:H:i',
-            'itineraries.*.end_at'      => 'nullable|date_format:H:i|after:itineraries.*.start_time',
-            'itineraries.*.activities'  => 'nullable|string',
+            'itineraries.*.day'         => 'required|string|max:255',
+            'itineraries.*.start_at'    => 'required|date_format:H:i',
+            'itineraries.*.lunch_time'  => 'required|date_format:H:i',
+            'itineraries.*.end_at'      => 'required|date_format:H:i|after:itineraries.*.start_time',
+            'itineraries.*.activities'  => 'required|string',
 
             // Gallery images
             'gallery_images'            => 'nullable|array',
