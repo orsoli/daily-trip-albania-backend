@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('meta')
+<meta name="name-instructions" content='@include(' partials.input-instruction', ['instructionMessages'=>
+__('input-instruction.name') ])'>
+<meta name="description-instructions" content='@include(' partials.input-instruction', ['instructionMessages'=>
+__('input-instruction.description') ])'>
+@endsection
+
 @section('title', __('static.add'). ' or ' . __('tours.update_tours') . ' | ' . config('app.name'))
 
 @section('content')

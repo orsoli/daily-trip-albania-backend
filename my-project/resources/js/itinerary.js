@@ -7,6 +7,14 @@ window.addItinerary = function () {
     // Get submit buttons to active them if disable.
     const submitButtons = document.querySelectorAll(".btn");
 
+    // Get the input instructions
+    const inputDayInstructions = document.querySelector(
+        'meta[name="name-instructions"]'
+    ).content;
+    const inputActivitiesInstructions = document.querySelector(
+        'meta[name="description-instructions"]'
+    ).content;
+
     submitButtons.forEach((btn) => {
         if (btn.disabled) btn.disabled = false;
     });
@@ -28,6 +36,7 @@ window.addItinerary = function () {
                         class="form-control text-light position-relative"
                         name="itineraries[${itineraryIndex}][day]" required autocomplete="day" autofocus>
                     <label for="day-${itineraryIndex}">${dayLabel} *</label>
+                    ${inputDayInstructions}
                 </div>
             </div>
 
@@ -68,6 +77,7 @@ window.addItinerary = function () {
                         class="form-control" rows="2" maxlength="500" required autocomplete="activities"
                         autofocus></textarea>
                     <label for="activities-${itineraryIndex}">${activitiesLabel} *</label>
+                    ${inputActivitiesInstructions}
                 </div>
             </div>
 

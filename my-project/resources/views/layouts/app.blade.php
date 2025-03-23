@@ -2,12 +2,24 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    {{-- This is a placeholder for additional head content --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index, follow">
     <meta name="description" content="{{ config('app.name')}}">
     <meta name="author" content="Orsol Filaj">
+
+    {{-- Dynamic meta --}}
+    <meta name="keywords" content="{{ config('app.keywords', 'travel, tours, destinations, Albania') }}">
+    <meta property="og:title" content="@yield('og:title', config('app.name'))">
+    <meta property="og:description" content="@yield('og:description', 'Explore the beauty of Albania with our tours')">
+    <meta property="og:image" content="@yield('og:image', asset('storage/img/DailyTrip-logo.png'))">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+
+    {{-- This section is intentionally left blank for future meta tags or additional content --}}
+    @yield('meta')
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
