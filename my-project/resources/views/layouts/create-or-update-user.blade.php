@@ -75,10 +75,14 @@
                                 <div class="position-relative">
                                     @if (isset($user) && $user->id === auth()->user()->id)
                                     <p class="fs-3 py-2"> Role: {{auth()->user()->role->name}} </p>
+                                    @else
+                                    <div class="text-secondary px-3 m-0">
+                                        <small> {{__('static.role')}} *</small>
+                                    </div>
                                     @endif
                                     <select id="role" {{isset($user) && $user->id === auth()->user()->id ?
                                         'hidden' : ''}}
-                                        class="form-control bg-transparent rounded-5 mt-3 text-light @error('role')
+                                        class="form-control bg-transparent rounded-5 text-light @error('role')
                                         is-invalid @enderror"
                                         name="role" required>
                                         <option value="" selected disabled>

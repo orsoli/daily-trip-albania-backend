@@ -82,10 +82,10 @@
                             {{-- Region select --}}
                             <div class="col-6">
                                 <div class="position-relative">
-                                    @if (isset($region))
-                                    <p class="fs-3 py-2"> Region: {{$region->name}} </p>
-                                    @endif
-                                    <select id="region" class="form-control bg-transparent rounded-5 mt-3 text-light @error('region')
+                                    <div class="text-secondary px-3 m-0">
+                                        <small> {{__('static.region')}} *</small>
+                                    </div>
+                                    <select id="region" class="form-control bg-transparent rounded-5 text-light @error('region')
                                                                                                 is-invalid @enderror"
                                         name="region_id" required>
                                         <option value="" selected disabled>

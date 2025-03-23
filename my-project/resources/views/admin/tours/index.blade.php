@@ -77,7 +77,7 @@
                             <div class="col">{{ $tour->price }}</div>
                             <div class="col">{{ $tour->currency->code }}</div>
                             <div class="col d-none d-lg-block">{{ $tour->region->name }}</div>
-                            <div class="col d-none d-lg-block">{{ $tour->guide->first_name }}</div>
+                            <div class="col d-none d-lg-block">{{ $tour->guide->first_name ?? 'No Guide' }}</div>
                             <div class="col {{ $tour->is_active ? 'text-success' : 'text-danger'}}">{{ $tour->is_active
                                 ?
                                 __('static.published') :

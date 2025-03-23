@@ -47,9 +47,11 @@
                     </div>
 
                     {{-- Guide Name --}}
+                    @if($tour->guide)
                     <h4 class="card-subtitle mb-3 text-secondary">
                         {{__('tours.guided_by')}} {{$tour->guide->first_name}}
                     </h4>
+                    @endif
 
                     {{-- Action Buttons --}}
                     <div class="actions d-flex justify-content-center align-items-end gap-3 my-3">

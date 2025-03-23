@@ -165,7 +165,7 @@
                             </div>
 
                             {{-- Selecting list --}}
-                            <div class="row border rounded-4 py-2 my-3 position-relative">
+                            <div class="row border rounded-4 py-3 my-3 position-relative">
 
                                 {{-- Container label --}}
                                 <div
@@ -176,11 +176,10 @@
                                 {{-- Guide select --}}
                                 <div class='col-4'>
                                     <div class="position-relative">
-                                        @if (isset($guide))
-                                        <p class="fs-3 py-2"> Guide: {{$guide->first_name}} {{$guide->last_name}}
-                                        </p>
-                                        @endif
-                                        <select id="guide" class="form-control bg-transparent rounded-5 mt-3 text-light @error('guide')
+                                        <div class="text-secondary px-3 m-0">
+                                            <small> {{__('static.guide')}} *</small>
+                                        </div>
+                                        <select id="guide" class="form-control bg-transparent rounded-5 text-light @error('guide')
                                                                         is-invalid @enderror" name="guide_id" required>
                                             <option value="" selected disabled>
                                                 {{__('static.select_guide')}} . . . *</option>
@@ -202,42 +201,43 @@
                                 {{-- Region select --}}
                                 <div class='col-4'>
                                     <div class="position-relative">
-                                        @if (isset($region))
-                                        <p class="fs-3 py-2"> Region: {{$region->name}} </p>
-                                        @endif
-                                        <select id="region" class="form-control bg-transparent rounded-5 mt-3 text-light @error('region')
-                                                                        is-invalid @enderror" name="region_id"
-                                            required>
-                                            <option value="" selected disabled>
-                                                {{__('static.select_region')}} . . . *</option>
-                                            @foreach ($regions as $region)
-                                            <option value="{{ $region->id }}" {{ old('region_id', $tour->region_id ??
-                                                '') ==
-                                                $region->id ?
-                                                "selected" : "" }}>{{$region->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        {{-- region Error --}}
-                                        @error('region')
-                                        @include('partials.input-validation-error-msg')
-                                        @enderror
+                                        <div>
+                                            <div class="text-secondary px-3 m-0">
+                                                <small> {{__('static.region')}} *</small>
+                                            </div>
+                                            <select id="region" class="form-control bg-transparent rounded-5 text-light @error('region')
+                                            is-invalid @enderror" name="region_id" required>
+                                                <option value="" selected disabled>
+                                                    {{__('static.select_region')}} . . . *</option>
+                                                @foreach ($regions as $region)
+                                                <option value="{{ $region->id }}" {{ old('region_id', $tour->region_id
+                                                    ??
+                                                    '') ==
+                                                    $region->id ?
+                                                    "selected" : "" }}>{{$region->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            {{-- region Error --}}
+                                            @error('region')
+                                            @include('partials.input-validation-error-msg')
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
 
                                 {{-- Accomodation select --}}
                                 <div class='col-4'>
                                     <div class="position-relative">
-                                        @if (isset($accomodation))
-                                        <p class="fs-3 py-2"> Accommodation: {{$accommodation->name}} </p>
-                                        @endif
-                                        <select id="accommodation" class="form-control bg-transparent rounded-5 mt-3 text-light @error('accommodation')
+                                        <div class="text-secondary px-3 m-0">
+                                            <small> {{__('static.accommodation')}}</small>
+                                        </div>
+                                        <select id="accommodation" class="form-control bg-transparent rounded-5 text-light @error('accommodation')
                                                                         is-invalid @enderror" name="accommodation_id">
-                                            <option value="" selected disabled>
+                                            <option value="" selected>
                                                 {{__('static.select_accommodation')}} . . . </option>
                                             @foreach ($accommodations as $accommodation)
                                             <option value="{{ $accommodation->id }}" {{ old('accommodation_id', $tour->
-                                                accommodation_id ??
-                                                '') ==
+                                                accommodation_id ?? '') ==
                                                 $accommodation->id ?
                                                 "selected" : "" }}>{{$accommodation->property_name }}</option>
                                             @endforeach

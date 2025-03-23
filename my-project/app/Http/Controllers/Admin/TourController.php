@@ -287,7 +287,7 @@ class TourController extends Controller
 
 
 
-        //! ----------Itineraries -----------------
+        //!----------Itineraries -----------------
 
         // Get request and tour itineraries data
         $requestItineraries = $request->itineraries ?? [];
