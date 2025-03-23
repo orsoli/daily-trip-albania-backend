@@ -4,6 +4,13 @@ let container = document.getElementById("itineraries-container");
 let itineraryIndex = container.children.length;
 
 window.addItinerary = function () {
+    // Get submit buttons to active them if disable.
+    const submitButtons = document.querySelectorAll(".btn");
+
+    submitButtons.forEach((btn) => {
+        if (btn.disabled) btn.disabled = false;
+    });
+
     // Get data attribute values
     const dayLabel = container.dataset.dayLabel;
     const startTimeLabel = container.dataset.startTimeLabel;
@@ -82,6 +89,13 @@ window.addItinerary = function () {
 
 // Function to remove the added itinerary
 window.removeItinerary = function (button) {
+    // Get submit buttons to active them if disable.
+    const submitButtons = document.querySelectorAll(".btn");
+
+    submitButtons.forEach((btn) => {
+        if (btn.disabled) btn.disabled = false;
+    });
+
     // Remove the corresponding div
     button.closest(".itinerary-container").remove();
 

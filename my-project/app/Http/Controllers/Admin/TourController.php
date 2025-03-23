@@ -153,7 +153,7 @@ class TourController extends Controller
         // Upload gallery images to Cloudinary if provided
         if ($request->hasFile('gallery_images')) {
             $files = $request->file('gallery_images');
-            foreach ( $files as $file) {
+            foreach ( $files as $index => $file) {
                 // Upload each file to Cloudinary
                 $mediaServices = new CloudinaryService();
                 $uploadedFile = $mediaServices->upload($file, 'tours_gallery', [
@@ -170,6 +170,7 @@ class TourController extends Controller
                         'url' => $uploadedFile['url'],
                         'tour_id' => $newTour->id,
                         'caption' => $uploadedFile['caption'],
+                        'order'   => $index
                     ]);
                 }else{
                     Log::error('Gallery image upload failed');
