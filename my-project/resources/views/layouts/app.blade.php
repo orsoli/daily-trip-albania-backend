@@ -71,13 +71,17 @@
                                         </li>
                                         <li>
                                             <a href="{{route('tours.index')}}"
-                                                class="nav-link text-light {{Route::is('tours.index') ? 'active disabled' : 'hover'}}">
+                                                class="nav-link text-light {{Route::is('tours.index') ||
+                                                                            Route::is('tours.create') ||
+                                                                            Route::is('tours.edit') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.tours')}}
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href=" {{route('destinations.index')}}"
-                                                class="nav-link text-light {{Route::is('destinations.index') ? 'active disabled' : 'hover'}}">
+                                                class="nav-link text-light {{Route::is('destinations.index') ||
+                                                                            Route::is('destinations.create') ||
+                                                                            Route::is('destinations.edit') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.destinations')}}
                                             </a>
                                         </li>
@@ -86,12 +90,16 @@
                                         'Super Admin')
                                         <li>
                                             <a data-tab="active_users" href="{{route('user.index')}}"
-                                                class="nav-link text-light {{Route::is('user.index') ? 'active disabled' : 'hover'}}">
+                                                class="nav-link text-light {{Route::is('user.index') ||
+                                                                            Route::is('register') ||
+                                                                            Route::is('user.edit') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.users')}} </a>
                                         </li>
                                         <li>
                                             <a data-tab="active_users" href="{{route('roles.index')}}"
-                                                class="nav-link text-light {{Route::is('roles.index') ? 'active disabled' : 'hover'}}">
+                                                class="nav-link text-light {{Route::is('roles.index') ||
+                                                                            Route::is('roles.create') ||
+                                                                            Route::is('roles.edit') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.roles')}} </a>
                                         </li>
                                         @endif

@@ -1,6 +1,5 @@
 // Find the div where itineraries will be added
-let container = document.getElementById("itineraries-container");
-
+const container = document.getElementById("itineraries-container");
 let itineraryIndex = container.children.length;
 
 window.addItinerary = function () {
@@ -34,7 +33,9 @@ window.addItinerary = function () {
                 <div class="position-relative">
                     <input id="day-${itineraryIndex}" type="text"
                         class="form-control text-light position-relative"
-                        name="itineraries[${itineraryIndex}][day]" required autocomplete="day" autofocus>
+                        name="itineraries[${itineraryIndex}][day]"
+                        ${oldDayValue ? `value = ${oldDayValue}` : ""}
+                        required autocomplete="day" autofocus>
                     <label for="day-${itineraryIndex}">${dayLabel} *</label>
                     ${inputDayInstructions}
                 </div>
@@ -45,7 +46,9 @@ window.addItinerary = function () {
                 <div class="position-relative">
                     <input id="start-time-${itineraryIndex}" type="time"
                         class="form-control custom-time text-light position-relative"
-                        name="itineraries[${itineraryIndex}][start_at]" required autocomplete="off" autofocus>
+                        name="itineraries[${itineraryIndex}][start_at]"
+                        ${oldStartValue ? `value = ${oldStartValue}` : ""}
+                        required autocomplete="off" autofocus>
                     <label for="start-time-${itineraryIndex}">${startTimeLabel} *</label>
                 </div>
             </div>
@@ -55,7 +58,9 @@ window.addItinerary = function () {
                 <div class="position-relative">
                     <input id="lunch-time-${itineraryIndex}" type="time"
                         class="form-control custom-time text-light position-relative"
-                        name="itineraries[${itineraryIndex}][lunch_time]" required autocomplete="off" autofocus>
+                        name="itineraries[${itineraryIndex}][lunch_time]"
+                        ${oldLunchValue ? `value = ${oldLunchValue}` : ""}
+                        required autocomplete="off" autofocus>
                     <label for="lunch-time-${itineraryIndex}">${lunchTimeLabel} *</label>
                 </div>
             </div>
@@ -65,7 +70,9 @@ window.addItinerary = function () {
                 <div class="position-relative">
                     <input id="end-time-${itineraryIndex}" type="time"
                         class="form-control custom-time text-light position-relative"
-                        name="itineraries[${itineraryIndex}][end_at]" required autocomplete="off" autofocus>
+                        name="itineraries[${itineraryIndex}][end_at]"
+                        ${oldEndValue ? `value="${oldEndValue}"` : ""}
+                        required autocomplete="off" autofocus>
                     <label for="end-time-${itineraryIndex}">${endTimeLabel} *</label>
                 </div>
             </div>
@@ -74,8 +81,9 @@ window.addItinerary = function () {
             <div class="col col-lg-12 input-container">
                 <div class="position-relative">
                     <textarea id="activities-${itineraryIndex}" name="itineraries[${itineraryIndex}][activities]"
-                        class="form-control" rows="2" maxlength="500" required autocomplete="activities"
-                        autofocus></textarea>
+                        class="form-control" rows="2" maxlength="500"
+                        required autocomplete="activities"
+                        autofocus>${oldActivitiesValue ?? ""}</textarea>
                     <label for="activities-${itineraryIndex}">${activitiesLabel} *</label>
                     ${inputActivitiesInstructions}
                 </div>
@@ -148,5 +156,33 @@ function updateIndexes() {
                 label.setAttribute("for", `${forParts[1]}-${index}`);
             }
         });
+    });
+}
+
+// Get the itineraries saved in local storage
+const savedItineraries = JSON.parse(localStorage.getItem("itineraries"));
+
+// Store itinerary values variables
+let oldDayValue;
+let oldStartValue;
+let oldLunchValue;
+let oldEndValue;
+let oldActivitiesValue;
+
+// Render the saved itineraries if exists
+if (savedItineraries) {
+    savedItineraries.forEach((itinerary, key) => {
+        // Get the current value
+        oldDayValue = itinerary[`itineraries[${key}][day]`];
+        oldStartValue = itinerary[`itineraries[${key}][start_at]`];
+        oldLunchValue = itinerary[`itineraries[${key}][lunch_time]`];
+        oldEndValue = itinerary[`itineraries[${key}][end_at]`];
+        oldActivitiesValue = itinerary[`itineraries[${key}][activities]`];
+
+        // Render each itinerary
+        addItinerary();
+
+        // Remove itineraries from storage
+        localStorage.removeItem("itineraries");
     });
 }

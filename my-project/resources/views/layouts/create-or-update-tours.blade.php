@@ -5,6 +5,8 @@
 __('input-instruction.name') ])'>
 <meta name="description-instructions" content='@include(' partials.input-instruction', ['instructionMessages'=>
 __('input-instruction.description') ])'>
+{{--
+<meta name="oldValue" data-input-name="input-name" content=" value='{{ old('itinerary[input-name]','') }}' "> --}}
 @endsection
 
 @section('title', __('static.add'). ' or ' . __('tours.update_tours') . ' | ' . config('app.name'))

@@ -157,7 +157,8 @@
 
 @section('add-script')
 @if (isset($tours) && $tours->count() && !request()->query('with_trashed'))
-@vite(['resources/js/actions-btns.js', 'resources/js/nav-tabs.js'])
+@vite(['resources/js/actions-btns.js', 'resources/js/nav-tabs.js',
+'resources/js/remove-itineraries-from-localstorage.js'])
 @else
 @vite(['resources/js/nav-tabs.js'])
 @endif
