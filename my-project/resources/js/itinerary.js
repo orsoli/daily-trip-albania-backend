@@ -34,7 +34,7 @@ window.addItinerary = function () {
                     <input id="day-${itineraryIndex}" type="text"
                         class="form-control text-light position-relative"
                         name="itineraries[${itineraryIndex}][day]"
-                        ${oldDayValue ? `value = ${oldDayValue}` : ""}
+                        ${oldDayValue ? `value = "${oldDayValue}"` : ""}
                         required autocomplete="day" autofocus>
                     <label for="day-${itineraryIndex}">${dayLabel} *</label>
                     ${inputDayInstructions}
@@ -47,7 +47,7 @@ window.addItinerary = function () {
                     <input id="start-time-${itineraryIndex}" type="time"
                         class="form-control custom-time text-light position-relative"
                         name="itineraries[${itineraryIndex}][start_at]"
-                        ${oldStartValue ? `value = ${oldStartValue}` : ""}
+                        ${oldStartValue ? `value = "${oldStartValue}"` : ""}
                         required autocomplete="off" autofocus>
                     <label for="start-time-${itineraryIndex}">${startTimeLabel} *</label>
                 </div>
@@ -59,7 +59,7 @@ window.addItinerary = function () {
                     <input id="lunch-time-${itineraryIndex}" type="time"
                         class="form-control custom-time text-light position-relative"
                         name="itineraries[${itineraryIndex}][lunch_time]"
-                        ${oldLunchValue ? `value = ${oldLunchValue}` : ""}
+                        ${oldLunchValue ? `value = "${oldLunchValue}"` : ""}
                         required autocomplete="off" autofocus>
                     <label for="lunch-time-${itineraryIndex}">${lunchTimeLabel} *</label>
                 </div>
@@ -181,8 +181,9 @@ if (savedItineraries) {
 
         // Render each itinerary
         addItinerary();
-
-        // Remove itineraries from storage
-        localStorage.removeItem("itineraries");
     });
+    console.log(savedItineraries);
+
+    // Remove itineraries from storage
+    localStorage.removeItem("itineraries");
 }

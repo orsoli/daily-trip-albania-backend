@@ -478,5 +478,6 @@ __('input-instruction.description') ])'>
 @endsection
 
 @section('add-script')
-@vite(['resources/js/itinerary.js', 'resources/js/form-btn-disable.js'])
+@vite (array_filter(['resources/js/itinerary.js', 'resources/js/form-btn-disable.js', Route::is('tours.create') ?
+'resources/js/old-itineraries.js' : null]))
 @endsection
