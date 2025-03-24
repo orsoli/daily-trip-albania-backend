@@ -51,7 +51,7 @@
         <div class="row g-2 mt-2">
             @foreach ($destinations as $destination)
             <div class="col-12">
-                <div class="my-card py-3">
+                <div class="my-card py-3 table-hover">
                     <div class="card-body">
                         <div class="row align-items-center m-0">
                             {{-- Destination thumbnail --}}

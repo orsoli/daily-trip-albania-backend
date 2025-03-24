@@ -52,7 +52,7 @@
         <div class="row g-2 mt-2">
             @foreach ($tours as $tour)
             <div class="col-12">
-                <div class="my-card py-3">
+                <div class="my-card py-3 table-hover">
                     <div class="card-body">
                         <div class="row align-items-center m-0">
                             <div class="col d-none d-lg-block">

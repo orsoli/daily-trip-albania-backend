@@ -64,17 +64,20 @@
                                     @if (Auth::user()->hasVerifiedEmail())
                                     <ul class="list-unstyled d-flex m-0">
                                         <li>
-                                            <a href="{{route('dashboard')}}" class="nav-link text-light">
+                                            <a href="{{route('dashboard')}}"
+                                                class="nav-link text-light {{Route::is('dashboard') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.dashboard')}}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{route('tours.index')}}" class="nav-link text-light">
+                                            <a href="{{route('tours.index')}}"
+                                                class="nav-link text-light {{Route::is('tours.index') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.tours')}}
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="{{route('destinations.index')}}" class="nav-link text-light">
+                                        <li class="">
+                                            <a href=" {{route('destinations.index')}}"
+                                                class="nav-link text-light {{Route::is('destinations.index') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.destinations')}}
                                             </a>
                                         </li>
@@ -83,12 +86,12 @@
                                         'Super Admin')
                                         <li>
                                             <a data-tab="active_users" href="{{route('user.index')}}"
-                                                class="nav-link text-light">
+                                                class="nav-link text-light {{Route::is('user.index') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.users')}} </a>
                                         </li>
                                         <li>
                                             <a data-tab="active_users" href="{{route('roles.index')}}"
-                                                class="nav-link text-light">
+                                                class="nav-link text-light {{Route::is('roles.index') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.roles')}} </a>
                                         </li>
                                         @endif
@@ -105,7 +108,8 @@
                                     @guest
                                     @if (Route::has('login'))
                                     <li class="nav-item">
-                                        <a class="nav-link text-light fs-5" href="{{ route('login') }}">
+                                        <a class="nav-link text-light fs-5 {{Route::is('login') ? 'active disabled' : 'hover'}}"
+                                            href="{{ route('login') }}">
                                             {{ __('static.Login')}}
                                         </a>
                                     </li>
@@ -118,7 +122,7 @@
                                     'Super Admin')
                                     {{-- Add Section --}}
                                     <li class="nav-item dropdown d-none d-md-flex align-self-center">
-                                        <a id="navbarDropdown" class="nav-link text-light dropdown-toggle h-100"
+                                        <a id="navbarDropdown" class="nav-link text-light dropdown-toggle h-100 hover"
                                             href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" v-pre>
                                             {{__('static.add')}}
@@ -127,28 +131,29 @@
                                             aria-labelledby="navbarDropdown">
                                             <ul class="list-unstyled">
                                                 <li>
-                                                    <a class="nav-link text-secondary" href="{{ route('register') }}">
+                                                    <a class="dropdown-item text-secondary"
+                                                        href="{{ route('register') }}">
                                                         <i class="bi bi-plus-circle-dotted"></i>
                                                         {{ __('static.addUser') }}
                                                     </a>
 
                                                 </li>
                                                 <li>
-                                                    <a class="nav-link text-secondary"
+                                                    <a class="dropdown-item text-secondary"
                                                         href="{{ route('roles.create') }}">
                                                         <i class="bi bi-plus-circle-dotted"></i>
                                                         {{ __('static.addRole') }}
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="nav-link text-secondary"
+                                                    <a class="dropdown-item text-secondary"
                                                         href="{{ route('tours.create') }}">
                                                         <i class="bi bi-plus-circle-dotted"></i>
                                                         {{ __('tours.add_tour') }}
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="nav-link text-secondary"
+                                                    <a class="dropdown-item text-secondary"
                                                         href="{{ route('destinations.create') }}">
                                                         <i class="bi bi-plus-circle-dotted"></i>
                                                         {{ __('destinations.add_destination') }}
@@ -160,8 +165,9 @@
                                     @endif
                                     {{-- Auth User Profile --}}
                                     <li class="nav-item dropdown justify-content-center">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-light fs-6 fs-md-5"
-                                            href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        <a id="navbarDropdown"
+                                            class="nav-link dropdown-toggle text-light fs-6 fs-md-5 hover" href="#"
+                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false" v-pre>
                                             <img src="{{ asset('storage/img/user.png') }}" alt="user-img"
                                                 class="rounded-circle bg-light bg-opacity-50 filter-invert p-1 m-1"
@@ -234,19 +240,22 @@
                                     @if (Auth::user()->hasVerifiedEmail())
                                     <ul class="list-unstyled d-flex flex-column flex-md-row m-0">
                                         <li>
-                                            <a href="{{route('dashboard')}}" class="nav-link text-secondary">
+                                            <a href="{{route('dashboard')}}"
+                                                class="nav-link text-secondary {{Route::is('dashboard') ? 'ps-2 active disabled' : 'hover'}}">
                                                 <i class="bi bi-house-door"></i>
                                                 {{__('static.dashboard')}}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{route('tours.index')}}" class="nav-link text-secondary">
+                                            <a href="{{route('tours.index')}}"
+                                                class="nav-link text-secondary {{Route::is('tours.index') ? 'ps-2 active disabled' : 'hover'}}">
                                                 <i class="bi bi-person-walking"></i>
                                                 {{__('static.tours')}}
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{route('destinations.index')}}" class="nav-link text-secondary">
+                                            <a href="{{route('destinations.index')}}"
+                                                class="nav-link text-secondary {{Route::is('destinations.index') ? 'ps-2 active disabled' : 'hover'}}">
                                                 <i class="bi bi-pin-map"></i>
                                                 {{__('static.destinations')}}
                                             </a>
@@ -256,13 +265,13 @@
                                         'Super Admin')
                                         <li>
                                             <a data-tab="active_users" href="{{route('user.index')}}"
-                                                class="nav-link text-secondary">
+                                                class="nav-link text-secondary {{Route::is('user.index') ? 'ps-2 active disabled' : 'hover'}}">
                                                 <i class="bi bi-people-fill"></i>
                                                 {{__('static.users')}} </a>
                                         </li>
                                         <li>
                                             <a data-tab="active_users" href="{{route('roles.index')}}"
-                                                class="nav-link text-secondary">
+                                                class="nav-link text-secondary {{Route::is('roles.index') ? 'ps-2 active disabled' : 'hover'}}">
                                                 <i class="bi bi-person-fill-gear"></i>
                                                 {{__('static.roles')}} </a>
                                         </li>
@@ -281,20 +290,23 @@
                                     ===
                                     'Super Admin')
                                     <li>
-                                        <a class="nav-link text-secondary" href="{{ route('register') }}">
+                                        <a class="nav-link text-secondary {{Route::is('register') ? 'ps-2 active disabled' : 'hover'}}"
+                                            href="{{ route('register') }}">
                                             <i class="bi bi-person-plus"></i>
                                             {{ __('static.addUser') }}
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-secondary" href="{{ route('roles.create') }}">
+                                        <a class="nav-link text-secondary {{Route::is('roles.create') ? 'ps-2 active disabled' : 'hover'}}"
+                                            href="{{ route('roles.create') }}">
                                             <i class="bi bi-person-plus"></i>
                                             {{ __('static.addRole') }}
                                         </a>
                                     </li>
                                     @endif
                                     <li>
-                                        <a class="nav-link text-secondary" href="{{ route('tours.create') }}">
+                                        <a class="nav-link text-secondary {{Route::is('tours.create') ? 'ps-2 active disabled' : 'hover'}}"
+                                            href="{{ route('tours.create') }}">
                                             <i class="bi bi-plus"></i>
                                             {{ __('tours.add_tour') }}
                                         </a>

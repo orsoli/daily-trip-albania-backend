@@ -10,7 +10,7 @@
         @foreach ($roles as $role)
         <div class="col">
             <a href="{{route('roles.show', $role)}}">
-                <div class="card my-card">
+                <div class="card my-card table-hover">
                     <div class="card-body d-flex">
                         <div class="text-center d-flex flex-column align-items-center">
                             <div class="role-logo" style="width: 100px">

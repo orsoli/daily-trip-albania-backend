@@ -20,7 +20,7 @@ body{
 }
 
 hr{
-    border: 1px solid $secondary;
+    border:                   1px solid $secondary;
 }
 
 // Utils
@@ -45,7 +45,7 @@ hr{
 }
 
 .filter-invert{
-    filter:         invert(1);
+    filter:                   invert(1);
 }
 
 .bg-img{
@@ -205,6 +205,28 @@ hr{
     }
 }
 
+.active{
+    border-bottom:            2px solid $secondary;
+    border-top:               2px solid $secondary;
+    border-radius:            20px;
+    padding:                  3px 10px;
+
+
+}
+
+.hover{
+    &:hover{
+        border-radius:        20px;
+        background-color:     rgba($secondary, $alpha: 0.2);
+        transition-duration:  0.5s;
+    }
+}
+
+.table-hover{
+    &:hover{
+        scale:                1.01;
+    }
+}
 // Headers
 .header-logo{
     width:                    40px;
