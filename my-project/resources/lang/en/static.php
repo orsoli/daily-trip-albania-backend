@@ -63,6 +63,8 @@ return [
     'select_options'                        => 'Select Options',
     'create_itinerary'                      => 'Create Itinerary',
 
+    'bookings'                              => 'Bookings',
+    'bookings_statistics'                   => 'Bookings Statistics',
     'destinations'                          => 'Destinations',
     'destination'                           => 'Destination',
     'tours'                                 => 'Tours',

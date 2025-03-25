@@ -23,7 +23,7 @@ class ChekProfileUser
 
             // If the user is a super-admin, they can view all users
             if ($user->role->slug === 'super-admin') {
-                return $next($request); // Lejo aksesin
+                return $next($request);
             }
 
             // For other users (admin, editor, etc.), allow only if the request matches the user's ID

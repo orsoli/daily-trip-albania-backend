@@ -44,8 +44,8 @@
                     <div class="container">
                         <div class="d-flex justify-content-between align-items-center w-100">
                             <!-- BurgerMenu Button -->
-                            <button class="navbar-toggler filter-invert border-0" type="button" data-bs-toggle="modal"
-                                data-bs-target="#burgerMenuModal">
+                            <button class="navbar-toggler filter-invert border-0 hover" type="button"
+                                data-bs-toggle="modal" data-bs-target="#burgerMenuModal">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
 
@@ -77,12 +77,18 @@
                                                 {{__('static.tours')}}
                                             </a>
                                         </li>
-                                        <li class="">
+                                        <li>
                                             <a href=" {{route('destinations.index')}}"
                                                 class="nav-link text-light {{Route::is('destinations.index') ||
                                                                             Route::is('destinations.create') ||
                                                                             Route::is('destinations.edit') ? 'active disabled' : 'hover'}}">
                                                 {{__('static.destinations')}}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href=" {{route('bookings.index')}}"
+                                                class="nav-link text-light {{Route::is('bookings.index') ? 'active disabled' : 'hover'}}">
+                                                {{__('static.bookings')}}
                                             </a>
                                         </li>
                                         @if(Auth::user()->role->name
@@ -249,23 +255,30 @@
                                     <ul class="list-unstyled d-flex flex-column flex-md-row m-0">
                                         <li>
                                             <a href="{{route('dashboard')}}"
-                                                class="nav-link text-secondary {{Route::is('dashboard') ? 'ps-2 active disabled' : 'hover'}}">
+                                                class="nav-link text-secondary {{Route::is('dashboard') ? 'active disabled' : 'hover'}}">
                                                 <i class="bi bi-house-door"></i>
                                                 {{__('static.dashboard')}}
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{route('tours.index')}}"
-                                                class="nav-link text-secondary {{Route::is('tours.index') ? 'ps-2 active disabled' : 'hover'}}">
+                                                class="nav-link text-secondary {{Route::is('tours.index') ? 'active disabled' : 'hover'}}">
                                                 <i class="bi bi-person-walking"></i>
                                                 {{__('static.tours')}}
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{{route('destinations.index')}}"
-                                                class="nav-link text-secondary {{Route::is('destinations.index') ? 'ps-2 active disabled' : 'hover'}}">
+                                                class="nav-link text-secondary {{Route::is('destinations.index') ? 'active disabled' : 'hover'}}">
                                                 <i class="bi bi-pin-map"></i>
                                                 {{__('static.destinations')}}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href=" {{route('bookings.index')}}"
+                                                class="nav-link text-secondary {{Route::is('bookings.index') ? 'active disabled' : 'hover'}}">
+                                                <i class="bi bi-calendar-check"></i>
+                                                {{__('static.bookings')}}
                                             </a>
                                         </li>
                                         @if(Auth::user()->role->name
@@ -305,7 +318,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="nav-link text-secondary {{Route::is('roles.create') ? 'ps-2 active disabled' : 'hover'}}"
+                                        <a class="nav-link text-secondary {{Route::is('roles.create') ? 'active disabled' : 'hover'}}"
                                             href="{{ route('roles.create') }}">
                                             <i class="bi bi-person-plus"></i>
                                             {{ __('static.addRole') }}
@@ -313,10 +326,17 @@
                                     </li>
                                     @endif
                                     <li>
-                                        <a class="nav-link text-secondary {{Route::is('tours.create') ? 'ps-2 active disabled' : 'hover'}}"
+                                        <a class="nav-link text-secondary {{Route::is('tours.create') ? 'active disabled' : 'hover'}}"
                                             href="{{ route('tours.create') }}">
                                             <i class="bi bi-plus"></i>
                                             {{ __('tours.add_tour') }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href=" {{route('destinations.create')}}"
+                                            class="nav-link text-secondary {{Route::is('destinations.create') ? 'active disabled' : 'hover'}}">
+                                            <i class="bi bi-plus"></i>
+                                            {{__('destinations.add_destination')}}
                                         </a>
                                     </li>
                                 </ul>

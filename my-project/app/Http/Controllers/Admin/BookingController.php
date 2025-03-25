@@ -8,12 +8,27 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('verified');
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $bookings = Booking::all();
+
+        return view('admin.bookings.index', compact('bookings'));
     }
 
     /**

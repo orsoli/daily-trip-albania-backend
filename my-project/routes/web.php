@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\DestinationController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RoleController;
@@ -71,5 +72,10 @@ Route::prefix('admin')->group(function () {
     Route::prefix('/destinations/')->group(function(){
         Route::post('{destination}/restore', [DestinationController::class, 'restore'])->name('destinations.restore');
         Route::delete('{destination}/force-delete', [DestinationController::class, 'forceDelete'])->name('destinations.forceDelete');
+    });
+
+    // Bookings Routes
+    Route::prefix('/bookings/')->group(function(){
+        Route::get('', [BookingController::class, 'index'])->name('bookings.index');
     });
 });

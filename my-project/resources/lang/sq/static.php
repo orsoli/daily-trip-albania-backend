@@ -60,7 +60,8 @@ return [
     'select_options'                        => 'Selekto Opsionet',
     'create_itinerary'                      => 'Krijo Itinerarin',
 
-
+    'bookings'                              => 'Rezervimet',
+    'bookings_statistics'                   => 'Statistikat e Rezervimeve',
     'destinations'                          => 'Destinacione',
     'destination'                           => 'Destinacion',
     'tours'                                 => 'Ekskursione',
