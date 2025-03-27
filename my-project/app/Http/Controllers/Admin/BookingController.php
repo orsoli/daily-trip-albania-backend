@@ -28,6 +28,22 @@ class BookingController extends Controller
     {
         $bookings = Booking::all();
 
+        // $statistics = Booking::selectRaw('YEAR(reservation_date) as year, MONTH(reservation_date) as month, COUNT(*) as bookings_count, SUM(total_price) as total_bookings')
+        //     ->groupBy('year', 'month')
+        //     ->orderBy('year')
+        //     ->orderBy('month')
+        //     ->get();
+
+        $statistics = Booking::join('tours', 'bookings.tour_id', '=', 'tours.id')
+            ->selectRaw('tours.title as tour_title, COUNT(bookings.id) as total_bookings')
+            ->groupBy('tours.id', 'tours.title')
+            ->orderBy('tour_title')
+            ->get();
+
+
+
+            dd($statistics);
+
         return view('admin.bookings.index', compact('bookings'));
     }
 

@@ -1,66 +1,70 @@
 @extends('layouts.app')
 
+@section('meta')
+<meta name='tour_statistics' content='@json($tourStatistics ?? '')'>
+@endsection
+
 @section('title', __('static.dashboard') . ' | ' . config('app.name'))
 
-@section('content')
-<div class="container">
-    {{-- Dashboard --}}
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-        <div class="col">
-            <div class="my-card card text-center">
-                <a href="{{route('user.show', auth()->user())}}">
-                    <h2 class="text-secondary">
-                        <i class="bi bi-person-circle me-3"></i> {{__('static.my_profile')}}
-                    </h2>
-                </a>
-            </div>
+
+@section('content') <div class="container">
+    <div class="my-card p-3">
+        {{-- Welcome title --}}
+        <div class="slogan col-lg-5 text-light mb-3">
+            <h3>
+                {{__('static.hello')}}
+                {{Auth::user()->first_name}} !
+            </h3>
+            <p>
+                {{__('dashboard.slogan')}}
+            </p>
         </div>
-        <div class="col">
-            <div class="my-card card text-center">
-                <a href="#">
-                    <h2 class="text-secondary">
-                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
-                    </h2>
-                </a>
-            </div>
+
+        <div class="fs-4 p-2 text-secondary">
+            Overview
         </div>
-        <div class="col">
-            <div class="my-card card text-center">
-                <a href="#">
-                    <h2 class="text-secondary">
-                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
-                    </h2>
-                </a>
+
+        {{-- Total statistics --}}
+        <div class="row row-cols-3 row-cols-md-5 mb-3 g-3">
+            @foreach ($columns as $column)
+            <div class="col">
+                <div class="my-card bg-primary bg-opacity-50 text-center p-2">
+                    <div class="badge text-bg-info rounded-pill">
+                        {{$column['title']}}
+                    </div>
+                    <div class="fs-4 fw-bold text-secondary">
+                        <i class="{{$column['icon']}}"></i>
+                        <span class="ms-2"> {{$column['tot']}} </span>
+                    </div>
+                </div>
             </div>
+            @endforeach
         </div>
-        <div class="col">
-            <div class="my-card card text-center">
-                <a href="#">
-                    <h2 class="text-secondary">
-                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
-                    </h2>
-                </a>
+        {{-- Chart statistics --}}
+        <div class="row mb-3">
+            <div class="col">
+                @if (isset($tourStatistics))
+                <canvas id="tourBookingsChart" class="border rounded-5 bg-primary bg-opacity-50 p-2"></canvas>
+                @else
+                <h3 class="text-secondary text-center">
+                    {{__('static.empty')}}
+                </h3>
+                @endif
             </div>
-        </div>
-        <div class="col">
-            <div class="my-card card text-center">
-                <a href="#">
-                    <h2 class="text-secondary">
-                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
-                    </h2>
-                </a>
-            </div>
-        </div>
-        <div class="col">
-            <div class="my-card card text-center">
-                <a href="#">
-                    <h2 class="text-secondary">
-                        <i class="bi bi-person-badge me-3"></i>{{__('static.destinations')}}
-                    </h2>
-                </a>
+            <div class="col col-4">
+                @if (isset($tourStatistics))
+                <canvas id="bestTourChart"></canvas>
+                @else
+                <h3 class="text-secondary text-center">
+                    {{__('static.empty')}}
+                </h3>
+                @endif
             </div>
         </div>
     </div>
-
 </div>
+@endsection
+
+@section('add-script')
+@vite (['resources/js/dashboard/tour-bookings-statistics.js', 'resources/js/dashboard/best-tour-statistics.js'])
 @endsection

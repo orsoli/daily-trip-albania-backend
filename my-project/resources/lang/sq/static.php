@@ -1,5 +1,6 @@
 <?php
 return [
+    'hello'                                 => 'Pershendetje',
     'menu'                                  => 'Menu',
     'toggle_navigation'                     => 'Ndrysho Navigimin',
     'admin_panel'                           => 'Paneli i Adminit',

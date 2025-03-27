@@ -35,7 +35,7 @@
         </div>
 
         {{-- Chck if table is not empty --}}
-        @if ($destinations->isNotEmpty())
+        @if (isset($destinations) && $destinations->isNotEmpty())
         <!-- Columns Head-->
         <div class="row text-info fw-bold px-3">
             @foreach ($columns as $column)

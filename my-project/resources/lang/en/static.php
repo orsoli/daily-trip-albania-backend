@@ -1,5 +1,6 @@
 <?php
 return [
+    'hello'                                 => 'Hello',
     'menu'                                  => 'Menu',
     'toggle_navigation'                     => 'Toggle Navigation',
     'admin_panel'                           => 'Admin Panel',
