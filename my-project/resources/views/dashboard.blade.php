@@ -42,7 +42,7 @@
         </div>
         {{-- Chart statistics --}}
         <div class="row mb-3">
-            <div class="col">
+            <div class="col align-content-center">
                 @if (isset($tourStatistics))
                 <canvas id="tourBookingsChart" class="border rounded-5 bg-primary bg-opacity-50 p-2"></canvas>
                 @else
@@ -51,7 +51,7 @@
                 </h3>
                 @endif
             </div>
-            <div class="col col-4">
+            <div class="col col-lg-4 align-content-center">
                 @if (isset($tourStatistics))
                 <canvas id="bestTourChart"></canvas>
                 @else

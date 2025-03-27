@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 labels: tourTitles,
                 datasets: [
                     {
-                        label: "Tot. Bookings",
+                        label: ["Tot. Bookings"],
                         data: tourBookings,
                         borderRadius: 30,
                         borderColor: "rgb(75, 192, 192)",

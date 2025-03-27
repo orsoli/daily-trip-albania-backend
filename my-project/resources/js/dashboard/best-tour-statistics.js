@@ -25,7 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Get the max percntage of bookings
         const maxBookingsPercentage = Math.max(...bookingsPercentage);
-        console.log(maxBookingsPercentage);
+
+        const bestToursTitles = tourStatistics
+            .filter(
+                (tour) =>
+                    (tour.total_bookings / totalBookings) * 100 ===
+                    maxBookingsPercentage
+            )
+            .map((tour) => tour.tour_title);
+        console.log(bestToursTitles);
 
         // Function to set colors based on values
         function generateColorBasedOnValue(value) {
@@ -39,25 +47,70 @@ document.addEventListener("DOMContentLoaded", () => {
             return "rgb(67, 167, 167)";
         }
 
+        // Get chart colors
         const colors = bookingsPercentage.map((percentage) =>
             generateColorBasedOnValue(percentage)
         );
 
-        new Chart(ctx, {
-            type: "doughnut",
-            data: {
-                datasets: [
-                    {
-                        label: "Best Tour",
-                        data: bookingsPercentage, // 70% completed, 30% remaining
-                        backgroundColor: colors,
-                        borderWidth: 0.5,
-                        borderColor: "black",
-                        borderRadius: 2,
-                        hoverOffset: 10,
-                    },
-                ],
+        // Chart Setup
+        const data = {
+            labels: bestToursTitles,
+            datasets: [
+                {
+                    data: bookingsPercentage, //  completed, remaining
+                    backgroundColor: colors,
+                    borderWidth: 0.5,
+                    borderColor: "black",
+                    borderRadius: 2,
+                    hoverOffset: 10,
+                },
+            ],
+        };
+
+        // Text in chart function
+        const chartText = {
+            id: "chartText",
+            beforeDatasetsDraw(chart) {
+                const { ctx } = chart;
+
+                const datasetMeta = chart.getDatasetMeta(0);
+
+                if (!datasetMeta || datasetMeta.data.length === 0) {
+                    return;
+                }
+
+                const xCenter = datasetMeta.data[0].x;
+                const yCenter = datasetMeta.data[0].y;
+
+                ctx.save();
+                ctx.font = "italic 14px Arial";
+                ctx.fillStyle = "rgb(0, 255, 255)";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("Best Tours", xCenter, yCenter - 50);
+
+                ctx.save();
+                ctx.font = "bold 40px Arial";
+                ctx.fillStyle = "rgb(0, 255, 255)";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(`${maxBookingsPercentage} % `, xCenter, yCenter);
+
+                ctx.save();
+                ctx.font = "italic 14px Arial";
+                ctx.fillStyle = "rgb(0, 255, 255)";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("of all Bookings", xCenter, yCenter + 50);
+
+                ctx.restore();
             },
+        };
+
+        // Chart Config
+        const config = {
+            type: "doughnut",
+            data,
             options: {
                 responsive: true,
                 cutout: "60%", // To make the ring thinner
@@ -86,6 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     },
                 },
             },
-        });
+            plugins: [chartText],
+        };
+
+        // Create chart
+        new Chart(ctx, config);
     }
 });
