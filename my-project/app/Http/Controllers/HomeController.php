@@ -31,13 +31,15 @@ class HomeController extends Controller
 
         // $totVisitors =
 
-        $totBookings = Booking::all();
+        $totBookings = Booking::count();
 
-        $totDestinations = Destination::all();
+        $totDestinations = Destination::count();
 
-        $totTours = Tour::all();
+        $totTours = Tour::count();
 
-        $totAccommodations = Accommodation::all();
+        $totViewTours = Tour::sum('view_count');
+
+        $totAccommodations = Accommodation::count();
 
         $tourStatistics = Booking::join('tours', 'bookings.tour_id', '=', 'tours.id')
             ->selectRaw('tours.title as tour_title, COUNT(bookings.id) as total_bookings')
@@ -47,28 +49,28 @@ class HomeController extends Controller
 
          $columns = [
             [
-                'title' => __('static.visit_web'),
-                'tot' => '1200', //! provisor
+                'title' => __('static.tours_visitors'),
+                'tot' => $totViewTours,
                 'icon' => 'bi bi-eyeglasses',
             ],
             [
                 'title' => __('static.bookings'),
-                'tot' => count($totBookings),
+                'tot' =>$totBookings,
                 'icon' => 'bi bi-calendar-check',
             ],
             [
                 'title' => __('static.destinations'),
-                'tot' => count($totDestinations),
+                'tot' => $totDestinations,
                 'icon' => 'bi bi-pin-map',
             ],
             [
                 'title' => __('static.tours'),
-                'tot' => count($totTours),
+                'tot' => $totTours,
                 'icon' => 'bi bi-luggage',
             ],
             [
                 'title' => __('static.accommodations'),
-                'tot' => count($totAccommodations),
+                'tot' => $totAccommodations,
                 'icon' => 'bi bi-building-check',
             ],
         ];

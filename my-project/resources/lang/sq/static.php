@@ -47,6 +47,7 @@ return [
     'not_receive_email'                     => 'Nese nuk e keni pranuar emailin',
     'click_here_to_request_another'         => 'klikoni ketu per te kerkuar nje tjeter',
     'visit_web'                             => 'Vizito Webin',
+    'tours_visitors'                        => 'Vizitorët e Ekskursioneve',
     'action'                                => 'Veprim',
     'edit'                                  => 'Modifiko',
     'delete'                                => 'Fshi',
@@ -59,6 +60,7 @@ return [
 
     'check_options'                         => 'Qeko Opsionet',
     'select_options'                        => 'Selekto Opsionet',
+    'select_year'                           => 'Select Year',
     'create_itinerary'                      => 'Krijo Itinerarin',
 
     'bookings'                              => 'Rezervimet',

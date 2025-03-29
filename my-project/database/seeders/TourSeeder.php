@@ -12,6 +12,6 @@ class TourSeeder extends Seeder
      */
     public function run(): void
     {
-        Tour::factory()->count(10)->create();
+        Tour::factory()->count(35)->create();
     }
 }

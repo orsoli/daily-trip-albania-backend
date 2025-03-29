@@ -18,22 +18,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const totalBookings = tourBookings.reduce((acc, val) => acc + val, 0);
 
-        new Chart(ctx, {
+        // Setup chart
+        const data = {
+            labels: tourTitles,
+            datasets: [
+                {
+                    label: ["Tot. Bookings"],
+                    data: tourBookings,
+                    borderRadius: 30,
+                    borderColor: "rgb(75, 192, 192)",
+                    backgroundColor: "rgba(75, 192, 192, 0.3)",
+                    fill: true,
+                    hoverBorderWidth: 4,
+                },
+            ],
+        };
+
+        // Config chart
+        const config = {
             type: "line",
-            data: {
-                labels: tourTitles,
-                datasets: [
-                    {
-                        label: ["Tot. Bookings"],
-                        data: tourBookings,
-                        borderRadius: 30,
-                        borderColor: "rgb(75, 192, 192)",
-                        backgroundColor: "rgba(75, 192, 192, 0.3)",
-                        fill: true,
-                        hoverBorderWidth: 4,
-                    },
-                ],
-            },
+            data,
             options: {
                 scales: {
                     x: {
@@ -84,6 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     },
                 },
             },
-        });
+        };
+
+        new Chart(ctx, config);
     }
 });

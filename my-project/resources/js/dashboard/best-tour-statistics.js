@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     maxBookingsPercentage
             )
             .map((tour) => tour.tour_title);
-        console.log(bestToursTitles);
 
         // Function to set colors based on values
         function generateColorBasedOnValue(value) {

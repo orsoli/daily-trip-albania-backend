@@ -48,6 +48,7 @@ return [
     'not_receive_email'                     => 'If you did not receive the email',
     'click_here_to_request_another'         => 'click here to request another',
     'visit_web'                             => 'Visit Web',
+    'tours_visitors'                        => 'Tours Visitors',
     'show'                                  => 'Show',
     'action'                                => 'Action',
     'edit'                                  => 'Edit',
@@ -62,6 +63,7 @@ return [
 
     'check_options'                         => 'Check Options',
     'select_options'                        => 'Select Options',
+    'select_year'                           => 'Select Year',
     'create_itinerary'                      => 'Create Itinerary',
 
     'bookings'                              => 'Bookings',

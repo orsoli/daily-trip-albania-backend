@@ -70,6 +70,12 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href=" {{route('bookings.index')}}"
+                                                class="nav-link text-light {{Route::is('bookings.index') ? 'active disabled' : 'hover'}}">
+                                                {{__('static.bookings')}}
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{{route('tours.index')}}"
                                                 class="nav-link text-light {{Route::is('tours.index') ||
                                                                             Route::is('tours.create') ||
@@ -85,12 +91,7 @@
                                                 {{__('static.destinations')}}
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href=" {{route('bookings.index')}}"
-                                                class="nav-link text-light {{Route::is('bookings.index') ? 'active disabled' : 'hover'}}">
-                                                {{__('static.bookings')}}
-                                            </a>
-                                        </li>
+
                                         @if(Auth::user()->role->name
                                         ===
                                         'Super Admin')
@@ -261,6 +262,13 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href=" {{route('bookings.index')}}"
+                                                class="nav-link text-secondary {{Route::is('bookings.index') ? 'active disabled' : 'hover'}}">
+                                                <i class="bi bi-calendar-check"></i>
+                                                {{__('static.bookings')}}
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{{route('tours.index')}}"
                                                 class="nav-link text-secondary {{Route::is('tours.index') ? 'active disabled' : 'hover'}}">
                                                 <i class="bi bi-person-walking"></i>
@@ -272,13 +280,6 @@
                                                 class="nav-link text-secondary {{Route::is('destinations.index') ? 'active disabled' : 'hover'}}">
                                                 <i class="bi bi-pin-map"></i>
                                                 {{__('static.destinations')}}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href=" {{route('bookings.index')}}"
-                                                class="nav-link text-secondary {{Route::is('bookings.index') ? 'active disabled' : 'hover'}}">
-                                                <i class="bi bi-calendar-check"></i>
-                                                {{__('static.bookings')}}
                                             </a>
                                         </li>
                                         @if(Auth::user()->role->name
