@@ -1,4 +1,4 @@
-import Chart, { layouts } from "chart.js/auto";
+import { Chart } from "chart.js/auto";
 
 document.addEventListener("DOMContentLoaded", () => {
     const yearSelect = document.getElementById("years");
@@ -42,9 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const magnitude = Math.pow(10, Math.floor(Math.log10(maxPrice)));
         const y1AxisMaxValue = Math.ceil(maxPrice / magnitude) * magnitude;
 
-        console.log(maxPrice);
-        console.log(y1AxisMaxValue);
-
         // Setup
         const data = {
             labels: months,
@@ -78,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
             options: {
                 scales: {
                     x: {
-                        ticks: { color: "white" },
+                        ticks: { color: "white", font: { style: "italic" } },
                         grid: {
                             color: "rgba(75, 192, 192, 0.3)",
                             lineWidth: 0,
@@ -108,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         grid: {
                             drawOnChartArea: true,
                             lineWidth: 0,
-                            color: "rgba(255, 99, 133, 0.2)",
+                            color: "rgba(125, 8, 220, 0.54)",
                         },
                         ticks: { color: "rgb(255, 99, 132)", stepSize: 50 },
                         title: {

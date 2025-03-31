@@ -34,7 +34,7 @@
 
         </div>
 
-        {{-- Chck if table is not empty --}}
+        {{-- Check if table is not empty --}}
         @if (isset($destinations) && $destinations->isNotEmpty())
         <!-- Columns Head-->
         <div class="row text-info fw-bold px-3">

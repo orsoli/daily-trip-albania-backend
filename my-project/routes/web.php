@@ -77,5 +77,8 @@ Route::prefix('admin')->group(function () {
     // Bookings Routes
     Route::prefix('/bookings/')->group(function(){
         Route::get('', [BookingController::class, 'index'])->name('bookings.index');
+        Route::get('statistics', [BookingController::class, 'statistics'])->name('bookings.statistics');
+        Route::get('{booking}/show', [BookingController::class, 'show'])->name('bookings.show');
+
     });
 });

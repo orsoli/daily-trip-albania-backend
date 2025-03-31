@@ -218,6 +218,9 @@ hr{
     &:hover{
         border-radius:        20px;
         background-color:     rgba($secondary, $alpha: 0.2);
+        @media (max-width: 768px) {
+        padding-left: 10px;
+        }
         transition-duration:  0.5s;
     }
 }

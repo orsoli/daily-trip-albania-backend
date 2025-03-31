@@ -63,8 +63,10 @@ return [
     'select_year'                           => 'Select Year',
     'create_itinerary'                      => 'Krijo Itinerarin',
 
+    'booking'                               => 'Rezervimi',
     'bookings'                              => 'Rezervimet',
-    'bookings_statistics'                   => 'Statistikat e Rezervimeve',
+    'bookings_panel'                        => 'Paneli i Rezervimeve',
+
     'destinations'                          => 'Destinacione',
     'destination'                           => 'Destinacion',
     'tours'                                 => 'Ekskursione',

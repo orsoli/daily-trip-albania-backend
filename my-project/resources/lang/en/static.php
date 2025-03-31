@@ -66,8 +66,9 @@ return [
     'select_year'                           => 'Select Year',
     'create_itinerary'                      => 'Create Itinerary',
 
+    'booking'                               => 'Booking',
     'bookings'                              => 'Bookings',
-    'bookings_statistics'                   => 'Bookings Statistics',
+    'bookings_panel'                        => 'Bookings Panel',
     'destinations'                          => 'Destinations',
     'destination'                           => 'Destination',
     'tours'                                 => 'Tours',

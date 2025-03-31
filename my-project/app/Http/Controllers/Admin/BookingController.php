@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -24,30 +25,31 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $bookings = Booking::count();
+        if ($request->has('pending')) {
 
-        $statistics = Booking::selectRaw('YEAR(reservation_date) as year, MONTH(reservation_date) as month, COUNT(*) as bookings_count, SUM(total_price) as total_booking_price')
-            ->groupBy('year', 'month')
-            ->orderBy('year')
-            ->orderBy('month')
-            ->get();
+            $bookings = Booking::where('status', 'pending')
+                ->whereDate('reservation_date', '>=', Carbon::today())
+                ->orderBy('reservation_date')
+                ->paginate(10)
+                ->appends(['pending' => true]);
 
-        $years = Booking::selectRaw('YEAR(reservation_date) as year')
-            ->distinct()
-            ->orderBy('year', 'asc')
-            ->pluck('year');
+        } elseif ($request->has('all_status')) {
 
-        // $statistics = Booking::join('tours', 'bookings.tour_id', '=', 'tours.id')
-        //     ->selectRaw('tours.title as tour_title, COUNT(bookings.id) as total_bookings')
-        //     ->groupBy('tours.id', 'tours.title')
-        //     ->orderBy('tour_title')
-        //     ->get();
+            $bookings = Booking::orderBy('reservation_date', 'desc')
+                ->paginate(10)
+                ->appends(['all_status' => true]);
 
-            // dd($statistics);
+        } else {
 
-        return view('admin.bookings.index', compact('statistics', 'years'));
+            $bookings = Booking::where('status', 'confirmed')
+                ->whereDate('reservation_date', '>=', Carbon::today())
+                ->orderBy('reservation_date')
+                ->paginate(10);
+        }
+
+        return view('admin.bookings.index', compact('bookings'));
     }
 
     /**
@@ -71,7 +73,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        return view('admin.bookings.show', compact('booking'));
     }
 
     /**
@@ -96,5 +98,25 @@ class BookingController extends Controller
     public function destroy(Booking $booking)
     {
         //
+    }
+
+
+    /**
+     * Display statistics of the resource
+     */
+    public function statistics(){
+
+        $statistics = Booking::selectRaw('YEAR(reservation_date) as year, MONTH(reservation_date) as month, COUNT(*) as bookings_count, SUM(total_price) as total_booking_price')
+            ->groupBy('year', 'month')
+            ->orderBy('year')
+            ->orderBy('month')
+            ->get();
+
+        $years = Booking::selectRaw('YEAR(reservation_date) as year')
+            ->distinct()
+            ->orderBy('year', 'asc')
+            ->pluck('year');
+
+        return view('admin.bookings.statistics', compact('statistics', 'years'));
     }
 }

@@ -1,43 +1,86 @@
 @extends('layouts.app')
 
-@section('meta')
-<meta name='statistics' content='@json($statistics ?? '')'>
-@endsection
-
-@section('title', __('static.bookings_statistics') . ' | ' . config('app.name'))
+@section('title', __('static.bookings_panel'). ' | ' . config('app.name'))
 
 @section('content')
 <div class="container">
-    <div class="my-card text-secondary text-center p-2">
-        {{-- Chart Title --}}
-        <div class="chart-title text-decoration-underline py-2">
-            <h2> {{__('bookings.statistics')}} </h2>
+
+    {{-- Bookings Statistics btn --}}
+    <div class="mb-4">
+        <a class="btn btn-primary border rounded-5 text-secondary" data-tab='deleted_data'
+            href="{{route('bookings.statistics')}}">{{__('bookings.statistics')}}</a>
+    </div>
+
+    <div class="my-card px-2 px-md-4">
+        {{-- Users Table header navbars --}}
+        <div class="card-header">
+
+            @include('partials.nav-tabs', [
+            'navTabs' => [
+            [
+            'title' => __('bookings.all_bookings'),
+            'href' => route('bookings.index', ['all_status' => true])
+            ],
+            [
+            'title' => __('bookings.active_bookings'),
+            'href' => route('bookings.index')
+            ],
+            [
+            'title' => __('bookings.pending_bookings'),
+            'href' => route('bookings.index',['pending' => true])
+            ]
+            ],
+            ])
         </div>
 
+        {{-- Bookings Card --}}
+        <div class="row row-cols-1 g-2">
+            @if (isset($bookings))
+            @foreach ($bookings as $booking)
+            <div class="col">
+                <a href="{{route('bookings.show', $booking)}}">
+                    <div class="card my-card table-hover">
+                        <div class="card-body d-flex">
+                            <div class="text-center d-flex flex-column align-items-center">
+                                <div class="">
 
-        @if (isset($years))
-        {{-- Select year --}}
-        <div class="d-flex gap-2 p-3">
-            <label for="years" class="fs-5"> {{__('static.select_year')}}: </label>
-            <select name="years" id="years" class="form-control bg-transparent rounded-5 text-light w-auto py-0">
-                @foreach ($years as $year)
-                <option value={{$year}} @if ($loop->last) selected @endif> {{$year}} </option>
-                @endforeach
-            </select>
+                                </div>
+                                <div class="card-title mt-2">
+                                    <h2>
+                                        {{$booking->guest_email}}
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="card-subtitle ms-4 overflow-scroll align-self-center" style="max-height: 150px">
+                                <p>
+                                    {{$booking->reservation_date}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+            {{-- Paginate links --}}
+            <div class="mt-4">
+                {{ $bookings->links('pagination::bootstrap-4') }}
+            </div>
+            @else
+            <div class="my-card">
+                <h1 class="text-secondary text-center py-4">{{__('static.empty')}}</h1>
+            </div>
+            @endif
         </div>
-        {{-- Chart --}}
-        <div>
-            <canvas id="bookingsStatisticsChart" class="border rounded-5 bg-primary bg-opacity-50 p-3"></canvas>
-        </div>
-        @else
-        <h3 class="text-secondary text-center">
-            {{__('static.empty')}}
-        </h3>
-        @endif
     </div>
 </div>
 @endsection
 
+{{-- Script --}}
 @section('add-script')
-@vite (['resources/js/bookings-statistics.js'])
+@vite(['resources/js/nav-tabs.js'])
+@endsection
+
+{{-- CSS --}}
+@section('add-scss')
+@vite(['resources/sass/components/header-table.scss'])
 @endsection
