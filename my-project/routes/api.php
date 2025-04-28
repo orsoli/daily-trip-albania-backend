@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\TourController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::middleware('guest')->prefix('/tours/')->name('api.tours.')->group(function(){
-    Route::get('', [TourController::class, 'index'])->name('index');
+Route::middleware('guest')->group(function () {
+    Route::prefix('tours')->name('api.tours.')->group(function () {
+        Route::get('', [TourController::class, 'index'])->name('index');
+    });
+
+    Route::prefix('categories')->name('api.categories.')->group(function () {
+        Route::get('', [CategoryController::class, 'index'])->name('index');
+    });
 });

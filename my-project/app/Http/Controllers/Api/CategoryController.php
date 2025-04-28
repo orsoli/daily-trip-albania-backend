@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tour;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class TourController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tours = Tour::with(['categories', 'services'])->get();
+        $categories = Category::all();
 
         return response()->json([
-            'tours' => $tours
+            'categories' => $categories
         ]);
     }
 
@@ -31,10 +31,10 @@ class TourController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tour $tour)
+    public function show(Category $category)
     {
         return response()->json([
-            'tour' => $tour
+            'category' => $category
         ]);
     }
 
