@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\DestinationController;
 use App\Http\Controllers\Api\TourController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +22,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::middleware('guest')->group(function () {
+    // Tours Route
     Route::prefix('tours')->name('api.tours.')->group(function () {
         Route::get('', [TourController::class, 'index'])->name('index');
     });
 
+    // Destinations Route
+    Route::prefix('destinations')->name('api.destinations.')->group(function() {
+        Route::get('', [DestinationController::class, 'index'])->name('index');
+    });
+
+    // Category Route
     Route::prefix('categories')->name('api.categories.')->group(function () {
         Route::get('', [CategoryController::class, 'index'])->name('index');
     });

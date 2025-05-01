@@ -13,7 +13,10 @@ class TourController extends Controller
      */
     public function index()
     {
-        $tours = Tour::with(['categories', 'services'])->get();
+        $tours = Tour::with(['categories','guide', 'currency', 'services', 'itineraries', 'gallery'])
+                        ->where('is_active', true)
+                        ->orderByDesc('popularity')
+                        ->paginate(10);
 
         return response()->json([
             'tours' => $tours
@@ -33,9 +36,7 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        return response()->json([
-            'tour' => $tour
-        ]);
+        //
     }
 
     /**
