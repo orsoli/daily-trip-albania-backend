@@ -24,7 +24,13 @@ class DestinationController extends Controller
                     ->paginate(10);
 
                     return response()->json([
-                        'destinations' => $destinations
-                        ]);
+                        'data' => $destinations->items(),
+                        'pagination' => [
+                            'current_page' => $destinations->currentPage(),
+                            'last_page' => $destinations->lastPage(),
+                            'per_page' => $destinations->perPage(),
+                            'total' => $destinations->total(),
+                        ],
+                    ])->setStatusCode(200, 'Destination retrieved successfully');
     }
 }

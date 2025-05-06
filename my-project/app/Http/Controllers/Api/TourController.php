@@ -19,8 +19,14 @@ class TourController extends Controller
                         ->paginate(10);
 
         return response()->json([
-            'tours' => $tours
-        ]);
+            'data' => $tours->items(),
+            'pagination' => [
+                'current_page' => $tours->currentPage(),
+                'last_page' => $tours->lastPage(),
+                'per_page' => $tours->perPage(),
+                'total' => $tours->total(),
+            ],
+        ])->setStatusCode(200, 'Tours retrieved successfully');
     }
 
     /**
