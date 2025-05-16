@@ -25,6 +25,7 @@ Route::middleware('guest')->group(function () {
     // Tours Route
     Route::prefix('tours')->name('api.tours.')->group(function () {
         Route::get('', [TourController::class, 'index'])->name('index');
+        Route::get('/{tour}', [TourController::class, 'show'])->name('show');
     });
 
     // Destinations Route

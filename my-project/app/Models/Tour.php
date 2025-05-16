@@ -153,7 +153,7 @@ class Tour extends Model
      */
     public function bookings(): HasMany
     {
-        return $this->hasMany(Booking::class, 'booking_tour');
+        return $this->hasMany(Booking::class);
     }
 
 

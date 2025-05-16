@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DestinationResource;
 use App\Models\Destination;
 use Illuminate\Support\Facades\DB;
 
@@ -21,16 +22,10 @@ class DestinationController extends Controller
                         }
                     ])
                     ->orderByDesc('max_tour_popularity')
-                    ->paginate(10);
+                    ->paginate(8);
 
-                    return response()->json([
-                        'data' => $destinations->items(),
-                        'pagination' => [
-                            'current_page' => $destinations->currentPage(),
-                            'last_page' => $destinations->lastPage(),
-                            'per_page' => $destinations->perPage(),
-                            'total' => $destinations->total(),
-                        ],
-                    ])->setStatusCode(200, 'Destination retrieved successfully');
+                    return (DestinationResource::collection($destinations))
+                    ->response()
+                    ->setStatusCode(200, 'Tours retrieved successfully');
     }
 }

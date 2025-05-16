@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TourResource;
 use App\Models\Tour;
 use Illuminate\Http\Request;
 
@@ -16,17 +17,11 @@ class TourController extends Controller
         $tours = Tour::with(['categories','guide', 'currency', 'services', 'itineraries', 'gallery'])
                         ->where('is_active', true)
                         ->orderByDesc('popularity')
-                        ->paginate(10);
+                        ->paginate(8);
 
-        return response()->json([
-            'data' => $tours->items(),
-            'pagination' => [
-                'current_page' => $tours->currentPage(),
-                'last_page' => $tours->lastPage(),
-                'per_page' => $tours->perPage(),
-                'total' => $tours->total(),
-            ],
-        ])->setStatusCode(200, 'Tours retrieved successfully');
+        return (TourResource::collection($tours))
+        ->response()
+        ->setStatusCode(200, 'Tours retrieved successfully');
     }
 
     /**
@@ -42,7 +37,12 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        //
+        $tour->load(['guide', 'currency', 'region', 'accommodation', 'categories', 'gallery', 'destinations', 'itineraries', 'services']);
+        return new TourResource($tour);
+
+        // return response()->json([
+        //     'data' => $tour,
+        // ])->setStatusCode(200, 'Tour retrieved successfully');
     }
 
     /**
