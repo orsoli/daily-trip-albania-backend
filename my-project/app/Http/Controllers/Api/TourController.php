@@ -39,10 +39,6 @@ class TourController extends Controller
     {
         $tour->load(['guide', 'currency', 'region', 'accommodation', 'categories', 'gallery', 'destinations', 'itineraries', 'services']);
         return new TourResource($tour);
-
-        // return response()->json([
-        //     'data' => $tour,
-        // ])->setStatusCode(200, 'Tour retrieved successfully');
     }
 
     /**
